@@ -1,7 +1,7 @@
 <li id='waittime-<%= waittime['id'] %>'>
   <span><%= customer[:name] %></span> -
   <span>Wait Time</span> -
-  <button value=' <%= customer[:phone] %>' class='almost-ready'>Table Almost Ready!</button>
+  <button value='<%= customer[:phone] %>' class='almost-ready'>Table Almost Ready!</button>
   <form class='waittime-seat-form' action='/waittimes/<%= waittime['id'] %>'>
     <button type='submit'>Seat this Party</button>
   </form>

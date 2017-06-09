@@ -52,12 +52,12 @@ $(document).ready(function(){
     $.ajax({
       method: "get",
       url: '/waittimes/send_notice',
-      dataType: "json",
       data: {
         phone_number: phoneNumber
       }
     }).done(function(response){
       console.log(response)
+      alert('sent!')
     })
   })
 
