@@ -44,7 +44,10 @@ div { box-sizing: border-box; }
 .waitlist-header {
   @extend .flex-row;
   justify-content: space-between;
-  .add-party-btn {
+  .add-party {
+    @extend .flex-row
+  }
+  #add-party-button {
     background-color: orange;
     color: white;
     height: 2em;
