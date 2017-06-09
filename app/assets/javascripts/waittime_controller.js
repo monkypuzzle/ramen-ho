@@ -57,6 +57,7 @@ $(document).ready(function(){
       }
     }).done(function(response){
       console.log(response)
+      //figure out what to do after sms is sent
       alert('sent!')
     })
   })
