@@ -8,7 +8,7 @@ class WaittimesController < ApplicationController
 
   def create
     waittime = Waittime.create(party_size: params[:party_size], restaurant_id: 1)
-    send_confirmation_sms(params[:phone_number])
+    # send_confirmation_sms(params[:phone_number])
     render json: waittime.to_json
   end
 

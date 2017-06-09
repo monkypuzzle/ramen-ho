@@ -7,7 +7,7 @@ $(document).ready(function(){
     $("#add-party-form").toggle();
   })
 
-  $("#add-party-form").submit(function(event) {
+  $("body").on("submit", "form#add-party-form", function(event) {
     event.preventDefault();
     var partySize = $("#party_size").val();
     var customerName = $("#name").val();
@@ -22,8 +22,7 @@ $(document).ready(function(){
         phone_number: customerPhone
       }
     }).done(function(response){
-      console.log(response);
-      $(".waitlist").append("<li #id='waittime-" + response.id + "'><span>" + customerName + "</span> - <span>Wait Time</span> - <button type='submit'>Table Almost Ready!</button><form class='waittime-seat-form' action='/waittimes/1'><button type='submit'>Seat this Party</button></form></li>")
+      $(".waitlist").append("<li #id='waittime-" + response.id + "'><span>" + customerName + "</span> - <span>Wait Time</span> - <button value='" + customerPhone+ "' class='almost-ready'>Table Almost Ready!</button><form class='waittime-seat-form' action='/waittimes/1'><button type='submit'>Seat this Party</button></form></li>")
 
     })
   })
@@ -48,6 +47,14 @@ $(document).ready(function(){
       $chosenWaittimeItem.remove();
     });
   });
+
+  $(".waitlist").on("click", ".almost-ready", function(event){
+    var phoneNumber = $(this).val();
+    $.ajax({
+      method: "get",
+      url:
+    })
+  })
 
 
 });
