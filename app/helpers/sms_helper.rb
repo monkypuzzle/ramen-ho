@@ -9,12 +9,12 @@ module SmsHelper
       })
   end
 
-  def send_ready_sms(phone_number)
-    @client = Twilio::REST::Client.new ENV['TWILIO_SSID='], ENV['TWILIO_TOKEN']
-    @client.account.messages.create({
-      from: '+12138175925',
-      to: "+1" + phone_number,
-      body: "Your table is almost ready! Please stop by the restaurant to be seated",
-      })
-  end
+  # def send_ready_sms(phone_number)
+  #   @client = Twilio::REST::Client.new ENV['TWILIO_SSID='], ENV['TWILIO_TOKEN']
+  #   @client.account.messages.create({
+  #     from: '+12138175925',
+  #     to: "+1" + phone_number,
+  #     body: "Your table is almost ready! Please stop by the restaurant to be seated",
+  #     })
+  # end
 end

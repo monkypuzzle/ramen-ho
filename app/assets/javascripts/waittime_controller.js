@@ -9,21 +9,20 @@ $(document).ready(function(){
 
   $("body").on("submit", "form#add-party-form", function(event) {
     event.preventDefault();
-    var partySize = $("#party_size").val();
-    var customerName = $("#name").val();
-    var customerPhone = $("#phone_number").val();
+    var customer = new Customer(
+      $("#name").val(),
+      $("#phone_number").val(),
+      $("#party_size").val()
+      );
     $.ajax({
       method: "post",
       url: $(this).attr("action"),
-      dataType: "json",
       data: {
-        party_size: partySize,
-        customer_name: customerName,
-        phone_number: customerPhone
+        customer: customer
       }
     }).done(function(response){
-      $(".waitlist").append("<li #id='waittime-" + response.id + "'><span>" + customerName + "</span> - <span>Wait Time</span> - <button value='" + customerPhone+ "' class='almost-ready'>Table Almost Ready!</button><form class='waittime-seat-form' action='/waittimes/1'><button type='submit'>Seat this Party</button></form></li>")
-
+      console.log(response)
+      $(".waitlist").append(response);
     })
   })
 
@@ -52,7 +51,13 @@ $(document).ready(function(){
     var phoneNumber = $(this).val();
     $.ajax({
       method: "get",
-      url:
+      url: '/waittimes/send_notice',
+      dataType: "json",
+      data: {
+        phone_number: phoneNumber
+      }
+    }).done(function(response){
+      console.log(response)
     })
   })
 
