@@ -1,0 +1,73 @@
+// I. Troubleshooting
+// ========================================
+// div { border: dashed 1px red; }
+
+// II. General Tags
+// ========================================
+body { font-family: 'Futura' }
+body, p, li, span, button, input { font-size: 1.2em; }
+h1 { font-size: 5em; }
+div { box-sizing: border-box; }
+
+
+// III. Styling Classes
+// ========================================
+.flex-column {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flex-row {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+// IV. Structural Classes
+// ========================================
+// Application-wide
+.page-wrapper {
+  background-color: gainsboro;
+  height: 100vh;
+  width: 100%;
+}
+.content-wrapper {
+  background-color: whitesmoke;
+  height: 90%;
+  padding: 2%;
+  width: 90%;
+}
+
+// Welcome (Waitlist) Page
+.waitlist-header {
+  @extend .flex-row;
+  justify-content: space-between;
+  .add-party-btn {
+    background-color: orange;
+    color: white;
+    height: 2em;
+    }
+}
+
+.waitlist {
+  width: 100%;
+  .waittime-item {
+    @extend .flex-row;
+    border: solid 1px darkgrey;
+    justify-content: space-between;
+    min-height: 2em;
+    div { @extend .flex-row; }
+  }
+  .table-ready-btn, .seat-party-btn {
+    color: white;
+    font-size: 90%;
+    height: 2em;
+    }
+  .table-ready-btn { background-color: steelblue; }
+  .seat-party-btn { background-color: seagreen; }
+}
+
+
+

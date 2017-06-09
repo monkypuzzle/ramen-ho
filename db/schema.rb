@@ -33,21 +33,22 @@ ActiveRecord::Schema.define(version: 20170608214758) do
   end
 
   create_table "restaurants", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",                  null: false
     t.integer  "number_of_seats"
     t.integer  "crowdsourced_waittime"
-    t.jsonb    "operating_hours"
-    t.string   "address"
-    t.string   "phone"
+    t.jsonb    "operating_hours",       null: false
+    t.string   "address",               null: false
+    t.string   "phone",                 null: false
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end
 
   create_table "waittimes", force: :cascade do |t|
-    t.integer  "party_size"
-    t.boolean  "seated"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "party_size",                    null: false
+    t.boolean  "seated",        default: false, null: false
+    t.integer  "restaurant_id",                 null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
 end
