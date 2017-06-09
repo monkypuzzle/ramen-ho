@@ -13,3 +13,6 @@
 /tmp
 /public/packs
 /node_modules
+
+#Ignore .env file
+.env

@@ -17,11 +17,14 @@ $(document).ready(function(){
       url: $(this).attr("action"),
       dataType: "json",
       data: {
-        party_size: partySize
+        party_size: partySize,
+        customer_name: customerName,
+        phone_number: customerPhone
       }
     }).done(function(response){
       console.log(response);
       $(".waitlist").append("<li #id='waittime-" + response.id + "'><span>" + customerName + "</span> - <span>Wait Time</span> - <button type='submit'>Table Almost Ready!</button><form class='waittime-seat-form' action='/waittimes/1'><button type='submit'>Seat this Party</button></form></li>")
+
     })
   })
 
