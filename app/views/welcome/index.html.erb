@@ -6,7 +6,7 @@
 </form>
 <div class="container">
 <ul class="waitlist">
-  <li class="waittime-item">
+  <li id="waittime-1" class="waittime-item">
     <span>Party Name - </span>
     <span>Wait Time - </span>
     <%# Trigger an SMS message.%>
@@ -16,7 +16,16 @@
       <button type="submit">Seat this Party</button>
     </form>
   </li>
-  <li class="waittime-item"></li>
+  <li id="waittime-2" class="waittime-item">
+    <span>Party Name - </span>
+    <span>Wait Time - </span>
+    <%# Trigger an SMS message.%>
+    <button type="submit">Table Almost Ready!</button>
+    <%# Update Waittime object. Remove waittime-item from list. %>
+    <form class="waittime-seat-form" action="/waittimes/1">
+      <button type="submit">Seat this Party</button>
+    </form>
+  </li>
   <li class="waittime-item"></li>
   <li class="waittime-item"></li>
   <li class="waittime-item"></li>
