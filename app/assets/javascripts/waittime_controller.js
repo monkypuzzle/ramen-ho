@@ -46,5 +46,48 @@ $(document).ready(function(){
     });
   });
 
+  // =============================================
+  // Screen can be unlocked (for Cabin Boys/Girls)
+  // =============================================
+  var $privilegedButtons = $(".table-ready-btn, .seat-party-btn");
+  var $pinInput = $(".pin-input, .pin-btn");
+  var lockScreen = function(){
+    $privilegedButtons.hide();
+    $pinInput.hide();
+    $(".unlock-screen-btn").show();
+    $(".lock-screen-btn").hide();
+    $(".lock-status").html("")
+  };
+  // Default screen to locked
+  lockScreen();
+
+  // Cabin Boy/Girl can show pin form
+  $(".unlock-screen-btn").on("click", function(event){
+    $(this).hide();
+    $pinInput.show();
+  });
+  
+  // Cabin Boy/Girl can enter pin to unlock screen
+  $(".pin-btn").on("click", function(event){
+    // If pin correct, unlock screen
+    if ( $(".pin-input").val() === '1234' ) {
+      $pinInput.hide();
+      $privilegedButtons.show();
+      $(".lock-screen-btn").show();
+      // (Lock screen automatically after 15 seconds)
+      setTimeout(lockScreen, 15000);
+      $(".lock-status").html("<p style='color:seagreen;'>Screen unlocked!</p><p style='color:orange;'>Will lock automatically in 5 seconds.</p>")
+    }
+    // If pin incorrect, give alert
+    else {
+      $(".lock-status").html("<p style='color:red;'>Incorrect pin!</p>")
+    }
+  });
+
+  // Cabin Boy/Girl can re-lock screen when they are done
+  $(".lock-screen-btn").on("click", function(event){
+    lockScreen();
+  });
+
 
 });
