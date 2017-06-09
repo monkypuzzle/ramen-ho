@@ -6,7 +6,7 @@ $(document).ready(function(){
     $.ajax({
       method: "PUT",
       url: $form.attr("action"),
-      
+
     })
     .done(function(response){
       // When done, remove the <li> from the list

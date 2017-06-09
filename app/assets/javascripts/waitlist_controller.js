@@ -8,13 +8,19 @@ $(document).ready(function() {
 
   $("#add-party-form").submit(function(event) {
     event.preventDefault();
-    var waitList = $(this).serialize();
-    console.log(JSON.stringify(waitList));
-    // $.ajax({
-    //   method: "post",
-    //   data: $(this).serialize()
-    // }).done(function(response){
-    //   console.log(response);
-    // })
+    var partySize = $("#party_size").val();
+    var customerName = $("#name").val();
+    var customerPhone = $("#phone_number").val();
+    $.ajax({
+      method: "post",
+      url: $(this).attr("action"),
+      dataType: "json",
+      data: {
+        party_size: partySize
+      }
+    }).done(function(response){
+      console.log(response);
+      $(".waitlist").append("<li #id='waittime-" + response.id + "'><span>" + customerName + "</span></li>")
+    })
   })
 })
