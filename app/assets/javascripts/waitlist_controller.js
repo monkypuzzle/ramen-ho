@@ -20,7 +20,7 @@ $(document).ready(function() {
       }
     }).done(function(response){
       console.log(response);
-      $(".waitlist").append("<li #id='waittime-" + response.id + "'><span>" + customerName + "</span></li>")
+      $(".waitlist").append("<li #id='waittime-" + response.id + "'><span>" + customerName + "</span> - <span>Wait Time</span><button type='submit'>Table Almost Ready!</button><form class='waittime-seat-form' action='/waittimes/1'><button type='submit'>Seat this Party</button></form></li>")
     })
   })
 })
