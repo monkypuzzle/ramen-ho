@@ -3,6 +3,8 @@ require 'date'
 @t = DateTime.now()
 @collection = [{created_at: DateTime.new(@t.year,@t.month,@t.day,15,00,0, "-08:00"), updated_at: DateTime.new(@t.year,@t.month,@t.day,15,30,0, "-08:00")}, {created_at: DateTime.new(@t.year,@t.month,@t.day,15,00,0, "-08:00"), updated_at: DateTime.new(@t.year,@t.month,@t.day,16,00,0, "-08:00")}]
 
+@num_seats = 60
+
 module Waitcalc
 
 @t = DateTime.now()
@@ -11,7 +13,6 @@ module Waitcalc
 @rush_hour_lunch_end = DateTime.new(@t.year,@t.month,@t.day,14,30,0, "-08:00")
 @rush_hour_dinner_start = DateTime.new(@t.year,@t.month,@t.day,18,00,0, "-08:00")
 @rush_hour_dinner_end = DateTime.new(@t.year,@t.month,@t.day,21,00,0, "-08:00")
-@num_seats = 60
 
 # puts @t.strftime('%A')
 # @collection = Waittime.where("EXTRACT(dow FROM (created_at)) = ?", DateTime.now.wday).map{|date| date.created_at.hour == @t.hour}
@@ -28,10 +29,10 @@ def self.rush_hour?
 end
 
 
-def self.base_alg
+def self.base_alg(seats)
   arr = []
   leaving = []
-  @num_seats.times do
+  seats.times do
     if rush_hour?
       times = rand(0..30)
     else
@@ -44,9 +45,9 @@ def self.base_alg
     leaving << full_time
     end
   end
-   average_time = arr.reduce(:+)/@num_seats
+   average_time = arr.reduce(:+)/seats
    algorithm_time = arr.reduce(:+) - leaving.length * average_time
-   algorithm_time = algorithm_time/@num_seats
+   algorithm_time = algorithm_time/seats
 
 end
 
@@ -55,8 +56,8 @@ def self.collection_avg(collection)
   customer_time = total_times.reduce(:+) / collection.length
 end
 
-def self.find_waitime_app(collection=nil)
-  algorithm_time = base_alg
+def self.find_waitime_app(collection=nil, seats)
+  algorithm_time = base_alg(seats)
   if collection
    customer_time = collection_avg(collection)
    estimated_time = (algorithm_time + customer_time)/2
@@ -86,4 +87,4 @@ end
 
 end
 # puts estimated_waitime(@collection[0])
-Waitcalc.find_waitime_app(@collection)
+Waitcalc.find_waitime_app(@collection, @num_seats)
