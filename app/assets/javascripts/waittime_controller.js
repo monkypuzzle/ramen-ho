@@ -7,21 +7,22 @@ $(document).ready(function(){
     $("#add-party-form").toggle();
   })
 
-  $("#add-party-form").submit(function(event) {
+  $("body").on("submit", "form#add-party-form", function(event) {
     event.preventDefault();
-    var partySize = $("#party_size").val();
-    var customerName = $("#name").val();
-    var customerPhone = $("#phone_number").val();
+    var customer = new Customer(
+      $("#name").val(),
+      $("#phone_number").val(),
+      $("#party_size").val()
+      );
     $.ajax({
       method: "post",
       url: $(this).attr("action"),
-      dataType: "json",
       data: {
-        party_size: partySize
+        customer: customer
       }
     }).done(function(response){
-      console.log(response);
-      $(".waitlist").append("<li #id='waittime-" + response.id + "'><span>" + customerName + "</span> - <span>Wait Time</span> - <button type='submit'>Table Almost Ready!</button><form class='waittime-seat-form' action='/waittimes/1'><button type='submit'>Seat this Party</button></form></li>")
+      console.log(response)
+      $(".waitlist").append(response);
     })
   })
 
@@ -45,6 +46,22 @@ $(document).ready(function(){
       $chosenWaittimeItem.remove();
     });
   });
+
+
+  $(".waitlist").on("click", ".almost-ready", function(event){
+    var phoneNumber = $(this).val();
+    $.ajax({
+      method: "get",
+      url: '/waittimes/send_notice',
+      data: {
+        phone_number: phoneNumber
+      }
+    }).done(function(response){
+      console.log(response)
+      //figure out what to do after sms is sent
+      alert('sent!')
+    })
+  })
 
   // =============================================
   // Screen can be unlocked (for Cabin Boys/Girls)
@@ -88,6 +105,7 @@ $(document).ready(function(){
   $(".lock-screen-btn").on("click", function(event){
     lockScreen();
   });
+
 
 
 });
