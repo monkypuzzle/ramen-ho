@@ -47,7 +47,7 @@ $(document).ready(function(){
     });
   });
 
-  $(".waitlist").on("click", ".almost-ready", function(event){
+  $(".waitlist").on("click", ".table-ready-btn", function(event){
     var phoneNumber = $(this).val();
     $.ajax({
       method: "get",
