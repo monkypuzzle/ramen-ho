@@ -5,4 +5,7 @@ class WelcomeController < ApplicationController
       redirect_to "/admins/sign_in"
     end
   end
+
+  def mobile
+  end
 end
