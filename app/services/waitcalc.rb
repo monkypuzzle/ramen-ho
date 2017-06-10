@@ -1,14 +1,14 @@
 require 'date'
 
-@t = DateTime.now()
-@collection = [{created_at: DateTime.new(@t.year,@t.month,@t.day,15,00,0, "-08:00"), updated_at: DateTime.new(@t.year,@t.month,@t.day,15,30,0, "-08:00")}, {created_at: DateTime.new(@t.year,@t.month,@t.day,15,00,0, "-08:00"), updated_at: DateTime.new(@t.year,@t.month,@t.day,16,00,0, "-08:00")}]
-@guest = {party_size: 3, parties_ahead: 3, seated: false, created_at: DateTime.now(), updated_at: DateTime.now()}
-@num_seats = 90
+# @t = DateTime.now()
+# @collection = [{created_at: DateTime.new(@t.year,@t.month,@t.day,15,00,0, "-08:00"), updated_at: DateTime.new(@t.year,@t.month,@t.day,15,30,0, "-08:00")}, {created_at: DateTime.new(@t.year,@t.month,@t.day,15,00,0, "-08:00"), updated_at: DateTime.new(@t.year,@t.month,@t.day,16,00,0, "-08:00")}]
+# @guest = {party_size: 3, parties_ahead: 3, seated: false, created_at: DateTime.now(), updated_at: DateTime.now()}
+# @num_seats = 90
 
 module Waitcalc
 
-# @t = DateTime.now()
-@t = DateTime.new(2017,6,9,10,00,0, "-08:00")
+@t = DateTime.now()
+# @t = DateTime.new(2017,6,9,10,00,0, "-08:00")
 @rush_hour_lunch_start = DateTime.new(@t.year,@t.month,@t.day,12,00,0, "-08:00")
 @rush_hour_lunch_end = DateTime.new(@t.year,@t.month,@t.day,14,30,0, "-08:00")
 @rush_hour_dinner_start = DateTime.new(@t.year,@t.month,@t.day,18,00,0, "-08:00")
@@ -118,4 +118,4 @@ end
 
 # puts estimated_waitime(@collection[0])
 
-puts Waitcalc.find_first_waitime(@collection, @num_seats, @guest, 45)
+# puts Waitcalc.find_first_waitime(@collection, @num_seats, @guest, 45)
