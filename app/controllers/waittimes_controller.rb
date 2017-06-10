@@ -7,14 +7,17 @@ class WaittimesController < ApplicationController
   end
 
   def create
-    waittime = Waittime.new(party_size: params["customer"]["partySize"], restaurant_id: 1)
-    customer = {name: params["customer"]["name"], phone: params["customer"]["phone"], party_size: waittime.party_size}
-    if waittime.save
-      # send_confirmation_sms(customer[:phone])
-      render partial: "/waittimes/create.html.erb", locals: { customer: customer, waittime: waittime }, layout: false
-    else
-      # print error messages?
-    end
+    waittime = Waittime.new(waittime_params)
+    waittime.restaurant_id = 1
+    waittime.save
+    # waittime = Waittime.new(party_size: params["customer"]["partySize"], restaurant_id: 1)
+    # customer = {name: params["customer"]["name"], phone: params["customer"]["phone"], party_size: waittime.party_size}
+    # if waittime.save
+    #   # send_confirmation_sms(customer[:phone])
+    #   render partial: "/waittimes/create.html.erb", locals: { customer: customer, waittime: waittime }, layout: false
+    # else
+    #   # print error messages?
+    # end
   end
 
   def send_notice
@@ -22,6 +25,6 @@ class WaittimesController < ApplicationController
   end
 
   def waittime_params
-    params.require(:waittime).permit(:id)
+    params.require(:waittime).permit(:id, :customer, :phone, :party_size)
   end
 end
