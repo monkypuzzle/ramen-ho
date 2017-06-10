@@ -56,7 +56,7 @@ Restaurant.create(
   phone: "(858)571-2010"
   )
 Restaurant.create(
-  name: "Nozaru Ramer Bar",
+  name: "Nozaru Ramen Bar",
   operating_hours: {
     "sunday": {
       lunch: ["12:00","0"],
