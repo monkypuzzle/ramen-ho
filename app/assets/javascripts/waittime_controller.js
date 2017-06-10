@@ -13,8 +13,10 @@ $(document).ready(function(){
       url: $(this).attr("action"),
       data: $(this).serialize()
     }).done(function(response){
-      console.log(response)
       $(".waitlist").append(response);
+    }).fail(function(response){
+      console.log(response)
+      $(".errors").html(response)
     })
   })
 

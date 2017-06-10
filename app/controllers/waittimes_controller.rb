@@ -10,10 +10,10 @@ class WaittimesController < ApplicationController
     @waittime = Waittime.new(waittime_params)
     @waittime.restaurant_id = current_admin.restaurant.id
     if @waittime.save
-      render partial: "/waittimes/create.html.erb", locals: {waittime: @waittime}, layout: false
       # send_confirmation_sms(@waittime.phone)
-    # else
-    #   @waittime.errors
+      render partial: "/waittimes/create.html.erb", locals: {waittime: @waittime}, layout: false
+    else
+      render partial: "/waittime/errors.html.erb", locals: { waittime: @waittime}, layout: false
     end
     # waittime = Waittime.new(party_size: params["customer"]["partySize"], restaurant_id: 1)
     # customer = {name: params["customer"]["name"], phone: params["customer"]["phone"], party_size: waittime.party_size}
