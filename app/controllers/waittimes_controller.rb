@@ -25,7 +25,8 @@ class WaittimesController < ApplicationController
   def send_notice
     waittime_id = find_waittime_id(params[:id])
     waittime = Waittime.find(waittime_id)
-    send_ready_sms(waittime.phone)
+    render plain: params[:id]
+    # send_ready_sms(waittime.phone)
   end
 
   def waittime_params

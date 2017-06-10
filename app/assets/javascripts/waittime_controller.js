@@ -59,7 +59,6 @@ $(document).ready(function(){
 
   $(".waitlist").on("click", ".almost-ready", function(event){
     var waittimeId = $(this).parent().prop("id");
-    console.log(waittimeId)
     $.ajax({
       method: "get",
       url: '/waittimes/send_notice',
@@ -67,9 +66,7 @@ $(document).ready(function(){
         id: waittimeId
       }
     }).done(function(response){
-      console.log(response)
-      //figure out what to do after sms is sent
-      alert('sent!')
+      $("#" + response).find('.almost-ready').css('background-color', 'red');
     })
   })
 
