@@ -15,7 +15,7 @@ class WaittimesController < ApplicationController
     @waittime.number_of_parties_before = number_of_unseated_parties(current_admin.restaurant)
     if @waittime.save
       # send_confirmation_sms(@waittime.phone)
-      render partial: "/waittimes/create.html.erb", locals: {waittime: @waittime}, layout: false
+      render partial: 'waittimes/create_w_db', locals: {waittime: @waittime}, layout: false
     else
       #errors aren't working, implemented grayed out function instead - will revisit on Monday
       render partial: "/waittime/errors.html.erb", locals: { waittime: @waittime}, layout: false
