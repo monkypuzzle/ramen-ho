@@ -8,23 +8,9 @@ require 'faker'
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# Create 10 waittimes (currently waiting)
-10.times do
-  name = Faker::Name.first_name
-  party_size = [1,2,3,4].sample
-  Waittime.create(seated:false, party_size: party_size, customer: name, phone: '1112223333')
-  sleep 2
-end
 
-# Create 10 waittimes (already seated)
-10.times do
-  name = Faker::Name.first_name
-  party_size = [1,2,3,4].sample
-  Waittime.create(seated:true, party_size: party_size, customer: name, phone: '1112223333')
-  sleep 2
-end
-
-Restaurant.create(
+# Create 1 restaurant
+restaurant = Restaurant.create(
   name: "Menya Ultra",
   operating_hours: {
     "sunday": {
@@ -59,6 +45,28 @@ Restaurant.create(
   address: "8199 Clairemont Mesa Blvd Ste M San Diego CA 92111",
   phone: "(858)571-2010"
   )
+
+# Create 1 admin
+admin = Admin.create(email: 'menya_ultra@email.com', password: 'password', restaurant_id: 1)
+
+# Create 10 waittimes (currently waiting)
+10.times do
+  name = Faker::Name.first_name
+  party_size = [1,2,3,4].sample
+  Waittime.create(seated:false, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: restaurant.id)
+  sleep 2
+end
+
+# Create 10 waittimes (already seated)
+10.times do
+  name = Faker::Name.first_name
+  party_size = [1,2,3,4].sample
+  Waittime.create(seated:true, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: restaurant.id)
+  sleep 2
+end
+
+
+# Continue creating restaurants
 Restaurant.create(
   name: "Nozaru Ramen Bar",
   operating_hours: {
