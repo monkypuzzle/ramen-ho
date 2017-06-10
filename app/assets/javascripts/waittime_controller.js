@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
   //hides waitlist form
-  $("#add-party-form").toggle();
   //toggle form on Add Party button
   $("#add-party-button").click(function(event){
     $("#add-party-form").toggle();
@@ -75,7 +74,7 @@ $(document).ready(function(){
     $(".lock-status").html("")
   };
   // Default screen to locked
-  lockScreen();
+  // lockScreen();
 
   // Cabin Boy/Girl can show pin form
   $(".unlock-screen-btn").on("click", function(event){
