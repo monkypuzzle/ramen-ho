@@ -13,6 +13,7 @@ class WaittimesController < ApplicationController
       # send_confirmation_sms(@waittime.phone)
       render partial: "/waittimes/create.html.erb", locals: {waittime: @waittime}, layout: false
     else
+      #errors aren't working, implemented grayed out function instead
       render partial: "/waittime/errors.html.erb", locals: { waittime: @waittime}, layout: false
     end
   end

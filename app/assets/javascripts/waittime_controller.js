@@ -6,10 +6,12 @@ $(document).ready(function(){
     $("#add-party-form").toggle();
   })
 
+  //add to wailist grays out unless all fields are filled
   $('#name, #party_size, #phone_number').bind('keyup', function() {
     if(allFilled()) $('#add-to-waitlist').removeAttr('disabled');
   })
 
+  //checks that all fields are filled in
   function allFilled() {
     if (!($('#name').val() === '') && !($('#party_size').val() === '') && !($('#phone_number').val() === '')) {
       return true;
