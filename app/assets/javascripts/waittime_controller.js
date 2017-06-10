@@ -8,11 +8,6 @@ $(document).ready(function(){
 
   $("body").on("submit", "form#add-party-form", function(event) {
     event.preventDefault();
-    // var customer = new Customer(
-    //   $("#name").val(),
-    //   $("#phone_number").val(),
-    //   $("#party_size").val()
-    //   );
     $.ajax({
       method: "post",
       url: $(this).attr("action"),
