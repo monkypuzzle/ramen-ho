@@ -57,13 +57,14 @@ $(document).ready(function(){
     });
   });
 
-  $(".waitlist").on("click", ".table-ready-btn", function(event){
-    var phoneNumber = $(this).val();
+  $(".waitlist").on("click", ".almost-ready", function(event){
+    var waittimeId = $(this).parent().prop("id");
+    console.log(waittimeId)
     $.ajax({
       method: "get",
       url: '/waittimes/send_notice',
       data: {
-        phone_number: phoneNumber
+        id: waittimeId
       }
     }).done(function(response){
       console.log(response)
