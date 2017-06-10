@@ -72,5 +72,9 @@ div { box-sizing: border-box; }
   .seat-party-btn { background-color: seagreen; }
 }
 
+// Default welcome page buttons to hidden (needed to solve presumed turbolinks issue)
+.table-ready-btn, .seat-party-btn, .pin-input, .pin-btn, .lock-screen-btn, .lock-status, #add-party-form {
+  display: none;
+}
 
 
