@@ -26,7 +26,6 @@ class Restaurant < ActiveRecord::Base
       elsif current_mil_time > self.operating_hours[current_day]["dinner"][1]
         tomorrow = (Date.today + 1).strftime("%A").downcase
         day_after_tmrw = (Date.today + 2).strftime("%A").downcase
-        today = current_day
         self.operating_hours[tomorrow]["lunch"][0]
         self.operating_hours[tomorrow]["dinner"][0]
         self.operating_hours[day_after_tmrw]["lunch"][0]
