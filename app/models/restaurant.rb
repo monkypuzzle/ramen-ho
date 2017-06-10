@@ -32,7 +32,7 @@ class Restaurant < ActiveRecord::Base
         self.operating_hours[day_after_tmrw]["dinner"][0]
       end
     else
-      unknown
+      "Unknown"
     end
   end
 
