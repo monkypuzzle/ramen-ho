@@ -1,0 +1,8 @@
+<li id='waittime-<%= waittime.id %>'>
+  <span><%= waittime.customer %></span> -
+  <span>Wait Time</span> -
+  <button value='<%= waittime.phone %>' class='almost-ready'>Table Almost Ready!</button>
+  <form class='waittime-seat-form' action='/waittimes/<%= waittime.id %>'>
+    <button type='submit'>Seat this Party</button>
+  </form>
+</li>
