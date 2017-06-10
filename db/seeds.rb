@@ -50,18 +50,18 @@ restaurant = Restaurant.create(
 admin = Admin.create(email: 'menya_ultra@email.com', password: 'password', restaurant_id: 1)
 
 # Create 10 waittimes (currently waiting)
-10.times do
+10.times do |i|
   name = Faker::Name.first_name
   party_size = [1,2,3,4].sample
-  Waittime.create(seated:false, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: restaurant.id)
+  Waittime.create(seated:false, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: restaurant.id, number_of_parties_before: i)
   sleep 2
 end
 
 # Create 10 waittimes (already seated)
-10.times do
+10.times do |i|
   name = Faker::Name.first_name
   party_size = [1,2,3,4].sample
-  Waittime.create(seated:true, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: restaurant.id)
+  Waittime.create(seated:true, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: restaurant.id, number_of_parties_before: i)
   sleep 2
 end
 
