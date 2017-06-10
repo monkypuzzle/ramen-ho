@@ -22,6 +22,9 @@
     </div>
   </div>
 
+  <% @waittimes.each do |waittime| %>
+    <%= render 'waittimes/create', layout: false, locals: {waittime: } %>
+
   <div class="container">
     <ul class="waitlist">
       <li id="waittime-1" class="waittime-item">
@@ -41,93 +44,6 @@
           </form>
         </div>
       </li>
-      <li id="waittime-2" class="waittime-item">
-        <div>
-          <pre> 2 | </pre>
-          <span>Party Name</span>
-        </div>
-        <div>
-          <span>XX minutes</span>
-        </div>
-        <div>
-          <%# Trigger an SMS message.%>
-          <button class="table-ready-btn" type="submit">Table Almost Ready!</button>
-          <%# Update Waittime object. Remove waittime-item from list. %>
-          <form class="waittime-seat-form" action="/waittimes/1">
-            <button class="seat-party-btn" type="submit">Seat this Party</button>
-          </form>
-        </div>
-      </li>
-      <li id="waittime-3" class="waittime-item">
-        <div>
-          <pre> 3 | </pre>
-          <span>Party Name</span>
-        </div>
-        <div>
-          <span>XX minutes</span>
-        </div>
-        <div>
-          <%# Trigger an SMS message.%>
-          <button class="table-ready-btn" type="submit">Table Almost Ready!</button>
-          <%# Update Waittime object. Remove waittime-item from list. %>
-          <form class="waittime-seat-form" action="/waittimes/1">
-            <button class="seat-party-btn" type="submit">Seat this Party</button>
-          </form>
-        </div>
-      </li>
-    <li id="waittime-4" class="waittime-item">
-        <div>
-          <pre> 4 | </pre>
-          <span>Party Name</span>
-        </div>
-        <div>
-          <span>XX minutes</span>
-        </div>
-        <div>
-          <%# Trigger an SMS message.%>
-          <button class="table-ready-btn" type="submit">Table Almost Ready!</button>
-          <%# Update Waittime object. Remove waittime-item from list. %>
-          <form class="waittime-seat-form" action="/waittimes/1">
-            <button class="seat-party-btn" type="submit">Seat this Party</button>
-          </form>
-        </div>
-      </li>
-      <li id="waittime-5" class="waittime-item">
-        <div>
-          <pre> 5 | </pre>
-          <span>Party Name</span>
-        </div>
-        <div>
-          <span>XX minutes</span>
-        </div>
-        <div>
-          <%# Trigger an SMS message.%>
-          <button class="table-ready-btn" type="submit">Table Almost Ready!</button>
-          <%# Update Waittime object. Remove waittime-item from list. %>
-          <form class="waittime-seat-form" action="/waittimes/1">
-            <button class="seat-party-btn" type="submit">Seat this Party</button>
-          </form>
-        </div>
-      </li>
-      <li id="waittime-6" class="waittime-item">
-        <div>
-          <pre> 6 | </pre>
-          <span>Party Name</span>
-        </div>
-        <div>
-          <span>XX minutes</span>
-        </div>
-        <div>
-          <%# Trigger an SMS message.%>
-          <button class="table-ready-btn" type="submit">Table Almost Ready!</button>
-          <%# Update Waittime object. Remove waittime-item from list. %>
-          <form class="waittime-seat-form" action="/waittimes/1">
-            <button class="seat-party-btn" type="submit">Seat this Party</button>
-          </form>
-        </div>
-      </li>
-    </ul>
-  </div>
 
 </div>
 

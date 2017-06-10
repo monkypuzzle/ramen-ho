@@ -1,3 +1,5 @@
+require 'faker'
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -8,15 +10,17 @@
 
 # Create 10 waittimes (currently waiting)
 10.times do
+  name = Faker::Name.first_name
   party_size = [1,2,3,4].sample
-  Waittime.create(seated:false, party_size: party_size)
+  Waittime.create(seated:false, party_size: party_size, customer: name, phone: '1112223333')
   sleep 2
 end
 
 # Create 10 waittimes (already seated)
 10.times do
+  name = Faker::Name.first_name
   party_size = [1,2,3,4].sample
-  Waittime.create(seated:true, party_size: party_size)
+  Waittime.create(seated:true, party_size: party_size, customer: name, phone: '1112223333')
   sleep 2
 end
 
@@ -33,30 +37,30 @@ Restaurant.create(
     "monday_dinner_open": 0,
     "monday_dinner_close": 0,
 
-    "tuesday_lunch_open": 11:00,
-    "tuesday_lunch_close": 14:00,
-    "tuesday_dinner_open": 18:00,
-    "tuesday_dinner_close": 21:00,
+    "tuesday_lunch_open": 1100,
+    "tuesday_lunch_close": 1400,
+    "tuesday_dinner_open": 1800,
+    "tuesday_dinner_close": 2100,
 
-    "wednesday_lunch_open": 11:00,
-    "wednesday_lunch_close": 14:00,
-    "wednesday_dinner_open": 18:00,
-    "wednesday_dinner_close": 21:00,
+    "wednesday_lunch_open": 1100,
+    "wednesday_lunch_close": 1400,
+    "wednesday_dinner_open": 1800,
+    "wednesday_dinner_close": 2100,
 
-    "thursday_lunch_open": 11:00,
-    "thursday_lunch_close": 14:00,
-    "thursday_dinner_open": 18:00,
-    "thursday_dinner_close": 21:00,
+    "thursday_lunch_open": 1100,
+    "thursday_lunch_close": 1400,
+    "thursday_dinner_open": 1800,
+    "thursday_dinner_close": 2100,
 
-    "friday_lunch_open": 11:00,
-    "friday_lunch_close": 14:00,
-    "friday_dinner_open": 18:00,
-    "friday_dinner_close": 21:00,
+    "friday_lunch_open": 1100,
+    "friday_lunch_close": 1400,
+    "friday_dinner_open": 1800,
+    "friday_dinner_close": 2100,
 
-    "saturday_lunch_open": 11:00,
-    "saturday_lunch_close": 14:00,
-    "saturday_dinner_open": 18:00,
-    "saturday_dinner_close": 21:00,
+    "saturday_lunch_open": 1100,
+    "saturday_lunch_close": 1400,
+    "saturday_dinner_open": 1800,
+    "saturday_dinner_close": 2100,
         },
   address: "8199 Clairemont Mesa Blvd Ste M San Diego CA 92111",
   phone: "(858)571-2010"
@@ -105,40 +109,40 @@ Restaurant.create(
 Restaurant.create(
   name: "Minato 3",                     ###############################also sushi#################################
   operating_hours: {
-    "sunday_lunch_open": 11:00,
+    "sunday_lunch_open": 1100,
     "sunday_lunch_close": 0,
     "sunday_dinner_open": 0,
-    "sunday_dinner_close": 21:30,
+    "sunday_dinner_close": 2130,
 
-    "monday_lunch_open": 11:00,
+    "monday_lunch_open": 1100,
     "monday_lunch_close": 0,
     "monday_dinner_open": 0,
-    "monday_dinner_close": 21:30,
+    "monday_dinner_close": 2130,
 
-    "tuesday_lunch_open": 11:00,
+    "tuesday_lunch_open": 1100,
     "tuesday_lunch_close": 0,
     "tuesday_dinner_open": 0,
-    "tuesday_dinner_close": 21:30,
+    "tuesday_dinner_close": 2130,
 
-    "wednesday_lunch_open": 11:00,
+    "wednesday_lunch_open": 1100,
     "wednesday_lunch_close": 0,
     "wednesday_dinner_open": 0,
-    "wednesday_dinner_close": 21:30,
+    "wednesday_dinner_close": 2130,
 
-    "thursday_lunch_open": 11:00,
+    "thursday_lunch_open": 1100,
     "thursday_lunch_close": 0,
     "thursday_dinner_open": 0,
-    "thursday_dinner_close": 21:30,
+    "thursday_dinner_close": 2130,
 
-    "friday_lunch_open": 11:00,
+    "friday_lunch_open": 1100,
     "friday_lunch_close": 0,
     "friday_dinner_open": 0,
-    "friday_dinner_close": 21:30,
+    "friday_dinner_close": 2130,
 
-    "saturday_lunch_open": 11:00,
+    "saturday_lunch_open": 1100,
     "saturday_lunch_close": 0,
     "saturday_dinner_open": 0,
-    "saturday_dinner_close": 21:30,
+    "saturday_dinner_close": 2130,
         },
   address: "5420 El Cajon Blvd San Diego CA 92115",
   phone: "(619)452-2857"
