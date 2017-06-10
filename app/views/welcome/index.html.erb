@@ -8,7 +8,7 @@
         <%= f.text_field :customer, id:"name", placeholder:"Name" %>
         <%= f.number_field :party_size, id:"party_size", placeholder:"Party Size" %>
         <%= f.telephone_field :phone, id:"phone_number", placeholder:"Phone Number" %>
-        <%= f.submit "Add to Waitlist" %>
+        <%= f.submit "Add to Waitlist", id: "add-to-waitlist", disabled: true %>
       <% end %>
       <button id="add-party-button">Add Party</button>
     </div>

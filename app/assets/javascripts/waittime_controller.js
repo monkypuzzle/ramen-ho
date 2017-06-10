@@ -6,6 +6,19 @@ $(document).ready(function(){
     $("#add-party-form").toggle();
   })
 
+  $('#name, #party_size, #phone_number').bind('keyup', function() {
+    if(allFilled()) $('#add-to-waitlist').removeAttr('disabled');
+  })
+
+  function allFilled() {
+    if (!($('#name').val() === '') && !($('#party_size').val() === '') && !($('#phone_number').val() === '')) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
   $("body").on("submit", "form#add-party-form", function(event) {
     event.preventDefault();
     $.ajax({
@@ -13,6 +26,7 @@ $(document).ready(function(){
       url: $(this).attr("action"),
       data: $(this).serialize()
     }).done(function(response){
+      $("#add-party-form").trigger("reset");
       $(".waitlist").append(response);
     }).fail(function(response){
       console.log(response)
