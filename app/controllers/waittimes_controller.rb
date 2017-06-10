@@ -7,7 +7,10 @@ class WaittimesController < ApplicationController
   end
 
   def create
-    waittime = Waittime.new(party_size: params["customer"]["partySize"], restaurant_id: 1)
+    # Added 'restaurant' = takes advantage of restaurant hasone admin association
+    puts params["customer"]
+    restaurant = current_admin.restaurant
+    waittime = Waittime.new(party_size: params["customer"]["partySize"], restaurant_id: restaurant.id, number_of_parties_before: params["customer"]["number_of_parties_before"])
     customer = {name: params["customer"]["name"], phone: params["customer"]["phone"], party_size: waittime.party_size}
     if waittime.save
         # send_confirmation_sms(customer[:phone])

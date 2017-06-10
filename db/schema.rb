@@ -45,13 +45,14 @@ ActiveRecord::Schema.define(version: 20170610012501) do
   end
 
   create_table "waittimes", force: :cascade do |t|
-    t.string   "customer",                      null: false
-    t.string   "phone",                         null: false
-    t.integer  "party_size",                    null: false
-    t.boolean  "seated",        default: false, null: false
-    t.integer  "restaurant_id",                 null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.string   "customer",                                 null: false
+    t.string   "phone",                                    null: false
+    t.integer  "party_size",                               null: false
+    t.boolean  "seated",                   default: false, null: false
+    t.integer  "restaurant_id",                            null: false
+    t.integer  "number_of_parties_before",                 null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
 end
