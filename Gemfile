@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'dotenv-rails', groups: [:development, :test]
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.2'
@@ -29,6 +30,8 @@ gem "react-rails"
 gem 'webpacker', '~> 2.0'
 gem "devise"
 gem "active_device"
+gem 'twilio-ruby', '~> 4.11.1'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
