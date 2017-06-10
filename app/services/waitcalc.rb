@@ -20,10 +20,13 @@ module Waitcalc
 # @unseated = Waittime.where(seated: false)
 
 def self.estimated_waitime(row)
+# Should maybe be called actual_waittime? - Paul
   est_time = (row[:updated_at] - row[:created_at]) * 1440
   est_time.to_i
 
 end
+
+
 
 def self.rush_hour?
   return true if @t > @rush_hour_lunch_start && @t < @rush_hour_lunch_end || @t > @rush_hour_dinner_start && @t < @rush_hour_dinner_end
