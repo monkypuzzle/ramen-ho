@@ -6,22 +6,33 @@ $(document).ready(function(){
     $("#add-party-form").toggle();
   })
 
+  //add to wailist grays out unless all fields are filled
+  $('#name, #party_size, #phone_number').bind('keyup', function() {
+    if(allFilled()) $('#add-to-waitlist').removeAttr('disabled');
+  })
+
+  //checks that all fields are filled in
+  function allFilled() {
+    if (!($('#name').val() === '') && !($('#party_size').val() === '') && !($('#phone_number').val() === '')) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
   $("body").on("submit", "form#add-party-form", function(event) {
     event.preventDefault();
-    var customer = new Customer(
-      $("#name").val(),
-      $("#phone_number").val(),
-      $("#party_size").val()
-      );
     $.ajax({
       method: "post",
       url: $(this).attr("action"),
-      data: {
-        customer: customer
-      }
+      data: $(this).serialize()
     }).done(function(response){
-      console.log(response)
+      $("#add-party-form").trigger("reset");
       $(".waitlist").append(response);
+    }).fail(function(response){
+      console.log(response)
+      $(".errors").html(response)
     })
   })
 
@@ -46,19 +57,16 @@ $(document).ready(function(){
     });
   });
 
-
   $(".waitlist").on("click", ".almost-ready", function(event){
-    var phoneNumber = $(this).val();
+    var waittimeId = $(this).parent().prop("id");
     $.ajax({
       method: "get",
       url: '/waittimes/send_notice',
       data: {
-        phone_number: phoneNumber
+        id: waittimeId
       }
     }).done(function(response){
-      console.log(response)
-      //figure out what to do after sms is sent
-      alert('sent!')
+      $("#" + response).find('.almost-ready').css('background-color', 'red');
     })
   })
 
@@ -82,7 +90,7 @@ $(document).ready(function(){
     $(this).hide();
     $pinInput.show();
   });
-  
+
   // Cabin Boy/Girl can enter pin to unlock screen
   $(".pin-btn").on("click", function(event){
     // If pin correct, unlock screen

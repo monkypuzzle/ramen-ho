@@ -1,5 +1,6 @@
 class WaittimesController < ApplicationController
   include SmsHelper
+  include WaittimeHelper
 
   def update
     waittime = Waittime.find(waittime_params[:id])
@@ -7,24 +8,28 @@ class WaittimesController < ApplicationController
   end
 
   def create
+    @waittime = Waittime.new(waittime_params)
     # Added 'restaurant' = takes advantage of restaurant hasone admin association
-    puts params["customer"]
-    restaurant = current_admin.restaurant
-    waittime = Waittime.new(party_size: params["customer"]["partySize"], restaurant_id: restaurant.id, number_of_parties_before: params["customer"]["number_of_parties_before"])
-    customer = {name: params["customer"]["name"], phone: params["customer"]["phone"], party_size: waittime.party_size}
-    if waittime.save
-        # send_confirmation_sms(customer[:phone])
-        render partial: "/waittimes/create.html.erb", locals: { customer: customer, waittime: waittime }, layout: false
+    @waittime.restaurant = current_admin.restaurant
+    #use waittime helper method to add number of parties before saving
+    @waittime.number_of_parties_before = number_of_unseated_parties(current_admin.restaurant)
+    if @waittime.save
+      # send_confirmation_sms(@waittime.phone)
+      render partial: 'waittimes/create_w_db', locals: {waittime: @waittime}, layout: false
     else
-      # print error messages?
+      #errors aren't working, implemented grayed out function instead - will revisit on Monday
+      render partial: "/waittime/errors.html.erb", locals: { waittime: @waittime}, layout: false
     end
   end
 
   def send_notice
-    # send_ready_sms(params[:phone_number])
+    waittime_id = find_waittime_id(params[:id])
+    waittime = Waittime.find(waittime_id)
+    # send_ready_sms(waittime.phone)
+    render plain: params[:id]
   end
 
   def waittime_params
-    params.require(:waittime).permit(:id)
+    params.require(:waittime).permit(:id, :customer, :phone, :party_size)
   end
 end

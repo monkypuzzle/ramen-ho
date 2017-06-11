@@ -4,7 +4,13 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   get '/admins/dashboard', to: 'admins#dashboard'
-  
+
+  get '/mobile', to: 'welcome#mobile'
+
+  resources :restaurants, only: [:update] do
+    get 'waittime', on: :member
+  end
+
   resources :waittimes, only: [:create, :update] do
     get 'send_notice', on: :collection
   end
