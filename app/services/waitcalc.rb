@@ -7,8 +7,8 @@ require 'date'
 
 module Waitcalc
 
-@t = DateTime.now()
-# @t = DateTime.new(2017,6,9,10,00,0, "-08:00")
+# @t = DateTime.now()
+@t = DateTime.new(2017,6,11,10,00,0, "-08:00")
 @rush_hour_lunch_start = DateTime.new(@t.year,@t.month,@t.day,12,00,0, "-08:00")
 @rush_hour_lunch_end = DateTime.new(@t.year,@t.month,@t.day,14,30,0, "-08:00")
 @rush_hour_dinner_start = DateTime.new(@t.year,@t.month,@t.day,18,00,0, "-08:00")
@@ -79,43 +79,41 @@ end
 # Increases for their placement on the list
 # Assume we know # of parties ahead
 
-def self.find_first_waitime(collection, seats, guest, prev_guest_time)
+def self.find_first_waitime(collection, seats, guest, prev_guest_time=nil)
+
   party_size = guest[:party_size]
   parties_ahead = guest[:parties_ahead]
 
   if prev_guest_time
    alg_data = base_alg(seats)
    full_time = prev_guest_time
+   full_time += alg_data[:avg_time]
   else
-   full_time = base_alg(seats)
+   alg_data = base_alg(seats)
+   full_time = alg_data[:alg_time]
   end
 
   if party_size < 2
     full_time += 2
-  elsif party_size < 3
-    full_time += 5
+  elsif party_size == 2
+    full_time += 4
   else
     i = 0
     until i == party_size
       full_time += 5
       i += 1
-   end
+     end
   end
 
-  parties_ahead.times do
-    full_time += alg_data[:avg_time]/party_size
-  end
-
-  puts "this is"
-  puts full_time
   col_time = find_waitime_app(collection, seats)
-  puts col_time
-  first_guest_time = (col_time + full_time)/2
+  guest_time = (col_time + full_time)/2
+
   end
+
 end
 
 
 
 # puts estimated_waitime(@collection[0])
 
-# puts Waitcalc.find_first_waitime(@collection, @num_seats, @guest, 45)
+# puts Waitcalc.find_first_waitime(@collection,@num_seats, @guest, 13)
