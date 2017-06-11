@@ -16,5 +16,6 @@ class WelcomeController < ApplicationController
   end
 
   def mobile
+    @restaurants = Restaurant.all
   end
 end

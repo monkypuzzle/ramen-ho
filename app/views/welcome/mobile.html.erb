@@ -1,6 +1,13 @@
 <div class="mobile-content-wrapper">
+  <div class='navbar'>
+    <h1>Ramen, Ho!</h1>
+  </div>
   <div class="restaurants-wrapper">
-    <h1>Ramen!</h1>
+      <% @restaurants.each do |restaurant| %>
+        <div class='restaurant-<%=restaurant.id %>'>
+          <p><%= restaurant.name %></p>
+        </div>
+      <% end %>
   </div>
 
 </div>
