@@ -82,7 +82,7 @@ $(document).ready(function(){
     }).done(function(response){
       $("#" + response).find('.almost-ready').toggle()
       $("#" + response).find('.seat-party').toggle()
-      #("#" + response).find('.status .ready').toggle()
+      $("#" + response).find('.status .ready').toggle()
     })
   })
 
