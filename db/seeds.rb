@@ -54,7 +54,8 @@ admin = Admin.create(email: 'menya_ultra@email.com', password: 'password', resta
   name = Faker::Name.first_name
   party_size = [1,2,3,4].sample
   rand_restaurant = [1,2,3].sample
-  Waittime.create(seated:false, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: rand_restaurant, number_of_parties_before: i)
+  num_of_parties_before = Waittime.parties_before(rand_restaurant).count
+  Waittime.create(seated:false, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: rand_restaurant, number_of_parties_before: num_of_parties_before)
   sleep 2
 end
 
@@ -64,10 +65,26 @@ end
   party_size = [1,2,3,4].sample
   rand_restaurant = [1,2,3][i%3]
   seated_waits = [5, 10, 15, 20, 25, 30, 35, 40 , 45, 45][i%10]
-  Waittime.create(seated:true, seated_time: seated_waits, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: rand_restaurant, number_of_parties_before: i%3)
+  num_of_parties_before = Waittime.parties_before(rand_restaurant).count
+  Waittime.create(seated:true, seated_time: seated_waits, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: rand_restaurant, number_of_parties_before: num_of_parties_before)
   sleep 2
 end
-
+# 10.times do |i|
+#   name = Faker::Name.first_name
+#   party_size = [1,2,3,4].sample
+#   rand_restaurant = 2
+#   seated_waits = [5, 10, 15, 20, 25, 30, 35, 40 , 45, 45][i%10]
+#   Waittime.create(seated:true, seated_time: seated_waits, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: rand_restaurant, number_of_parties_before: i)
+#   sleep 2
+# end
+# 10.times do |i|
+#   name = Faker::Name.first_name
+#   party_size = [1,2,3,4].sample
+#   rand_restaurant = 3
+#   seated_waits = [5, 10, 15, 20, 25, 30, 35, 40 , 45, 45][i%10]
+#   Waittime.create(seated:true, seated_time: seated_waits, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: rand_restaurant, number_of_parties_before: i)
+#   sleep 2
+# end
 
 # Continue creating restaurants
 Restaurant.create(
