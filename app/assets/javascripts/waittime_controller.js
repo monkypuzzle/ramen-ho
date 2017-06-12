@@ -59,7 +59,7 @@ $(document).ready(function(){
   });
 
   $(".waitlist").on("click", ".almost-ready", function(event){
-    var waittimeId = $(this).parent().prop("id");
+    var waittimeId = $(this).closest("li").prop("id");
     $.ajax({
       method: "get",
       url: '/waittimes/send_notice',
@@ -67,7 +67,8 @@ $(document).ready(function(){
         id: waittimeId
       }
     }).done(function(response){
-      $("#" + response).find('.almost-ready').css('background-color', 'red');
+      $("#" + response).find('.almost-ready').toggle()
+      $("#" + response).find('.seat-party').show()
     })
   })
 

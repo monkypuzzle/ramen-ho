@@ -13,6 +13,7 @@ class WelcomeController < ApplicationController
       @restaurant = Restaurant.find_or_initialize_by(id: current_admin.restaurant.id)
     end
     @waittimes = Waittime.where(restaurant_id: @restaurant.id, seated: false)
+    @table_ready_waittimes = Waittime.where(restaurant_id: @restaurant.id, seated: false, table_ready: true)
   end
 
   def mobile
