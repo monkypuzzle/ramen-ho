@@ -7,7 +7,9 @@
         <div id='restaurant-<%=restaurant.id %>'>
           <p>
             <%= restaurant.name %>
-            <span class="waittime-display"><%= fake_wait(restaurant.id) %> minutes</span>
+            <span class="waittime-display">
+            <%= restaurant.most_recent_waittime.try(:estimated_waittime) || 0 %> minutes
+            </span>
           </p>
         </div>
       <% end %>

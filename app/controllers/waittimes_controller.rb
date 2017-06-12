@@ -1,6 +1,7 @@
 class WaittimesController < ApplicationController
   include SmsHelper
   include WaittimeHelper
+  include Waitcalc
 
   def update
     waittime = Waittime.find(waittime_params[:id])

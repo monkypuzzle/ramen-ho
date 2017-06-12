@@ -7,6 +7,8 @@ class Waittime < ActiveRecord::Base
 
   scope :parties_before, ->(current_restaurant) { where(restaurant_id: current_restaurant, seated: false)}
 
+  scope :most_recent_waittime, ->(current_restaurant) { where(restaurant_id: current_restaurant, seated: false).order(:created_at).last }
+
   def estimated_waittime
     # puts '============================='
     # puts 'HEY'

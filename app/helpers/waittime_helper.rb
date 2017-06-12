@@ -8,7 +8,8 @@ module WaittimeHelper
     waittime_string[/\d+/]
   end
 
-  def fake_wait(restaurantId)
-    Waittime.where(restaurant_id: 1, seated: false).count
+  def get_waittime(restaurant_id)
+    puts restaurant_id
+    Waittime.most_recent_waittime(restaurant_id).estimated_waittime
   end
 end
