@@ -15,7 +15,7 @@ $(document).ready(function(){
       data: { id: restaurantId }
     }).done(function(response){
       console.log(response)
-      $("#restaurant-" + restaurantId).find("p").eq(1).replaceWith("<p>" + response + "</p>")
+      $("#restaurant-" + restaurantId).find(".waittime-display").replaceWith("<span class='waittime-display'>" + response + " minutes</span>")
     })
   }
 

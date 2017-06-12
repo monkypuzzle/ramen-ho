@@ -5,8 +5,10 @@
   <div class="restaurants-wrapper">
       <% @restaurants.each do |restaurant| %>
         <div id='restaurant-<%=restaurant.id %>'>
-          <p><%= restaurant.name %></p>
-          <p class="waittime-display"></p>
+          <p>
+            <%= restaurant.name %>
+            <span class="waittime-display"><%= fake_wait(restaurant.id) %> minutes</span>
+          </p>
         </div>
       <% end %>
   </div>
