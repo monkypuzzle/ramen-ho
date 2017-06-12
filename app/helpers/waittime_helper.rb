@@ -8,8 +8,4 @@ module WaittimeHelper
     waittime_string[/\d+/]
   end
 
-  def get_waittime(restaurant_id)
-    puts restaurant_id
-    Waittime.most_recent_waittime(restaurant_id).estimated_waittime
-  end
 end
