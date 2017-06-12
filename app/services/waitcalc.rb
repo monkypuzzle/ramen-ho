@@ -19,13 +19,22 @@ module Waitcalc
 # @collection = Waittime.where("EXTRACT(dow FROM (created_at)) = ?", DateTime.now.wday).map{|date| date.created_at.hour == @t.hour && date.party_size == customer.party_size }
 # @unseated = Waittime.where(seated: false)
 
-def self.estimated_waitime(row)
+def self.actual_waitime(row)
 # Should maybe be called actual_waittime? - Paul
-  est_time = (row[:updated_at] - row[:created_at]) * 1440
+  est_time = (row.updated_at - row.created_at) * 1440
   est_time.to_i
 
 end
 
+def self.find_waittime(number_of_parties_before)
+  t = DateTime.now
+  similar_waittimes = Waittime.where("EXTRACT(dow FROM (created_at)) = ?", DateTime.yesterday.wday.to_s).map{|waittime| waittime.created_at.hour == t.hour && waittime.number_of_parties_before == number_of_parties_before }
+  if similar_waittimes == []
+    return number_of_parties_before * 4
+  else
+    return collection_avg(similar_waittimes)
+  end
+end
 
 
 def self.rush_hour?
@@ -56,20 +65,19 @@ def self.base_alg(seats)
 
 end
 
-# def self.collection_avg(collection)
-#   total_times = collection.map{|party| estimated_waitime(party)}
-#   customer_time = total_times.reduce(:+) / collection.length
-# end
+def self.collection_avg(collection)
+  total_times = collection.map{|party| party.seated_time }
+  customer_time = total_times.reduce(:+) / collection.length
+end
 
 
 
 def self.find_waitime_app(collection=nil, seats)
   alg_data = base_alg(seats)
   if collection
-   total_times = collection.map{|party| estimated_waitime(party)}
+   total_times = collection.map{|party| actual_waitime(party)}
    total_times << alg_data[:alg_time]
-   estimated_time = total_times.reduce(:+) / collection.length + 1
-   p estimated_time
+   actual_time = total_times.reduce(:+) / collection.length + 1
   else
    algorithm_time
    puts algorithm_time

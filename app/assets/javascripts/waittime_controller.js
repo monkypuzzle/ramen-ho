@@ -53,6 +53,7 @@ $(document).ready(function(){
     })
     .done(function(response){
       // When done, remove the <li> from the list
+      console.log(response)
       $chosenWaittimeItem.remove();
     });
   });
