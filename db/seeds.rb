@@ -55,7 +55,7 @@ admin = Admin.create(email: 'menya_ultra@email.com', password: 'password', resta
   party_size = [1,2,3,4].sample
   rand_restaurant = [1,2,3].sample
   Waittime.create(seated:false, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: rand_restaurant, number_of_parties_before: i)
-  sleep 2
+  # sleep 2
 end
 
 # Create 10 waittimes (already seated)
@@ -65,7 +65,7 @@ end
   rand_restaurant = [1,2,3][i%3]
   seated_waits = [5, 10, 15, 20, 25, 30, 35, 40 , 45, 45][i%10]
   Waittime.create(seated:true, seated_time: seated_waits, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: rand_restaurant, number_of_parties_before: i%3)
-  sleep 2
+  # sleep 2
 end
 
 
