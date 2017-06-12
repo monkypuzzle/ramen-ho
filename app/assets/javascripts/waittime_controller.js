@@ -3,7 +3,8 @@ $(document).ready(function(){
   //hides waitlist form
   //toggle form on Add Party button
   $("#add-party-button").click(function(event){
-    $("#add-party-form").toggle();
+    $("#add-party-form").show();
+    $("#add-party-form").css("z-index", "2")
   })
 
   //add to wailist grays out unless all fields are filled
