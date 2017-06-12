@@ -7,8 +7,8 @@ require 'date'
 
 module Waitcalc
 
-# @t = DateTime.now()
-@t = DateTime.new(2017,6,11,10,00,0, "-08:00")
+@t = DateTime.now()
+# @t = DateTime.new(2017,6,11,10,00,0, "-08:00")
 @rush_hour_lunch_start = DateTime.new(@t.year,@t.month,@t.day,12,00,0, "-08:00")
 @rush_hour_lunch_end = DateTime.new(@t.year,@t.month,@t.day,14,30,0, "-08:00")
 @rush_hour_dinner_start = DateTime.new(@t.year,@t.month,@t.day,18,00,0, "-08:00")
@@ -79,10 +79,9 @@ end
 # Increases for their placement on the list
 # Assume we know # of parties ahead
 
-def self.find_first_waitime(collection, seats, guest, prev_guest_time=nil)
+def self.find_list_waitime(collection, seats, guest, prev_guest_time=nil)
 
   party_size = guest[:party_size]
-  parties_ahead = guest[:parties_ahead]
 
   if prev_guest_time
    alg_data = base_alg(seats)
