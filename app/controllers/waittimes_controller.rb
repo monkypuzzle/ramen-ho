@@ -4,7 +4,13 @@ class WaittimesController < ApplicationController
 
   def update
     waittime = Waittime.find(waittime_params[:id])
-    waittime.update_attribute(:seated, true)
+    unseated_waittimes = Waittime.where(seated: false)
+    estimated_waittimes = {}
+    unseated_waittimes.each do |waittime|
+      estimated_waittimes[waittime.id] = waittime.estimated_waittime
+    end
+    waittime.update(seated: true)
+    render json: estimated_waittimes.to_json
   end
 
   def create
