@@ -3,7 +3,8 @@ $(document).ready(function(){
   //hides waitlist form
   //toggle form on Add Party button
   $("#add-party-button").click(function(event){
-    $("#add-party-form").toggle();
+    $("#add-party-form").show();
+    $("#add-party-form").css("z-index", "2")
   })
 
   //add to wailist grays out unless all fields are filled
@@ -29,6 +30,7 @@ $(document).ready(function(){
       data: $(this).serialize()
     }).done(function(response){
       $("#add-party-form").trigger("reset");
+      $("#add-party-form").css("z-index", "-1");
       $(".waitlist").append(response);
     }).fail(function(response){
       console.log(response)
