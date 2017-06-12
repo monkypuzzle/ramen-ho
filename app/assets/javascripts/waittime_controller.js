@@ -58,6 +58,10 @@ $(document).ready(function(){
     });
   });
 
+  var $customerVisible = $('.customer-visible')
+  var $employeeVisible = $('.employee-visible');
+  var $pinInput = $(".pin-input, .pin-btn");
+
   $(".waitlist").on("click", ".almost-ready", function(event){
     var waittimeId = $(this).closest("li").prop("id");
     $.ajax({
@@ -68,7 +72,8 @@ $(document).ready(function(){
       }
     }).done(function(response){
       $("#" + response).find('.almost-ready').toggle()
-      $("#" + response).find('.seat-party').show()
+      $("#" + response).find('.seat-party').toggle()
+      #("#" + response).find('.status .ready').toggle()
     })
   })
 
@@ -76,10 +81,6 @@ $(document).ready(function(){
   // Screen can be unlocked (for Cabin Boys/Girls)
   // =============================================
 
-
-  var $customerVisible = $('.customer-visible')
-  var $employeeVisible = $('.employee-visible');
-  var $pinInput = $(".pin-input, .pin-btn");
   var lockScreen = function(){
     $employeeVisible.hide();
     $customerVisible.show();
@@ -88,13 +89,20 @@ $(document).ready(function(){
     $(".lock-screen-btn").hide();
     $(".lock-status").html("")
   };
-  // Default screen to locked
-  // lockScreen();
+
+  var setTablesNotReady = function(){
+    $(".status .ready, .status .seat-party").hide()
+  }
+
+  // Default screen to locked, tables to not ready
+  lockScreen();
+  setTablesNotReady();
 
   // Cabin Boy/Girl can show pin form
   $(".unlock-screen-btn").on("click", function(event){
     $(this).hide();
     $pinInput.show();
+    $(".lock-screen-btn").show();
   });
 
   // Cabin Boy/Girl can enter pin to unlock screen
@@ -104,7 +112,6 @@ $(document).ready(function(){
       $pinInput.hide();
       $customerVisible.hide();
       $employeeVisible.show();
-      $(".lock-screen-btn").show();
       // (Lock screen automatically after 15 seconds)
       setTimeout(lockScreen, 15000);
       $(".lock-status").html("<p style='color:seagreen;'>Screen unlocked!</p><p style='color:orange;'>Will lock automatically in 5 seconds.</p>")
