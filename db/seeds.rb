@@ -69,6 +69,50 @@ end
 end
 
 
+# From 6-9p, work through 15 minute intervals
+
+# Extremely busy restaurant.
+# 6:00 to 6:15 (1 interval): rate_of_waittime_creation vastly outpaces rate_of_party_seating
+# 6:15 to 9:00 (7 intervals): rates are even
+i = 0
+
+while i < 180
+  name = Faker::Name.first_name
+  party_size = [1,2,3,4].sample
+  num_minutes_between_waittime_creation_events = 5
+  num_minutes_between_party_seating_events = 5
+  num_parties_before = Waittime.where(seated: false, restaurant_id: 1)
+
+  if i < 15
+    num_minutes_between_waittime_creation_events = 3
+  end
+
+  # If it's the correct minute, create a waittime
+  if i % num_minutes_between_waittime_creation_events == 0
+    w = Waittime.create(seated:false, seated_time: seated_waits, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: 1, number_of_parties_before: num_parties_before)
+    w.created_at = DateTime.new(2016,11,19,8,37,48,"-06:00")
+  end
+
+  # If it's the correct minute, seat the first party
+  if i % num_minutes_between_party_seating_events == 0
+    Waittime.where(seated:false, restaurant_id: 1).order(:created_at).first
+  end
+
+  i += 1
+end
+
+# Moderately busy restaurant.
+# 6:00 to 6:30 (2 intervals): no waittimes
+# 6:30 to 7:30 (4 intervals): rate_of_waittime_creation slightly outpaces rate_of_party_seating
+# 7:30 to 8:30 (4 intervals): rates are even
+# 8:30 to 9:00 (2 intervals):
+while i < 180
+  rate_of_waittime_creation = 1 / 5
+  rate_of_party_seating = 1 / 5
+
+end
+
+
 # Continue creating restaurants
 Restaurant.create(
   name: "Nozaru Ramen Bar",
