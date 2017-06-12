@@ -59,16 +59,26 @@ div { box-sizing: border-box; }
     height: 100%;
     left: 0;
     top: 0;
-    background-color: pink;
+    background-color: teal;
+    flex-wrap: wrap;
     }
-    #name {
-
+    #name, #party_size, #phone_number, #add-to-waitlist {
+      z-index: 3;
+      display: flex;
+      height: 200px;
+      float: left;
+      margin-top: 500px;
+      width: 40%;
+      margin: 40px;
+      padding: 5px;
+      font-size: 50px;
+      text-align: center;
     }
-    #party_size {
-
-    }
-    #phone_number {
-
+    #add-to-waitlist {
+      background-color: turquoise;
+      border-color: orange;
+      height: 215px;
+      width: 41%
     }
 }
 

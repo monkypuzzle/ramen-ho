@@ -4,7 +4,7 @@ class WaittimesController < ApplicationController
 
   def update
     waittime = Waittime.find(waittime_params[:id])
-    unseated_waittimes = Waittime.where(seated: false)
+    unseated_waittimes = Waittime.where(restaurant_id: waittime.restaurant.id).where(seated: false)
     estimated_waittimes = {}
     unseated_waittimes.each do |waittime|
       estimated_waittimes[waittime.id] = waittime.estimated_waittime
