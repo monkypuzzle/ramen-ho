@@ -8,6 +8,7 @@ require 'date'
 module Waitcalc
 
 @t = DateTime.now()
+@avg_seats = 55
 # @t = DateTime.new(2017,6,11,10,00,0, "-08:00")
 @rush_hour_lunch_start = DateTime.new(@t.year,@t.month,@t.day,12,00,0, "-08:00")
 @rush_hour_lunch_end = DateTime.new(@t.year,@t.month,@t.day,14,30,0, "-08:00")
@@ -19,32 +20,30 @@ module Waitcalc
 # @collection = Waittime.where("EXTRACT(dow FROM (created_at)) = ?", DateTime.now.wday).map{|date| date.created_at.hour == @t.hour && date.party_size == customer.party_size }
 # @unseated = Waittime.where(seated: false)
 
-def self.actual_waitime(row)
-# Should maybe be called actual_waittime? - Paul
-  est_time = (row.updated_at - row.created_at) * 1440
+def self.estimated_waitime(row)
+  est_time = (row[:updated_at] - row[:created_at]) * 1440
   est_time.to_i
 
 end
 
-def self.find_waittime(number_of_parties_before)
-  t = DateTime.now
-  # similar_waittimes = Waittime.where(seated: true).where("EXTRACT(dow FROM (created_at)) = ?", DateTime.now.wday.to_s).select{|waittime| waittime.created_at.localtime.wday == t.wday && waittime.number_of_parties_before == number_of_parties_before }
-  # puts similar_waittimes
-  # similar_waittimes = Waittime.where(seated:true).map {|waittime| p waittime || 0}
-  similar_waittimes = []
-  # puts "========================="
-  if similar_waittimes.empty?
-    # return number_of_parties_before * base_alg(self.restaurant.number_of_seats)[:avg_time]
-    return number_of_parties_before * 4
-  else
-    puts collection_avg(similar_waittimes)
-    return collection_avg(similar_waittimes)
-  end
-end
-
-
 def self.rush_hour?
   return true if @t > @rush_hour_lunch_start && @t < @rush_hour_lunch_end || @t > @rush_hour_dinner_start && @t < @rush_hour_dinner_end
+end
+
+def self.find_waittime(number_of_parties_before)
+  t = DateTime.now
+  similar_waittimes = Waittime.where(seated: true).where("EXTRACT(dow FROM (created_at)) = ?", DateTime.now.wday.to_s).select{|waittime| waittime.created_at.localtime.wday == t.wday && waittime.number_of_parties_before == number_of_parties_before }
+  # similar_waittimes = Waittime.where(seated:true).map {|waittime| p waittime || 0}
+  # puts "========================="
+  p similar_waittimes
+  if similar_waittimes.empty?
+    simulated = number_of_parties_before * base_alg(@avg_seats)[:avg_time]
+    simulated = simulated/3
+    p simulated
+    # return number_of_parties_before * 4
+  else
+    return collection_avg(similar_waittimes)
+  end
 end
 
 
@@ -72,12 +71,11 @@ def self.base_alg(seats)
 end
 
 def self.collection_avg(collection)
-  collection.each_with_index do |item,index|
-    puts "#{index} - #{item}"
-  end
-  puts "========================"
   total_times = collection.map{|party| party.seated_time }
-  customer_time = total_times.reduce(:+) / collection.length
+  customer_time = total_times.reduce(:+)
+  customer_time = customer_time / collection.length
+  puts "=========================="
+  p customer_time
 end
 
 
@@ -85,9 +83,10 @@ end
 def self.find_waitime_app(collection=nil, seats)
   alg_data = base_alg(seats)
   if collection
-   total_times = collection.map{|party| actual_waitime(party)}
+   total_times = collection.map{|party| estimated_waitime(party)}
    total_times << alg_data[:alg_time]
-   actual_time = total_times.reduce(:+) / collection.length + 1
+   estimated_time = total_times.reduce(:+) / collection.length + 1
+   p estimated_time
   else
    algorithm_time
    puts algorithm_time

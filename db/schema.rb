@@ -53,8 +53,7 @@ ActiveRecord::Schema.define(version: 20170612170528) do
     t.integer  "number_of_parties_before",                 null: false
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
-    t.boolean  "table_ready",              default: false
-    t.integer  "seated_time"
+    t.integer  "seated_time",              default: 0
   end
 
 end
