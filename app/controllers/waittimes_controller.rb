@@ -18,7 +18,8 @@ class WaittimesController < ApplicationController
       render partial: 'waittimes/create_w_db', locals: {waittime: @waittime}, layout: false
     else
       #errors aren't working, implemented grayed out function instead - will revisit on Monday
-      render partial: "/waittime/errors.html.erb", locals: { waittime: @waittime}, layout: false
+      # render partial: "/waittimes/errors.html.erb", locals: { waittime: @waittime}, layout: false
+      flash[:alert] = "wrong!"
     end
   end
 

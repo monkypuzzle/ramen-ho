@@ -2,8 +2,15 @@
   <div class="waitlist-header">
     <h1>Waitlist</h1>
       <%= form_for :waittime, url: waittimes_path, html: {id: "add-party-form"} do |f| %>
-        <div class="errors">
-        </div>
+        <% if @waittime.errors.any? %>
+          <div class="errors">
+            <ul>
+              <%= waittime.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
         <%= f.text_field :customer, id:"name", placeholder:"Name" %>
         <%= f.number_field :party_size, id:"party_size", placeholder:"Party Size" %>
         <%= f.telephone_field :phone, id:"phone_number", placeholder:"Phone Number" %>

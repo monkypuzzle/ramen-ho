@@ -113,6 +113,11 @@ $(document).ready(function(){
     lockScreen();
   });
 
+  //working progress with errors
+  // $(document).ajaxComplete(function(event, request) {
+  //   console.log("it's here!!")
+  //   console.log(request)
+  // })
 
 
 });
