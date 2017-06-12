@@ -29,6 +29,7 @@ $(document).ready(function(){
       data: $(this).serialize()
     }).done(function(response){
       $("#add-party-form").trigger("reset");
+      $("#add-party-form").css("z-index", "-1");
       $(".waitlist").append(response);
     }).fail(function(response){
       console.log(response)
