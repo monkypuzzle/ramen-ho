@@ -36,6 +36,12 @@ $(document).ready(function(){
     })
   })
 
+  var updateWaittimes = function(est_waittimes){
+    Object.keys(est_waittimes).forEach(function(property){
+      id = "#waittime-" + property
+      $(id).find(".time").html("").html(est_waittimes[property])
+    })
+  }
 
   $(".waitlist").on("submit", ".waittime-seat-form", function(event){
     event.preventDefault()
@@ -52,10 +58,13 @@ $(document).ready(function(){
       data: data
     })
     .done(function(response){
+      updateWaittimes(response)
       // When done, remove the <li> from the list
       $chosenWaittimeItem.remove();
     });
   });
+
+
 
   $(".waitlist").on("click", ".almost-ready", function(event){
     var waittimeId = $(this).parent().prop("id");
