@@ -1,6 +1,6 @@
 // I. Troubleshooting
 // ========================================
-// div { border: dashed 1px red; }
+// body * { border: dashed 1px red; }
 
 // II. General Tags
 // ========================================
@@ -30,7 +30,7 @@ div { box-sizing: border-box; }
 // Application-wide
 .page-wrapper {
   background-color: gainsboro;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
 }
 .content-wrapper {
@@ -55,14 +55,20 @@ div { box-sizing: border-box; }
 }
 
 .waitlist {
+  display: table;
   width: 100%;
   .waittime-item {
-    @extend .flex-row;
     border: solid 1px darkgrey;
+    display: table-row;
     justify-content: space-between;
     min-height: 2em;
-    div { @extend .flex-row; }
   }
+  * {
+    display: table-cell;
+    padding: .2em;
+  }
+  li:nth-child(even) { background-color: #CEDDDD; }
+  li:nth-child(odd) { background-color: #BED1D6; }
   .table-ready-btn, .seat-party-btn {
     color: white;
     font-size: 90%;
@@ -72,8 +78,36 @@ div { box-sizing: border-box; }
   .seat-party-btn { background-color: seagreen; }
 }
 
+.waittime-headers {
+  display: table-row;
+  font-size: 1.3em;
+  font-weight: bolder;
+  font-style: italic;
+  border-bottom: solid 2px black;
+  padding: 10px;
+  * {
+    border-bottom: solid 2px black;
+    padding: 5px 0;
+  }
+}
+
+.waittime-item > .status {
+  .customer-visible {
+    .ready { color: red; }
+  }
+  .employee-visible {
+
+  }
+}
+
+
+.waittime-customer { width: 60%; }
+.waittime-party-size { width: 20%; }
+.waittime-bookend { width: 20%; }
+
+
 // Default welcome page buttons to hidden (needed to solve presumed turbolinks issue)
-.table-ready-btn, .seat-party-btn, .pin-input, .pin-btn, .lock-screen-btn, .lock-status, #add-party-form {
+.table-ready-btn, .employee-visible, .pin-input, .pin-btn, .lock-screen-btn, .lock-status, #add-party-form {
   display: none;
 }
 

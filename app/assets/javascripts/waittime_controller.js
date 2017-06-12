@@ -23,6 +23,7 @@ $(document).ready(function(){
 
   $("body").on("submit", "form#add-party-form", function(event) {
     event.preventDefault();
+
     $.ajax({
       method: "post",
       url: $(this).attr("action"),
@@ -37,7 +38,7 @@ $(document).ready(function(){
   })
 
 
-  $(".waitlist").on("submit", ".waittime-seat-form", function(event){
+  $(".waitlist").on("submit", ".seat-party", function(event){
     event.preventDefault()
     var $form = $(this);
     var $chosenWaittimeItem = $(this).closest(".waittime-item");
@@ -73,10 +74,14 @@ $(document).ready(function(){
   // =============================================
   // Screen can be unlocked (for Cabin Boys/Girls)
   // =============================================
-  var $privilegedButtons = $(".table-ready-btn, .seat-party-btn");
+
+
+  var $customerVisible = $('.customer-visible')
+  var $employeeVisible = $('.employee-visible');
   var $pinInput = $(".pin-input, .pin-btn");
   var lockScreen = function(){
-    $privilegedButtons.hide();
+    $employeeVisible.hide();
+    $customerVisible.show();
     $pinInput.hide();
     $(".unlock-screen-btn").show();
     $(".lock-screen-btn").hide();
@@ -96,7 +101,8 @@ $(document).ready(function(){
     // If pin correct, unlock screen
     if ( $(".pin-input").val() === '1234' ) {
       $pinInput.hide();
-      $privilegedButtons.show();
+      $customerVisible.hide();
+      $employeeVisible.show();
       $(".lock-screen-btn").show();
       // (Lock screen automatically after 15 seconds)
       setTimeout(lockScreen, 15000);

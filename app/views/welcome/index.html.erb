@@ -1,4 +1,5 @@
 <div class="content-wrapper">
+
   <div class="waitlist-header">
     <h1>Waitlist</h1>
       <%= form_for :waittime, url: waittimes_path, html: {id: "add-party-form"} do |f| %>
@@ -10,7 +11,6 @@
         <%= f.submit "Add to Waitlist", id: "add-to-waitlist", disabled: true %>
       <% end %>
       <button id="add-party-button">Add Party</button>
-    </div>
     <div class="admin-dashboard">
       <a href="/admins/dashboard"><%= current_admin.email %></a>
     </div>
@@ -24,6 +24,11 @@
   </div>
 
 <ul class="waitlist">
+  <li class="waittime-headers">
+    <span class="waittime-customer"> Customer</span>
+    <span class="waittime-party-size">Party Size</span>
+    <div class="waittime-bookend">Estimated Wait Time</div>
+  </li>
   <% @waittimes.each do |waittime| %>
     <%= render partial: 'waittimes/create_w_db', layout: false, locals: { waittime: waittime } %>
   <% end %>
