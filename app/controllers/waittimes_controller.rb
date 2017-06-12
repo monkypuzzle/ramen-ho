@@ -10,7 +10,7 @@ class WaittimesController < ApplicationController
       estimated_waittimes[waittime.id] = waittime.estimated_waittime
     end
     waittime.update(seated: true)
-    estimated_waittimes
+    render json: estimated_waittimes.to_json
   end
 
   def create

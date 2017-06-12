@@ -32,6 +32,7 @@ def self.find_waittime(number_of_parties_before)
   if similar_waittimes == []
     return number_of_parties_before * 4
   else
+    puts collection_avg(similar_waittimes)
     return collection_avg(similar_waittimes)
   end
 end
