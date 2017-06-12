@@ -29,6 +29,20 @@ def self.rush_hour?
   return true if @t > @rush_hour_lunch_start && @t < @rush_hour_lunch_end || @t > @rush_hour_dinner_start && @t < @rush_hour_dinner_end
 end
 
+def self.find_waittime(number_of_parties_before)
+  t = DateTime.now
+  similar_waittimes = Waittime.where(seated: true).where("EXTRACT(dow FROM (created_at)) = ?", DateTime.now.wday.to_s).select{|waittime| waittime.created_at.localtime.wday == t.wday && waittime.number_of_parties_before == number_of_parties_before }
+  # similar_waittimes = Waittime.where(seated:true).map {|waittime| p waittime || 0}
+  # puts "========================="
+  if similar_waittimes = []
+    # return number_of_parties_before * base_alg(self.restaurant.number_of_seats)[:avg_time]
+    return number_of_parties_before * 4
+  else
+    puts collection_avg(similar_waittimes)
+    return collection_avg(similar_waittimes)
+  end
+end
+
 
 def self.base_alg(seats)
   arr = []
