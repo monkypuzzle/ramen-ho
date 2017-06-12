@@ -28,8 +28,10 @@ end
 
 def self.find_waittime(number_of_parties_before)
   t = DateTime.now
-  similar_waittimes = Waittime.where(seated: true).where("EXTRACT(dow FROM (created_at)) = ?", DateTime.now.wday.to_s).select{|waittime| waittime.created_at.localtime.wday == t.wday && waittime.number_of_parties_before == number_of_parties_before }
+  # similar_waittimes = Waittime.where(seated: true).where("EXTRACT(dow FROM (created_at)) = ?", DateTime.now.wday.to_s).select{|waittime| waittime.created_at.localtime.wday == t.wday && waittime.number_of_parties_before == number_of_parties_before }
+  # puts similar_waittimes
   # similar_waittimes = Waittime.where(seated:true).map {|waittime| p waittime || 0}
+  similar_waittimes = []
   # puts "========================="
   if similar_waittimes.empty?
     # return number_of_parties_before * base_alg(self.restaurant.number_of_seats)[:avg_time]
