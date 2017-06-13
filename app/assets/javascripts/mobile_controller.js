@@ -1,4 +1,10 @@
 $(document).ready(function(){
+  $(".restaurant-info").hide();
+
+  $(".restaurant-tab").click(function() {
+    $(".restaurant-info").slideToggle("slow", function() {
+    })
+  })
 
   function checkAllWaittime() {
     $(".restaurants-wrapper").children().each(function() {

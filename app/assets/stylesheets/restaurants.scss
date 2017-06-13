@@ -16,23 +16,31 @@ $restaurant-layout-grid: (
 
 .restaurants-wrapper {
   @include grid-container;
-  padding: 75px;
+  padding: 125px;
   color: white;
 }
 
 .restaurant-tab {
+  height: 150px;
+  background-position: center;
+}
+
+.restaurant-tab-container {
   @include grid-column(1, $restaurant-layout-grid);
   @include grid-collapse;
   margin-bottom: 2rem;
   background-color: gray;
-  height: 150px;
   text-align: center;
-  background-position: center;
 }
 
 .navbar {
   text-align: center;
   align-self: flex-start;
+}
+
+.restaurant-info {
+  background-color: white;
+  height: 250px;
 }
 
 // General Styling
@@ -47,7 +55,7 @@ $restaurant-layout-grid: (
 // ========================================
 
 #restaurant-1 {
-  background-image: $sample-img;
+    background-image: $sample-img;
 }
 
 
