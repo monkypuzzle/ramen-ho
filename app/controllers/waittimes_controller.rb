@@ -21,7 +21,7 @@ class WaittimesController < ApplicationController
     #use waittime helper method to add number of parties before saving
     @waittime.number_of_parties_before = number_of_unseated_parties(current_admin.restaurant)
     if @waittime.save
-      # send_confirmation_sms(@waittime.phone)
+      #send_confirmation_sms(@waittime.phone)
       render partial: 'waittimes/create_w_db', locals: {waittime: @waittime}, layout: false
     else
       render json: @waittime.errors.full_messages.to_json
@@ -31,7 +31,7 @@ class WaittimesController < ApplicationController
   def send_notice
     waittime_id = find_waittime_id(params[:id])
     waittime = Waittime.find(waittime_id)
-    # send_ready_sms(waittime.phone)
+    #send_ready_sms(waittime.phone)
     render plain: params[:id]
   end
 

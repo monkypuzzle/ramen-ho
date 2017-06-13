@@ -753,3 +753,7 @@ Restaurant.create(
 #   address: "3882 4th Ave San Diego CA 92103",
 #   phone: "(619)683-3230"
 # )
+
+Restaurant.all.each do |restaurant|
+  restaurant.update(number_of_seats: 60)
+end
