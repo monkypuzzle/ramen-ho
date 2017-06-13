@@ -18,12 +18,12 @@ div { box-sizing: border-box; }
   flex-direction: column;
   justify-content: center;
 }
-
 .flex-row {
   align-items: center;
   display: flex;
   justify-content: center;
 }
+.fit-to-parent { height: 100%; width: 100%; }
 
 // IV. Structural Classes
 // ========================================
@@ -44,25 +44,7 @@ div { box-sizing: border-box; }
 .waitlist-header {
   @extend .flex-row;
   justify-content: space-between;
-  .add-party {
-    @extend .flex-row
-  }
-  #add-party-button {
-    background-color: orange;
-    color: white;
-    height: 2em;
-    }
-  #add-party-form {
-    z-index: 2;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background-color: teal;
-    flex-wrap: wrap;
-    }
-    #name, #party_size, #phone_number, #add-to-waitlist {
+  #name, #party_size, #phone_number, #add-to-waitlist {
       z-index: 3;
       display: flex;
       height: 200px;
@@ -74,13 +56,37 @@ div { box-sizing: border-box; }
       font-size: 50px;
       text-align: center;
     }
-    #add-to-waitlist {
-      background-color: turquoise;
-      border-color: orange;
-      height: 215px;
-      width: 41%
-    }
+
 }
+
+.add-party {
+  @extend .flex-row;
+  #add-party-button {
+    background-color: orange;
+    border-radius: 20px;
+    color: white;
+    font-size: 2.5em;
+    min-height: 150px;
+    min-width: 200px;
+    }
+  #add-party-form {
+    z-index: 2;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: teal;
+    flex-wrap: wrap;
+    }
+  #add-to-waitlist {
+    background-color: turquoise;
+    border-color: orange;
+    height: 215px;
+    width: 41%
+  }
+}
+
 
 .waitlist {
   display: table;
@@ -123,11 +129,7 @@ div { box-sizing: border-box; }
   .customer-visible {
     .ready { color: red; }
   }
-  .employee-visible {
-
-  }
 }
-
 
 .waittime-customer { width: 60%; }
 .waittime-party-size { width: 20%; }

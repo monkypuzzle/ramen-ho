@@ -1,0 +1,33 @@
+
+.unlock, .admin-dashboard {
+  position: fixed;
+  button {
+    background-color: dimgray;
+    color: white;
+    min-height: 50px; min-width: 50px;
+  }
+  * { position: relative; }
+}
+.unlock {
+  top: 0; right: 0;
+  height: 50px; width: 50px;
+  .unlock-screen-btn {
+    @extend .fit-to-parent;
+  }
+  .pin-container {
+    background-color: dimgray;
+    padding: 10px;
+    position: fixed;
+    right: 50px; top: 0;
+    z-index: 2;
+  }
+  .pin-input { margin-bottom: 10px; }
+  .pin-btn { background-color: lightgrey; }
+}
+.admin-dashboard {
+  bottom: 0; right: 0;
+  button {
+    border-left: solid 2px grey; border-top: solid 2px grey;
+    height: 50px; width: 50px;
+  }
+}

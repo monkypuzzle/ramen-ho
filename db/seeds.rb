@@ -193,7 +193,7 @@ end
 # end
 
 # Continue creating restaurants
-Restaurant.create(
+restaurant2 = Restaurant.create(
   name: "Nozaru Ramen Bar",
   operating_hours: {
     "sunday": {
@@ -228,6 +228,10 @@ Restaurant.create(
   address: "3375 Adams Ave. San Diego CA 92116",
   phone: "(619)564-7183"
   )
+
+admin2 = Admin.create(email: 'nozaru_ramen_bar@email.com', password: 'password', restaurant_id: 2)
+
+
 Restaurant.create(
   name: "Minato 3",                     ###############################also sushi#################################
   operating_hours: {

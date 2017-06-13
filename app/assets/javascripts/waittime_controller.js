@@ -42,7 +42,7 @@ $(document).ready(function(){
   var updateWaittimes = function(est_waittimes){
     Object.keys(est_waittimes).forEach(function(property){
       id = "#waittime-" + property
-      $(id).find(".time").html("").html(est_waittimes[property])
+      $(id).find(".customer-visible .waittime").html("").html(est_waittimes[property])
     })
   }
 
@@ -61,6 +61,7 @@ $(document).ready(function(){
       data: data
     })
     .done(function(response){
+      console.log(response)
       updateWaittimes(response)
       // When done, remove the <li> from the list
       $chosenWaittimeItem.remove();
@@ -69,7 +70,7 @@ $(document).ready(function(){
 
   var $customerVisible = $('.customer-visible')
   var $employeeVisible = $('.employee-visible');
-  var $pinInput = $(".pin-input, .pin-btn");
+  var $pinInput = $(".pin-input, .pin-btn, .pin-container");
 
   $(".waitlist").on("click", ".almost-ready", function(event){
     var waittimeId = $(this).closest("li").prop("id");
@@ -86,55 +87,11 @@ $(document).ready(function(){
     })
   })
 
-  // =============================================
-  // Screen can be unlocked (for Cabin Boys/Girls)
-  // =============================================
 
-  var lockScreen = function(){
-    $employeeVisible.hide();
-    $customerVisible.show();
-    $pinInput.hide();
-    $(".unlock-screen-btn").show();
-    $(".lock-screen-btn").hide();
-    $(".lock-status").html("")
-  };
 
-  var setTablesNotReady = function(){
-    $(".status .ready, .status .seat-party").hide()
-  }
 
-  // Default screen to locked, tables to not ready
-  lockScreen();
-  setTablesNotReady();
 
-  // Cabin Boy/Girl can show pin form
-  $(".unlock-screen-btn").on("click", function(event){
-    $(this).hide();
-    $pinInput.show();
-    $(".lock-screen-btn").show();
-  });
 
-  // Cabin Boy/Girl can enter pin to unlock screen
-  $(".pin-btn").on("click", function(event){
-    // If pin correct, unlock screen
-    if ( $(".pin-input").val() === '1234' ) {
-      $pinInput.hide();
-      $customerVisible.hide();
-      $employeeVisible.show();
-      // (Lock screen automatically after 15 seconds)
-      setTimeout(lockScreen, 15000);
-      $(".lock-status").html("<p style='color:seagreen;'>Screen unlocked!</p><p style='color:orange;'>Will lock automatically in 5 seconds.</p>")
-    }
-    // If pin incorrect, give alert
-    else {
-      $(".lock-status").html("<p style='color:red;'>Incorrect pin!</p>")
-    }
-  });
-
-  // Cabin Boy/Girl can re-lock screen when they are done
-  $(".lock-screen-btn").on("click", function(event){
-    lockScreen();
-  });
 
 
 
