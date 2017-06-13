@@ -23,19 +23,15 @@ $restaurant-layout-grid: (
 .restaurant-tab {
   height: 150px;
   background-position: center;
+  background-color: rgba(88, 95, 107, 0.6);
+  //filter: opacity(50%);
 }
 
 .restaurant-tab-container {
   @include grid-column(1, $restaurant-layout-grid);
   @include grid-collapse;
   margin-bottom: 2rem;
-  background-color: gray;
   text-align: center;
-}
-
-.navbar {
-  text-align: center;
-  align-self: flex-start;
 }
 
 .restaurant-info {
@@ -49,6 +45,14 @@ $restaurant-layout-grid: (
 .restaurant-name {
   font-size: 40px;
   padding-top: 20px;
+}
+
+.navbar {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
 }
 
 // Restaurant Specific Styling
