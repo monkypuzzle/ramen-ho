@@ -8,7 +8,7 @@
           <p>
             <%= restaurant.name %>
             <span class="waittime-display">
-            <%= restaurant.most_recent_waittime.try(:estimated_waittime) || base_alg_time %> minutes
+            <%= restaurant.most_recent_waittime.try(:estimated_waittime) || restaurant.base_alg_time %> minutes
             </span>
           </p>
         </div>

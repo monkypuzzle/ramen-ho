@@ -9,7 +9,7 @@ class Restaurant < ActiveRecord::Base
   end
 
   def base_alg_time
-    Waitcalc.base_alg(self.number_of_seats).alg_time
+    Waitcalc.base_alg(self.number_of_seats)[:alg_time]
   end
 
   def is_open?
