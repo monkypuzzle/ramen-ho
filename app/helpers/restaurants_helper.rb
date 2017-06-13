@@ -70,6 +70,19 @@ module RestaurantsHelper
       end
       i += 1
     end
+
+    display_day.insert(0, display_day.delete_at(2))
+    display_day.insert(1, display_day.delete_at(2))
+    display_day.insert(2, display_day.delete_at(3))
+    display_day.insert(3, display_day.delete_at(6))
+    display_day.insert(4, display_day.delete_at(6))
+
+    display.insert(0, display.delete_at(2))
+    display.insert(1, display.delete_at(2))
+    display.insert(2, display.delete_at(3))
+    display.insert(3, display.delete_at(6))
+    display.insert(4, display.delete_at(6))
+
     {days: display_day, hours: display}
   end
 
