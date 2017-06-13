@@ -1,5 +1,9 @@
 <div class = "restaurant-tile">
-  <h3> <% restaurant.name %> </h3> </br>
-   <% if restaurant.is_open? %> OPEN <% else %>  <%= restaurant.will_be_open %> <% end %> || <%= restaurant.waittimes.last.estimated_waittime %>
-  <%= restaurant.operating_hours %> <%= restaurant.address %> || <a href="<%= restaurant.phone %>"><%= restaurant.phone %></a>
-</div>
+  <h3> <% restaurant.name %> </h3>
+  <% if restaurant.is_open? %> OPEN <% else %>  Open at: <%= restaurant.will_be_open %>  <% end %> </br></br>
+  <%= restaurant.address %> || <a href="<%= restaurant.phone %>"><%= restaurant.phone %></a> </br></br>
+  <% @hours = hours_show(restaurant.operating_hours) %>
+  <% @hours.each do |operating| %>
+  <li><%= operating %><li>
+   <% end %>
+</div></br>

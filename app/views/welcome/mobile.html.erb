@@ -6,6 +6,7 @@
       <% @restaurants.each do |restaurant| %>
         <div id='restaurant-<%=restaurant.id %>'>
           <p><%= restaurant.name %></p>
+          <p> <%= render partial: "waittime", locals: {restaurant: restaurant} %> </p>
           <p class="waittime-display"></p>
         </div>
       <% end %>
