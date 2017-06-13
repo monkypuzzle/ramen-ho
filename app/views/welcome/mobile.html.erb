@@ -9,6 +9,7 @@
             <%= restaurant.name %>
             <span class="waittime-display">
             <%= restaurant.most_recent_waittime.try(:estimated_waittime) || restaurant.base_alg_time %> minutes
+            <p> <%= render partial: "waittime", locals: {restaurant: restaurant} %> </p>
             </span>
           </p>
         </div>
