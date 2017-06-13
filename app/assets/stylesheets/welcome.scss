@@ -85,10 +85,10 @@ button, input[type='submit'] { @extend .buttonize }
     form { @extend .flex-column; @extend .fit-to-parent; position: absolute; top: 0;
       div { @extend .flex-row }
       .errors {
-        background-color: $gainsboro;
+        background-color: orangered;
         width: 75%;
-        padding: 20px 0 20px 40px;
-        color: orangered;
+        padding: 10px 0 10px 40px;
+        color: white;
         display: none;
         li {
           list-style-type: disc;
