@@ -3,7 +3,8 @@ require 'waitcalc'
 class Waittime < ActiveRecord::Base
   belongs_to :restaurant
 
-  validates :customer, format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/, message: "cannot have numbers or symbols"}
+  validates :customer, format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/, message: "name cannot have numbers or symbols"}
+  validates :party_size, format: { with: /\A\d{1,2}\z/, message: "is invalid" }
 
   scope :parties_before, ->(current_restaurant) { where(restaurant_id: current_restaurant, seated: false)}
 

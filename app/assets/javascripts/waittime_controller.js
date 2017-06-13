@@ -30,13 +30,23 @@ $(document).ready(function(){
       data: $(this).serialize()
     }).done(function(response){
       $("#add-party-form").trigger("reset");
-      $("#add-party-form").css("z-index", "-1");
-      $(".waitlist").append(response);
-    }).fail(function(response){
-      console.log(response)
-      $(".errors").html(response)
+      if (Array.isArray(response)) {
+        $(".errors").html(listErrors(response))
+      }
+      else {
+        $("#add-party-form").css("z-index", "-1");
+        $(".waitlist").append(response);
+      }
     })
   })
+
+  function listErrors(errors) {
+    html = "<ul>"
+    errors.forEach(function(error) {
+      html += ("<li>" + error + "</li>")
+    })
+    return html += "</ul>"
+  }
 
   var updateWaittimes = function(est_waittimes){
     Object.keys(est_waittimes).forEach(function(property){
