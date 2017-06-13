@@ -26,13 +26,18 @@ module RestaurantsHelper
     result
   end
 
+  def day_format(string)
+    result = string.match(/^\w{3}/)
+    result
+  end
+
   def hours_parse(hours_in_json)
     arr = hours_in_json.map{|day| day}
     days = []
     lunch_hours = []
     dinner_hours =[]
     i = 0
-    until i == arr.length - 1
+    until i == arr.length
       days << arr[i][0]
       lunch_hours << arr[i][1]["lunch"]
       dinner_hours << arr[i][1]["dinner"]
@@ -49,20 +54,23 @@ module RestaurantsHelper
   def hours_show(hours)
     hash = hours_parse(hours)
     display = []
+    display_day = []
     # puts hash
     i = 0
-    until i == hash[:day_list].length - 1
+    until i == hash[:day_list].length
       if hash[:lunch][i][0] == "0" && hash[:dinner][i][0] == "0"
-        display << hash[:day_list][i].capitalize  + ":  - CLOSED - "
+        display_day << day_format(hash[:day_list][i].capitalize)
+        display << ":  - CLOSED - "
       elsif hash[:lunch][i][1] == "0" && hash[:dinner][i][0] == "0"
-        display << hash[:day_list][i].capitalize  + ":  Open From: " +  standard_time(hash[:lunch][i][0]) + " -  " + standard_time(hash[:dinner][i][1])
+        display_day << day_format(hash[:day_list][i].capitalize)
+        display << ":  " + standard_time(hash[:lunch][i][0]) + " -  " + standard_time(hash[:dinner][i][1])
       else
-        display << hash[:day_list][i].capitalize  +  ":  Lunch: " +  standard_time(hash[:lunch][i][0]) + " - " + standard_time(hash[:lunch][i][1]) + " || Dinner: " +  standard_time(hash[:dinner][i][0]) + " - " + standard_time(hash[:dinner][i][1])
+        display_day << day_format(hash[:day_list][i].capitalize)
+        display << ": " + standard_time(hash[:lunch][i][0]) + " - " + standard_time(hash[:lunch][i][1]) + " || " +  standard_time(hash[:dinner][i][0]) + " - " + standard_time(hash[:dinner][i][1])
       end
       i += 1
     end
-
-    display
+    {days: display_day, hours: display}
   end
 
 end
