@@ -52,10 +52,11 @@ module RestaurantsHelper
 
 
   def hours_show(hours)
-    hash = hours_parse(hours)
+    days_of_week = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+    array_of_hours = hours.sort_by{|k,v| days_of_week.index(k) }
+    hash = hours_parse(array_of_hours)
     display = []
     display_day = []
-    # puts hash
     i = 0
     until i == hash[:day_list].length
       if hash[:lunch][i][0] == "0" && hash[:dinner][i][0] == "0"
@@ -71,17 +72,19 @@ module RestaurantsHelper
       i += 1
     end
 
-    display_day.insert(0, display_day.delete_at(2))
-    display_day.insert(1, display_day.delete_at(2))
-    display_day.insert(2, display_day.delete_at(3))
-    display_day.insert(3, display_day.delete_at(6))
-    display_day.insert(4, display_day.delete_at(6))
-
-    display.insert(0, display.delete_at(2))
-    display.insert(1, display.delete_at(2))
-    display.insert(2, display.delete_at(3))
-    display.insert(3, display.delete_at(6))
-    display.insert(4, display.delete_at(6))
+    # raise
+    #  -- OLD SOLUTION --
+    # display_day.insert(0, display_day.delete_at(2))
+    # display_day.insert(1, display_day.delete_at(2))
+    # display_day.insert(2, display_day.delete_at(3))
+    # display_day.insert(3, display_day.delete_at(6))
+    # display_day.insert(4, display_day.delete_at(6))
+    #
+    # display.insert(0, display.delete_at(2))
+    # display.insert(1, display.delete_at(2))
+    # display.insert(2, display.delete_at(3))
+    # display.insert(3, display.delete_at(6))
+    # display.insert(4, display.delete_at(6))
 
     {days: display_day, hours: display}
   end
