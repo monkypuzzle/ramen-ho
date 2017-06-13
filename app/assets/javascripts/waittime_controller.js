@@ -29,21 +29,19 @@ $(document).ready(function(){
       url: $(this).attr("action"),
       data: $(this).serialize()
     }).done(function(response){
+      console.log(response)
       $("#add-party-form").trigger("reset");
       if (Array.isArray(response)) {
         $(".errors").html(listErrors(response))
       }
       else {
-        $("#add-party-form").css("z-index", "-1");
-        $(".waitlist").append(response);
-      }
       $(".form-container").toggle();
       $(".waitlist").append(response);
-    }).fail(function(response){
-      console.log(response)
-      $(".errors").html(response)
+      $(".errors").html("");
+      }
     })
   })
+
   $("#cancel-party-button").on("click", function(event){
     event.preventDefault()
     $(".form-container").toggle()
@@ -142,12 +140,5 @@ $(document).ready(function(){
   $(".lock-screen-btn").on("click", function(event){
     lockScreen();
   });
-
-  //working progress with errors
-  // $(document).ajaxComplete(function(event, request) {
-  //   console.log("it's here!!")
-  //   console.log(request)
-  // })
-
 
 });
