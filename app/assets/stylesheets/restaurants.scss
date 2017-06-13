@@ -1,3 +1,92 @@
-// Place all the styles related to the Restaurants controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// ========================================
+//  VARIABLES, MIXINS, & EXTENSIONS
+// ========================================
+
+// a. Variables
+$menya-img: image-url('opt-ramen-1-10/menya-ultra-2.jpg');
+$nozaru-img: image-url('opt-ramen-1-10/ramen-yamadaya-3.jpg');
+$minato-img: image-url('opt-ramen-1-10/minato-3-2.jpg');
+$rakiraki-img: image-url('opt-ramen-1-10/rakiraki-ramen-3.jpg');
+$tajima-img: image-url('opt-ramen-1-10/tajima-ramen-hillcrest.jpg');
+
+// Grid setup
+$restaurant-layout-grid: (
+  columns: 1,
+  gutter: 20px,
+);
+
+// Structural Classes
+// ========================================
+
+.restaurants-wrapper {
+  @include grid-container;
+  padding: 125px;
+  color: white;
+}
+
+.restaurant-tab {
+  height: 150px;
+  background-position: center;
+  background-color: rgba(88, 95, 107, 0.6);
+  //filter: opacity(50%);
+}
+
+.restaurant-tab-container {
+  @include grid-column(1, $restaurant-layout-grid);
+  @include grid-collapse;
+  margin-bottom: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.restaurant-info {
+  background-color: white;
+  padding: 20px;
+}
+
+// General Styling
+// ========================================
+
+.restaurant-name {
+  font-size: 40px;
+  padding-top: 20px;
+}
+
+.restaurant-info {
+  color: black;
+}
+
+.navbar {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+}
+
+// Restaurant Specific Styling
+// ========================================
+
+#restaurant-1 {
+    background-image: $menya-img;
+}
+
+#restaurant-2 {
+    background-image: $nozaru-img;
+}
+
+#restaurant-3 {
+    background-image: $minato-img;
+}
+
+#restaurant-4 {
+    background-image: $rakiraki-img;
+}
+
+#restaurant-5 {
+    background-image: $tajima-img;
+}
+
+
+

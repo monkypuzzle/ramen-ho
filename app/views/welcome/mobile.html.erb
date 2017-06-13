@@ -4,16 +4,20 @@
   </div>
   <div class="restaurants-wrapper">
       <% @restaurants.each do |restaurant| %>
-        <div id='restaurant-<%=restaurant.id %>'>
-          <p>
-            <%= restaurant.name %>
-            <span class="waittime-display">
-            <%= restaurant.most_recent_waittime.try(:estimated_waittime) || restaurant.base_alg_time %> minutes
-            <p> <%= render partial: "waittime", locals: {restaurant: restaurant} %> </p>
-            </span>
+      <div class="restaurant-tab-container">
+        <div id='restaurant-<%=restaurant.id %>' class='restaurant-tab'>
+          <p class="restaurant-name"><%= restaurant.name %></p>
+          <p class="waittime-display">
+            Wait Time - <%= restaurant.most_recent_waittime.try(:estimated_waittime) || restaurant.base_alg_time %> minutes
           </p>
         </div>
+        <div id="restaurant-info-<%= restaurant.id %>" class="restaurant-info">
+          <p><%= render partial: "waittime", locals: {restaurant: restaurant} %></p>
+        </div>
+      </div>
       <% end %>
   </div>
-
+  <footer>
+    <p>&copy; Ramen, Ho!</p>
+  </footer>
 </div>

@@ -1,8 +1,16 @@
 $(document).ready(function(){
+  $(".restaurant-info").hide();
+
+  $(".restaurant-tab-container").on("click", function(event) {
+    var restaurant = $(this).find(".restaurant-tab").prop('id');
+    var restaurantId = getRestaurantId(restaurant)
+    $("#restaurant-info-" + restaurantId).slideToggle("fast");
+  })
 
   function checkAllWaittime() {
     $(".restaurants-wrapper").children().each(function() {
-    var htmlId = $(this).prop('id')
+    var htmlId = $(this).find('.restaurant-tab').prop('id')
+    console.log(htmlId);
     getWaittime(getRestaurantId(htmlId));
   })
   }
@@ -15,7 +23,7 @@ $(document).ready(function(){
       data: { id: restaurantId }
     }).done(function(response){
       console.log(response)
-      $("#restaurant-" + restaurantId).find(".waittime-display").replaceWith("<span class='waittime-display'>" + response + " minutes</span>")
+      $("#restaurant-" + restaurantId).find(".waittime-display").replaceWith("<p class='waittime-display'>" + response + " minutes</p>")
     })
   }
 
