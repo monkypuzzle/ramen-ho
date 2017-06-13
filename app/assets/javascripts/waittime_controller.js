@@ -3,7 +3,7 @@ $(document).ready(function(){
   //hides waitlist form
   //toggle form on Add Party button
   $("#add-party-button").click(function(event){
-    $("#add-party-form").show();
+    $(".form-container").toggle();
     $("#add-party-form").css("z-index", "2")
   })
 
@@ -37,7 +37,16 @@ $(document).ready(function(){
         $("#add-party-form").css("z-index", "-1");
         $(".waitlist").append(response);
       }
+      $(".form-container").toggle();
+      $(".waitlist").append(response);
+    }).fail(function(response){
+      console.log(response)
+      $(".errors").html(response)
     })
+  })
+  $("#cancel-party-button").on("click", function(event){
+    event.preventDefault()
+    $(".form-container").toggle()
   })
 
   function listErrors(errors) {

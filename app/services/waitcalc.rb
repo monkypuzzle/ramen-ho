@@ -8,6 +8,7 @@ require 'date'
 module Waitcalc
 
 @t = DateTime.now()
+@avg_seats = 55
 # @t = DateTime.new(2017,6,11,10,00,0, "-08:00")
 @rush_hour_lunch_start = DateTime.new(@t.year,@t.month,@t.day,12,00,0, "-08:00")
 @rush_hour_lunch_end = DateTime.new(@t.year,@t.month,@t.day,14,30,0, "-08:00")
@@ -28,14 +29,10 @@ end
 
 def self.find_waittime(number_of_parties_before)
   t = DateTime.now
-  # similar_waittimes = Waittime.where(seated: true).where("EXTRACT(dow FROM (created_at)) = ?", DateTime.now.wday.to_s).select{|waittime| waittime.created_at.localtime.wday == t.wday && waittime.number_of_parties_before == number_of_parties_before }
-  # puts similar_waittimes
-  # similar_waittimes = Waittime.where(seated:true).map {|waittime| p waittime || 0}
-  similar_waittimes = []
-  # puts "========================="
+  similar_waittimes = Waittime.where(seated: true).where("EXTRACT(dow FROM (created_at)) = ?", DateTime.now.wday.to_s).select{|waittime| waittime.created_at.localtime.wday == t.wday && waittime.number_of_parties_before == number_of_parties_before }
   if similar_waittimes.empty?
-    # return number_of_parties_before * base_alg(self.restaurant.number_of_seats)[:avg_time]
-    return number_of_parties_before * 4
+    estimate = number_of_parties_before * base_alg(@avg_seats)[:avg_time]
+    estimate = estimate/3
   else
     puts collection_avg(similar_waittimes)
     return collection_avg(similar_waittimes)
@@ -72,10 +69,6 @@ def self.base_alg(seats)
 end
 
 def self.collection_avg(collection)
-  collection.each_with_index do |item,index|
-    puts "#{index} - #{item}"
-  end
-  puts "========================"
   total_times = collection.map{|party| party.seated_time }
   customer_time = total_times.reduce(:+) / collection.length
 end
