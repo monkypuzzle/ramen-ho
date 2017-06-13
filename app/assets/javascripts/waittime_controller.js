@@ -3,7 +3,7 @@ $(document).ready(function(){
   //hides waitlist form
   //toggle form on Add Party button
   $("#add-party-button").click(function(event){
-    $("#add-party-form").show();
+    $(".form-container").toggle();
     $("#add-party-form").css("z-index", "2")
   })
 
@@ -30,14 +30,31 @@ $(document).ready(function(){
       url: $(this).attr("action"),
       data: $(this).serialize()
     }).done(function(response){
-      $("#add-party-form").trigger("reset");
-      $("#add-party-form").css("z-index", "-1");
-      $(".waitlist").append(response);
-    }).fail(function(response){
       console.log(response)
-      $(".errors").html(response)
+      $("#add-party-form").trigger("reset");
+      if (Array.isArray(response)) {
+        $(".errors").html(listErrors(response))
+      }
+      else {
+      $(".form-container").toggle();
+      $(".waitlist").append(response);
+      $(".errors").html("");
+      }
     })
   })
+
+  $("#cancel-party-button").on("click", function(event){
+    event.preventDefault()
+    $(".form-container").toggle()
+  })
+
+  function listErrors(errors) {
+    html = "<ul>"
+    errors.forEach(function(error) {
+      html += ("<li>" + error + "</li>")
+    })
+    return html += "</ul>"
+  }
 
   var updateWaittimes = function(est_waittimes){
     Object.keys(est_waittimes).forEach(function(property){

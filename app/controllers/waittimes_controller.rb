@@ -1,6 +1,7 @@
 class WaittimesController < ApplicationController
   include SmsHelper
   include WaittimeHelper
+  include Waitcalc
 
   def update
     waittime = Waittime.find(waittime_params[:id])
@@ -20,11 +21,10 @@ class WaittimesController < ApplicationController
     #use waittime helper method to add number of parties before saving
     @waittime.number_of_parties_before = number_of_unseated_parties(current_admin.restaurant)
     if @waittime.save
-      # send_confirmation_sms(@waittime.phone)
+      #send_confirmation_sms(@waittime.phone)
       render partial: 'waittimes/create_w_db', locals: {waittime: @waittime}, layout: false
     else
-      #errors aren't working, implemented grayed out function instead - will revisit on Monday
-      render partial: "/waittime/errors.html.erb", locals: { waittime: @waittime}, layout: false
+      render json: @waittime.errors.full_messages.to_json
     end
   end
 
@@ -32,7 +32,7 @@ class WaittimesController < ApplicationController
     waittime_id = find_waittime_id(params[:id])
     waittime = Waittime.find(waittime_id)
     waittime.update(table_ready: true)
-    # send_ready_sms(waittime.phone)
+    #send_ready_sms(waittime.phone)
     render plain: params[:id]
   end
 
