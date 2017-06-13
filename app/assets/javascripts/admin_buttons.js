@@ -51,8 +51,8 @@ $(document).ready(function(){
 
   $(".pin-btn").on("click", function(event){
     if ( $(".pin-input").val() === '1234' ) {
-      $employeeVisible.show(); $(".admin-dashboard").show();
-      $pinInput.hide(); $customerVisible.hide(); $(".pin-popout").hide();
+      $('.employee-visible').show(); $(".admin-dashboard").show();
+      $pinInput.hide(); $('.customer-visible').hide(); $(".pin-popout").hide();
       $(".pin-input").val("");
       setTimeout(lockScreen, 15000);
       $(".lock-status").html("<p style='color:seagreen;'>Screen unlocked!</p><p style='color:orange;'>Will lock automatically in 5 seconds.</p>")

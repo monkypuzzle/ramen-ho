@@ -135,7 +135,6 @@ button, input[type='submit'] { @extend .buttonize }
     border: solid 1px darkgrey;
     display: table-row;
     justify-content: space-between;
-    min-height: 2em;
   }
   * {
     // @extend .flex-row;
@@ -143,6 +142,7 @@ button, input[type='submit'] { @extend .buttonize }
     display: table-cell;
     padding: .2em;
   }
+  li { height: 3em; }
   li:nth-child(even) { background-color: $gainsboro; }
   li:nth-child(odd) { background-color: $lightgray; }
   li.waittime-headers {
@@ -152,7 +152,7 @@ button, input[type='submit'] { @extend .buttonize }
     color: white;
     text-shadow: 2px 2px black;
   }
-  .almost-ready, .seat-party-btn, .seat-party-confirm {
+  .almost-ready, .seat-party-btn, .seat-party-confirm, .almost-ready-confirm {
     color: white;
     font-size: 110%;
     height: 2em;
@@ -198,6 +198,6 @@ button, input[type='submit'] { @extend .buttonize }
 
 
 // Default welcome page buttons to hidden (needed to solve presumed turbolinks issue)
-.table-ready-btn, .employee-visible, .pin-input, .pin-btn, .lock-screen-btn, .lock-status, .form-container, .errors, .almost-ready-confirm, .seat-party-btn, .seat-party-confirm {
+.table-ready-btn, .employee-visible, .pin-input, .pin-btn, .lock-screen-btn, .lock-status, .form-container, .errors, .almost-ready-confirm, .seat-party-btn, .seat-party-confirm, .customer-visible .ready {
   display: none;
 }

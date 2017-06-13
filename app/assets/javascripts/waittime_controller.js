@@ -36,6 +36,7 @@ $(document).ready(function(){
       }
       else {
       $(".form-container").toggle();
+      console.log(response);
       $(".waitlist").append(response);
       $(".errors").html("");
       }
