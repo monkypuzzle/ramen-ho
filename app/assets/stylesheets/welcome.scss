@@ -190,6 +190,6 @@ button, input[type='submit'] { @extend .buttonize }
 
 
 // Default welcome page buttons to hidden (needed to solve presumed turbolinks issue)
-.table-ready-btn, .employee-visible, .pin-input, .pin-btn, .lock-screen-btn, .lock-status, .form-container {
+.table-ready-btn, .employee-visible, .pin-input, .pin-btn, .lock-screen-btn, .lock-status, .form-container, .errors {
   display: none;
 }
