@@ -30,6 +30,13 @@ $(document).ready(function(){
       data: $(this).serialize()
     }).done(function(response){
       $("#add-party-form").trigger("reset");
+      if (Array.isArray(response)) {
+        $(".errors").html(listErrors(response))
+      }
+      else {
+        $("#add-party-form").css("z-index", "-1");
+        $(".waitlist").append(response);
+      }
       $(".form-container").toggle();
       $(".waitlist").append(response);
     }).fail(function(response){
@@ -41,6 +48,14 @@ $(document).ready(function(){
     event.preventDefault()
     $(".form-container").toggle()
   })
+
+  function listErrors(errors) {
+    html = "<ul>"
+    errors.forEach(function(error) {
+      html += ("<li>" + error + "</li>")
+    })
+    return html += "</ul>"
+  }
 
   var updateWaittimes = function(est_waittimes){
     Object.keys(est_waittimes).forEach(function(property){
@@ -128,6 +143,11 @@ $(document).ready(function(){
     lockScreen();
   });
 
+  //working progress with errors
+  // $(document).ajaxComplete(function(event, request) {
+  //   console.log("it's here!!")
+  //   console.log(request)
+  // })
 
 
 });

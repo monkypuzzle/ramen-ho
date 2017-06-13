@@ -5,8 +5,12 @@
   <div class="restaurants-wrapper">
       <% @restaurants.each do |restaurant| %>
         <div id='restaurant-<%=restaurant.id %>'>
-          <p><%= restaurant.name %></p>
-          <p class="waittime-display"></p>
+          <p>
+            <%= restaurant.name %>
+            <span class="waittime-display">
+            <%= restaurant.most_recent_waittime.try(:estimated_waittime) || restaurant.base_alg_time %> minutes
+            </span>
+          </p>
         </div>
       <% end %>
   </div>
