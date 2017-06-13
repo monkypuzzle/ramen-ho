@@ -1,3 +1,16 @@
-// Place all the styles related to the Restaurants controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$restaurant-layout-grid: (
+  columns: 1,
+  gutter: 2rem,
+);
+
+.restaurants-wrapper {
+  @include grid-container;
+  background-color: #fff
+}
+
+.restaurant {
+  @include grid-column(1, $restaurant-layout-grid);
+  margin-bottom: 2rem;
+  background-color: gray;
+}
+

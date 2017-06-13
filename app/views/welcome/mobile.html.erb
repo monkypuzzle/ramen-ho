@@ -4,7 +4,7 @@
   </div>
   <div class="restaurants-wrapper">
       <% @restaurants.each do |restaurant| %>
-        <div id='restaurant-<%=restaurant.id %>'>
+        <div id='restaurant-<%=restaurant.id %>' class='restaurant'>
           <p>
             <%= restaurant.name %>
             <span class="waittime-display">
