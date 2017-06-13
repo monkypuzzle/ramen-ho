@@ -68,9 +68,6 @@ $(document).ready(function(){
     });
   });
 
-  var $customerVisible = $('.customer-visible')
-  var $employeeVisible = $('.employee-visible');
-  var $pinInput = $(".pin-input, .pin-btn, .pin-container");
 
   $(".waitlist").on("click", ".almost-ready", function(event){
     var waittimeId = $(this).closest("li").prop("id");
@@ -86,13 +83,5 @@ $(document).ready(function(){
       $("#" + response).find('.status .ready').toggle()
     })
   })
-
-
-
-
-
-
-
-
 
 });

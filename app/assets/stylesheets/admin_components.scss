@@ -9,25 +9,51 @@
   * { position: relative; }
 }
 .unlock {
-  top: 0; right: 0;
+  top: 10px; right: 10px;
   height: 50px; width: 50px;
   .unlock-screen-btn {
     @extend .fit-to-parent;
+    box-shadow: inset 0px -3px lighten(dimgray, 20%);
   }
-  .pin-container {
-    background-color: dimgray;
+  .pin-popout {
     padding: 10px;
-    position: fixed;
-    right: 50px; top: 0;
-    z-index: 2;
+    right: 75px; top: 10px;
+    box-shadow: 4px 4px lighten(dimgray, 30%);
   }
-  .pin-input { margin-bottom: 10px; }
-  .pin-btn { background-color: lightgrey; }
-}
+  .pin-input {
+    margin-bottom: 10px;
+    width: 75%;
+  }
+  .pin-btn {
+    background-color: orange;
+    box-shadow: inset 0px -3px darken(orange, 20%); }
+  }
 .admin-dashboard {
-  bottom: 0; right: 0;
+  bottom: 10px; right: 10px;
+  box-shadow: inset 0px -3px lighten(dimgray, 20%);
   button {
     border-left: solid 2px grey; border-top: solid 2px grey;
-    height: 50px; width: 50px;
+  }
+}
+
+// Popouts
+.pin-popout, .admin-popout {
+  background-color: dimgray;
+  position: fixed;
+  z-index: 2;
+  * { padding: 10px; }
+}
+.admin-popout {
+  right: 75px;
+  bottom: 10px;
+  padding: 40px;
+  box-shadow: 4px 4px lighten(dimgray, 30%);
+  .restaurant { @extend .buttonize; font-size: 1.3em; }
+  a {
+    @extend .buttonize;
+    background-color: orange;
+    font-size: 1.5em;
+    padding: 10px;
+    box-shadow: inset 0px -3px darken(orange, 20%);
   }
 }
