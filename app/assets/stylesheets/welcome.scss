@@ -75,21 +75,8 @@ button { @extend .buttonize }
   justify-content: space-between;
 }
 
-.add-party {
-  @extend .flex-row;
-  #add-party-button {
-    background-color: orange;
-    box-shadow: inset 0px -10px darken(orange, 20%);
-    border-radius: 20px;
-    letter-spacing: 0em;
-    line-height: 1em;
-    margin: 50px 0 0 0;
-    font-size: 2.5em;
-    height: 150px;
-    width: 300px;
-    }
-  #add-party-form {
-    z-index: 2;
+.form-container {
+    display: none;
     position: fixed;
     z-index: 2;
     top: 15%;
@@ -130,7 +117,65 @@ button { @extend .buttonize }
       margin-top: 10px;
       margin-right: 80px;
     }
-  }
+}
+
+
+.add-party {
+  @extend .flex-row;
+  #add-party-button {
+    background-color: orange;
+    box-shadow: inset 0px -10px darken(orange, 20%);
+    border-radius: 20px;
+    letter-spacing: 0em;
+    line-height: 1em;
+    margin: 50px 0 0 0;
+    font-size: 2.5em;
+    height: 150px;
+    width: 300px;
+    }
+//   #add-party-form {
+//     z-index: 2;
+//     position: fixed;
+//     z-index: 2;
+//     top: 15%;
+//     left: 15%;
+//     font-size: 22px;
+//     width: 70%;
+//     background-color: teal;
+//     padding: 30px;
+//     padding-left: 5%;
+//     #name, #party_size, #phone_number, #add-to-waitlist, {
+//       z-index: 3;
+//       display: flex;
+//       height: 100px;
+//       float: left;
+//       width: 35%;
+//       margin: 40px;
+//       padding: 5px;
+//       font-size: 30px;
+//       text-align: center;
+//     }
+//     #add-to-waitlist {
+//       background-color: turquoise;
+//       color: white;
+//       height: 115px;
+//       width: 37%;
+//       padding: 20px;
+//     }
+//     #cancel-party-button {
+//       font-size: 25px;
+//       float: right;
+//       display: flex;
+//       text-align: right;
+//       height: 100 px;
+//       width: 19%;
+//       background-color: red;
+//       color:white;
+//       padding: 20px;
+//       margin-top: 10px;
+//       margin-right: 80px;
+//     }
+//   }
 }
 
 .waitlist {
