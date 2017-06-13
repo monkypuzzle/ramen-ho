@@ -11,7 +11,7 @@
             Wait Time - <%= restaurant.most_recent_waittime.try(:estimated_waittime) || restaurant.base_alg_time %> minutes
           </p>
         </div>
-        <div class="restaurant-info">
+        <div id="restaurant-info-<%= restaurant.id %>" class="restaurant-info">
           <h1>HI!</h1>
         </div>
       </div>

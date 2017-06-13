@@ -1,14 +1,16 @@
 $(document).ready(function(){
   $(".restaurant-info").hide();
 
-  $(".restaurant-tab").click(function() {
-    $(".restaurant-info").slideToggle("slow", function() {
-    })
+  $(".restaurant-tab-container").on("click", function(event) {
+    var restaurant = $(this).find(".restaurant-tab").prop('id');
+    var restaurantId = getRestaurantId(restaurant)
+    $("#restaurant-info-" + restaurantId).slideToggle("slow");
   })
 
   function checkAllWaittime() {
     $(".restaurants-wrapper").children().each(function() {
     var htmlId = $(this).prop('id')
+    console.log(htmlId);
     getWaittime(getRestaurantId(htmlId));
   })
   }
