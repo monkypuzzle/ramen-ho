@@ -40,8 +40,9 @@ class Restaurant < ActiveRecord::Base
 
   def is_open?
     # current_mil_time =Time.now.strftime('%H:%M')
-    current_mil_time =Time.new(2017,6,11,13,25,0, "-07:00").strftime('%H:%M')
-    current_day = Time.now.strftime("%A").downcase
+    current_mil_time =Time.new(2017,6,13,2,25,0, "-08:00").strftime('%H:%M')
+    # current_day = Time.now.strftime("%A").downcase
+    current_day = Time.new(2017,6,13,2,25,0, "-08:00").strftime("%A").downcase
     if current_mil_time < self.operating_hours[current_day]["lunch"][0]
       false
     elsif current_mil_time.between?(self.operating_hours[current_day]["lunch"][1],self.operating_hours[current_day]["dinner"][0])
@@ -55,8 +56,9 @@ class Restaurant < ActiveRecord::Base
 
   def will_be_open
     # current_mil_time =Time.now.strftime('%H:%M')
-    current_mil_time =Time.new(2017,6,11,13,25,0, "-07:00").strftime('%H:%M')
-    current_day = Time.now.strftime("%A").downcase
+    current_mil_time =Time.new(2017,6,13,2,25,0, "-08:00").strftime('%H:%M')
+    # current_day = Time.now.strftime("%A").downcase
+    current_day = Time.new(2017,6,13,2,25,0, "-08:00").strftime("%A").downcase
     if self.is_open? == false
       if current_mil_time < self.operating_hours[current_day]["lunch"][0]
         standard_time(self.operating_hours[current_day]["lunch"][0]) + " later today"
@@ -67,15 +69,15 @@ class Restaurant < ActiveRecord::Base
         day_after_tmrw = (Date.today + 2).strftime("%A").downcase
         day_future = (Date.today + 3).strftime("%A").downcase
           if self.operating_hours[tomorrow]["lunch"][0] != "0"
-             standard_time(self.operating_hours[tomorrow]["lunch"][0])
-          elsif self.operating_hours[tomorrow]["lunch"][0] == "0" + "on" + tomorrow
-             standard_time(self.operating_hours[tomorrow]["dinner"][0]) + "on" + tomorrow
+             standard_time(self.operating_hours[tomorrow]["lunch"][0]) + " on " + tomorrow.capitalize
+          elsif self.operating_hours[tomorrow]["lunch"][0] == "0"
+             standard_time(self.operating_hours[tomorrow]["dinner"][0]) + " on " + tomorrow.capitalize
           elsif self.operating_hours[tomorrow]["lunch"][0] == "0" && self.operating_hours[tomorrow]["dinner"][0] == "0"
-             standard_time(self.operating_hours[day_after_tmrw]["lunch"][0]) + "on" + day_after_tmrw
-          elsif self.operating_hours[tomorrow]["lunch"][0] == "0" && self.operating_hours[tomorrow]["dinner"][0] == "0" && self.operating_hours[day_after_tmrw]["lunch"][0] == "0" + "on" + day_after_tmrw
+             standard_time(self.operating_hours[day_after_tmrw]["lunch"][0]) + " on " + day_after_tmrw.capitalize
+          elsif self.operating_hours[tomorrow]["lunch"][0] == "0" && self.operating_hours[tomorrow]["dinner"][0] == "0" && self.operating_hours[day_after_tmrw]["lunch"][0] == "0" + "on " + day_after_tmrw.capitalize
              standard_time(self.operating_hours[day_after_tmrw]["dinner"][0])
           elsif self.operating_hours[tomorrow]["lunch"][0] == "0" && self.operating_hours[tomorrow]["dinner"][0] == "0" && self.operating_hours[day_after_tmrw]["lunch"][0] == "0" && self.operating_hours[day_after_tmrw]["dinner"][0] == "0"
-             standard_time(self.operating_hours[day_future]["lunch"][0]) + "on" + day_future
+             standard_time(self.operating_hours[day_future]["lunch"][0]) + " on " + day_future.capitalize
           end
       end
     elsif self.is_open?
