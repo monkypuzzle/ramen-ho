@@ -32,9 +32,9 @@ $(document).ready(function(){
   }
 
   var showConfirm = function(buttonToReplace){
-    buttonToReplace.hide();
-
-  }
+    var $confirm = buttonToReplace.next(".confirm");
+    buttonToReplace.hide();  $confirm.show();
+  };
 
   $(".unlock-screen-btn").on("click", function(event){
     unlockScreen();

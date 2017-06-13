@@ -138,6 +138,8 @@ button, input[type='submit'] { @extend .buttonize }
     min-height: 2em;
   }
   * {
+    // @extend .flex-row;
+    text-align: center;
     display: table-cell;
     padding: .2em;
   }
@@ -150,18 +152,22 @@ button, input[type='submit'] { @extend .buttonize }
     color: white;
     text-shadow: 2px 2px black;
   }
-  .almost-ready, .seat-party-btn {
+  .almost-ready, .seat-party-btn, .seat-party-confirm {
     color: white;
     font-size: 110%;
     height: 2em;
     }
   .almost-ready {
-    background-color: tomato;
-    box-shadow: inset 0px -3px darken(tomato, 40%);
+    background-color: cadetblue;
+    box-shadow: inset 0px -3px darken(cadetblue, 40%);
   }
   .seat-party-btn {
     background-color: seagreen;
     box-shadow: inset 0px -3px darken(seagreen, 40%);
+  }
+  .almost-ready-confirm, .seat-party-confirm {
+    background-color: tomato;
+    box-shadow: inset 0px -3px darken(tomato, 40%);
   }
 }
 
@@ -173,23 +179,25 @@ button, input[type='submit'] { @extend .buttonize }
   border-bottom: solid 2px black;
   padding: 10px;
   * {
+    vertical-align: middle;
     border-bottom: solid 2px black;
     padding: 5px 0;
   }
 }
 
 .waittime-item > .status {
+  @extend .flex-row;
   .customer-visible {
     .ready { color: red; }
   }
 }
 
-.waittime-customer { width: 60%; }
+.waittime-customer { width: 60%; text-align: left; padding-left: 20px; }
 .waittime-party-size { width: 20%; }
 .waittime-bookend { width: 20%; }
 
 
 // Default welcome page buttons to hidden (needed to solve presumed turbolinks issue)
-.table-ready-btn, .employee-visible, .pin-input, .pin-btn, .lock-screen-btn, .lock-status, .form-container, .errors {
+.table-ready-btn, .employee-visible, .pin-input, .pin-btn, .lock-screen-btn, .lock-status, .form-container, .errors, .almost-ready-confirm, .seat-party-btn, .seat-party-confirm {
   display: none;
 }
