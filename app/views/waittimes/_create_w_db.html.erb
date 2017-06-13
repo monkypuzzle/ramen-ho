@@ -7,10 +7,12 @@
       <span class="ready">Table ready!</span>
     </div>
     <div class="employee-visible">
-      <button class='almost-ready' type="submit">Alert this Party</button>
+      <button class="almost-ready">Alert this Party</button>
+      <button class='almost-ready-confirm' type="submit">Are you Sure?</button>
       <form class='seat-party' action='/waittimes/<%= waittime.id %>'>
-        <button class="seat-party-btn" type='submit'>Seat this Party</button>
+        <button class="seat-party-confirm" type='submit'>Are you Sure?</button>
       </form>
+      <button class="seat-party-btn">Seat this Party</button>
     </div>
   </div>
 </li>

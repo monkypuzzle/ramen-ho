@@ -12,7 +12,7 @@
           </p>
         </div>
         <div id="restaurant-info-<%= restaurant.id %>" class="restaurant-info">
-          <h1>HI!</h1>
+          <p><%= render partial: "waittime", locals: {restaurant: restaurant} %></p>
         </div>
       </div>
       <% end %>

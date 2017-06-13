@@ -36,7 +36,7 @@ $restaurant-layout-grid: (
 
 .restaurant-info {
   background-color: white;
-  height: 250px;
+  height: 400px;
 }
 
 // General Styling
@@ -45,6 +45,10 @@ $restaurant-layout-grid: (
 .restaurant-name {
   font-size: 40px;
   padding-top: 20px;
+}
+
+.restaurant-info {
+  color: black;
 }
 
 .navbar {

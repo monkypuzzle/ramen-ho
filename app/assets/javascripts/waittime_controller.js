@@ -4,7 +4,6 @@ $(document).ready(function(){
   //toggle form on Add Party button
   $("#add-party-button").click(function(event){
     $(".form-container").toggle();
-    $("#add-party-form").css("z-index", "2")
   })
 
   //add to wailist grays out unless all fields are filled
@@ -37,6 +36,7 @@ $(document).ready(function(){
       }
       else {
       $(".form-container").toggle();
+      console.log(response);
       $(".waitlist").append(response);
       $(".errors").html("");
       }
@@ -44,16 +44,16 @@ $(document).ready(function(){
   })
 
   $("#cancel-party-button").on("click", function(event){
-    event.preventDefault()
-    $(".form-container").toggle()
+    $(".form-container").hide();
   })
 
   function listErrors(errors) {
-    html = "<ul>"
+    html = ""
+    $(".errors").show();
     errors.forEach(function(error) {
       html += ("<li>" + error + "</li>")
     })
-    return html += "</ul>"
+    return html
   }
 
   var updateWaittimes = function(est_waittimes){
@@ -64,29 +64,38 @@ $(document).ready(function(){
   }
 
   $(".waitlist").on("submit", ".seat-party", function(event){
-    event.preventDefault()
-    var $form = $(this);
+    event.preventDefault();
+    $(this).toggle();
     var $chosenWaittimeItem = $(this).closest(".waittime-item");
     var waittimeId = $chosenWaittimeItem.attr("id").replace("waittime-","");
-    console.log(waittimeId)
     var data = {'waittime': {'id': waittimeId}};
-    // UPDATE Waittime object in the database (set seated to true)
     $.ajax({
       method: "PATCH",
-      url: $form.attr("action"),
+      url: $(this).attr("action"),
       dataType: "json",
       data: data
     })
     .done(function(response){
-      console.log(response)
       updateWaittimes(response)
-      // When done, remove the <li> from the list
       $chosenWaittimeItem.remove();
     });
   });
 
 
   $(".waitlist").on("click", ".almost-ready", function(event){
+    $(this).toggle();
+    $(this).next(".almost-ready-confirm").slideDown(150);
+  })
+
+  $(".waitlist").on("click", ".seat-party-btn", function(event){
+    $(this).toggle();
+    $(this).siblings(".seat-party").show()
+    $(this).siblings(".seat-party").find('.seat-party-confirm').slideDown(150);
+  })
+
+  $(".waitlist").on("click", ".almost-ready-confirm", function(event){
+    $(this).toggle();
+    $(this).siblings(".seat-party-btn").show();
     var waittimeId = $(this).closest("li").prop("id");
     $.ajax({
       method: "get",
@@ -95,8 +104,6 @@ $(document).ready(function(){
         id: waittimeId
       }
     }).done(function(response){
-      $("#" + response).find('.almost-ready').toggle()
-      $("#" + response).find('.seat-party').toggle()
       $("#" + response).find('.status .ready').toggle()
     })
   })
