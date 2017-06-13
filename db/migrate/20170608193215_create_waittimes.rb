@@ -4,7 +4,7 @@ class CreateWaittimes < ActiveRecord::Migration
       t.string :customer, null: false
       t.string :phone, null: false
       t.integer :party_size, null: false
-      t.boolean :seated, default: false, null: false
+      t.boolean :seated, default: false
       t.integer :restaurant_id, null: false
       t.integer :number_of_parties_before, null: false
 

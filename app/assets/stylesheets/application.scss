@@ -11,5 +11,10 @@
  * file per style scope.
  *
  *= require_self
- *= require_tree .
  */
+
+@import "reset";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import "welcome";
+@import "admin_components";

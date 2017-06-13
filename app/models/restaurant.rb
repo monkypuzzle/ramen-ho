@@ -1,6 +1,16 @@
+require 'waitcalc'
+
 class Restaurant < ActiveRecord::Base
   has_many :waittimes
   has_one :admin
+
+  def most_recent_waittime
+    waittimes.order(created_at: :desc).find_by(seated: false)
+  end
+
+  def base_alg_time
+    Waitcalc.base_alg(self.number_of_seats)[:alg_time]
+  end
 
   def is_open?
     current_mil_time =Time.now.strftime('%H:%M')

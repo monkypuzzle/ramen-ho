@@ -1,108 +1,245 @@
-// I. Troubleshooting
 // ========================================
-// div { border: dashed 1px red; }
-
-// II. General Tags
+// I. TROUBLESHOOTING & RESETS
 // ========================================
-body { font-family: 'Futura' }
-body, p, li, span, button, input { font-size: 1.2em; }
-h1 { font-size: 5em; }
-div { box-sizing: border-box; }
+// body * { border: dashed 1px red; }
+button { border: none; }
+li { list-style-type: none; }
+a { color: black; text-decoration: none; }
 
 
-// III. Styling Classes
 // ========================================
+// II. VARIABLES, MIXINS, & EXTENSIONS
+// ========================================
+
+// a. Variables
+$primary-font: 'Work Sans', 'Helvetica', sans-serif;
+$pewter-blue: #91AEC1;
+$gainsboro: #D7DDDD;
+$lightgray: #C5D2D6;
+
+// b. Mixins
+
+
+// c. Extensions
 .flex-column {
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-
 .flex-row {
   align-items: center;
   display: flex;
   justify-content: center;
 }
+.fit-to-parent { height: 100%; width: 100%; }
+.buttonize {
+  border-radius: .5em;
+  color: white;
+  font-weight: bolder;
+  text-shadow: .05em .05em black;
+}
 
-// IV. Structural Classes
+
+
+// III. General Tags
+// ========================================
+body { font-family: 'Work Sans'; letter-spacing: -.05em; }
+body, p, li, span, button, input { font-size: 1.2em; }
+h1 { font-size: 5em; font-weight: bolder; letter-spacing: -.05em; }
+div { box-sizing: border-box; }
+button { @extend .buttonize }
+
+// IV. Styling Classes
+// ========================================
+
+
+// V. Structural Classes
 // ========================================
 // Application-wide
 .page-wrapper {
   background-color: gainsboro;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
 }
 .content-wrapper {
   background-color: whitesmoke;
-  height: 90%;
+  height: 100%;
   padding: 2%;
-  width: 90%;
+  width: 95%;
 }
 
 // Welcome (Waitlist) Page
 .waitlist-header {
   @extend .flex-row;
   justify-content: space-between;
-  .add-party {
-    @extend .flex-row
-  }
-  #add-party-button {
-    background-color: orange;
-    color: white;
-    height: 2em;
-    }
-  #add-party-form {
-    z-index: 2;
+}
+
+.form-container {
+    display: none;
     position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
+    z-index: 2;
+    top: 15%;
+    left: 15%;
+    font-size: 22px;
+    width: 70%;
+    height: 70%;
     background-color: teal;
-    flex-wrap: wrap;
-    }
-    #name, #party_size, #phone_number, #add-to-waitlist {
+    padding: 30px;
+    padding-left: 5%;
+    #name, #party_size, #phone_number, #add-to-waitlist, {
       z-index: 3;
       display: flex;
-      height: 200px;
+      height: 100px;
       float: left;
-      margin-top: 500px;
-      width: 40%;
+      width: 35%;
       margin: 40px;
       padding: 5px;
-      font-size: 50px;
+      font-size: 30px;
       text-align: center;
     }
     #add-to-waitlist {
       background-color: turquoise;
-      border-color: orange;
-      height: 215px;
-      width: 41%
+      color: white;
+      height: 115px;
+      width: 37%;
+      padding: 20px;
     }
+    #cancel-party-button {
+      font-size: 25px;
+      float: right;
+      display: flex;
+      text-align: right;
+      height: 100 px;
+      width: 19%;
+      background-color: red;
+      color:white;
+      padding: 20px;
+      margin-top: 10px;
+      margin-right: 80px;
+    }
+}
+
+.add-party {
+  @extend .flex-row;
+  #add-party-button {
+    background-color: orange;
+    box-shadow: inset 0px -10px darken(orange, 20%);
+    border-radius: 20px;
+    letter-spacing: 0em;
+    line-height: 1em;
+    margin: 50px 0 0 0;
+    font-size: 2.5em;
+    height: 150px;
+    width: 300px;
+    }
+  // #add-party-form {
+  //   z-index: 2;
+  //   position: fixed;
+  //   z-index: 2;
+  //   top: 15%;
+  //   left: 15%;
+  //   font-size: 22px;
+  //   width: 70%;
+  //   background-color: teal;
+  //   padding: 30px;
+  //   padding-left: 5%;
+  //   #name, #party_size, #phone_number, #add-to-waitlist, {
+  //     z-index: 3;
+  //     display: flex;
+  //     height: 100px;
+  //     float: left;
+  //     width: 35%;
+  //     margin: 40px;
+  //     padding: 5px;
+  //     font-size: 30px;
+  //     text-align: center;
+  //   }
+  //   #add-to-waitlist {
+  //     background-color: turquoise;
+  //     color: white;
+  //     height: 115px;
+  //     width: 37%;
+  //     padding: 20px;
+  //   }
+  //   #cancel-party-button {
+  //     font-size: 25px;
+  //     float: right;
+  //     display: flex;
+  //     text-align: right;
+  //     height: 100 px;
+  //     width: 19%;
+  //     background-color: red;
+  //     color:white;
+  //     padding: 20px;
+  //     margin-top: 10px;
+  //     margin-right: 80px;
+  //   }
+  // }
 }
 
 .waitlist {
+  display: table;
   width: 100%;
   .waittime-item {
-    @extend .flex-row;
     border: solid 1px darkgrey;
+    display: table-row;
     justify-content: space-between;
     min-height: 2em;
-    div { @extend .flex-row; }
   }
-  .table-ready-btn, .seat-party-btn {
+  * {
+    display: table-cell;
+    padding: .2em;
+  }
+  li:nth-child(even) { background-color: $gainsboro; }
+  li:nth-child(odd) { background-color: $lightgray; }
+  li.waittime-headers {
+    background-color: $pewter-blue;
+    font-size: 1.5em;
+    letter-spacing: .05em;
     color: white;
-    font-size: 90%;
+    text-shadow: 2px 2px black;
+  }
+  .almost-ready, .seat-party-btn {
+    color: white;
+    font-size: 110%;
     height: 2em;
     }
-  .table-ready-btn { background-color: steelblue; }
-  .seat-party-btn { background-color: seagreen; }
+  .almost-ready {
+    background-color: tomato;
+    box-shadow: inset 0px -3px darken(tomato, 40%);
+  }
+  .seat-party-btn {
+    background-color: seagreen;
+    box-shadow: inset 0px -3px darken(seagreen, 40%);
+  }
 }
+
+.waittime-headers {
+  display: table-row;
+  font-size: 1.3em;
+  font-weight: bolder;
+  font-style: italic;
+  border-bottom: solid 2px black;
+  padding: 10px;
+  * {
+    border-bottom: solid 2px black;
+    padding: 5px 0;
+  }
+}
+
+.waittime-item > .status {
+  .customer-visible {
+    .ready { color: red; }
+  }
+}
+
+.waittime-customer { width: 60%; }
+.waittime-party-size { width: 20%; }
+.waittime-bookend { width: 20%; }
+
 
 // Default welcome page buttons to hidden (needed to solve presumed turbolinks issue)
-.table-ready-btn, .seat-party-btn, .pin-input, .pin-btn, .lock-screen-btn, .lock-status, #add-party-form {
+.table-ready-btn, .employee-visible, .pin-input, .pin-btn, .lock-screen-btn, .lock-status, #add-party-form {
   display: none;
 }
-
-

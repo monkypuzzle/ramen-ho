@@ -1,0 +1,59 @@
+
+.unlock, .admin-dashboard {
+  position: fixed;
+  button {
+    background-color: dimgray;
+    color: white;
+    min-height: 50px; min-width: 50px;
+  }
+  * { position: relative; }
+}
+.unlock {
+  top: 10px; right: 10px;
+  height: 50px; width: 50px;
+  .unlock-screen-btn {
+    @extend .fit-to-parent;
+    box-shadow: inset 0px -3px lighten(dimgray, 20%);
+  }
+  .pin-popout {
+    padding: 10px;
+    right: 75px; top: 10px;
+    box-shadow: 4px 4px lighten(dimgray, 30%);
+  }
+  .pin-input {
+    margin-bottom: 10px;
+    width: 75%;
+  }
+  .pin-btn {
+    background-color: orange;
+    box-shadow: inset 0px -3px darken(orange, 20%); }
+  }
+.admin-dashboard {
+  bottom: 10px; right: 10px;
+  box-shadow: inset 0px -3px lighten(dimgray, 20%);
+  button {
+    border-left: solid 2px grey; border-top: solid 2px grey;
+  }
+}
+
+// Popouts
+.pin-popout, .admin-popout {
+  background-color: dimgray;
+  position: fixed;
+  z-index: 2;
+  * { padding: 10px; }
+}
+.admin-popout {
+  right: 75px;
+  bottom: 10px;
+  padding: 40px;
+  box-shadow: 4px 4px lighten(dimgray, 30%);
+  .restaurant { @extend .buttonize; font-size: 1.3em; }
+  a {
+    @extend .buttonize;
+    background-color: orange;
+    font-size: 1.5em;
+    padding: 10px;
+    box-shadow: inset 0px -3px darken(orange, 20%);
+  }
+}

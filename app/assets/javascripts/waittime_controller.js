@@ -3,7 +3,7 @@ $(document).ready(function(){
   //hides waitlist form
   //toggle form on Add Party button
   $("#add-party-button").click(function(event){
-    $("#add-party-form").show();
+    $(".form-container").toggle();
     $("#add-party-form").css("z-index", "2")
   })
 
@@ -24,28 +24,46 @@ $(document).ready(function(){
 
   $("body").on("submit", "form#add-party-form", function(event) {
     event.preventDefault();
+
     $.ajax({
       method: "post",
       url: $(this).attr("action"),
       data: $(this).serialize()
     }).done(function(response){
-      $("#add-party-form").trigger("reset");
-      $("#add-party-form").css("z-index", "-1");
-      $(".waitlist").append(response);
-    }).fail(function(response){
       console.log(response)
-      $(".errors").html(response)
+      $("#add-party-form").trigger("reset");
+      if (Array.isArray(response)) {
+        $(".errors").html(listErrors(response))
+      }
+      else {
+      $(".form-container").toggle();
+      $(".waitlist").append(response);
+      $(".errors").html("");
+      }
     })
   })
+
+  $("#cancel-party-button").on("click", function(event){
+    event.preventDefault()
+    $(".form-container").toggle()
+  })
+
+  function listErrors(errors) {
+    html = "<ul>"
+    errors.forEach(function(error) {
+      html += ("<li>" + error + "</li>")
+    })
+    return html += "</ul>"
+  }
 
   var updateWaittimes = function(est_waittimes){
     Object.keys(est_waittimes).forEach(function(property){
       id = "#waittime-" + property
-      $(id).find(".time").html("").html(est_waittimes[property])
+      $(id).find(".customer-visible .waittime").html("").html(est_waittimes[property])
     })
   }
 
-  $(".waitlist").on("submit", ".waittime-seat-form", function(event){
+  $(".waitlist").on("submit", ".seat-party", function(event){
     event.preventDefault()
     var $form = $(this);
     var $chosenWaittimeItem = $(this).closest(".waittime-item");
@@ -60,6 +78,7 @@ $(document).ready(function(){
       data: data
     })
     .done(function(response){
+      console.log(response)
       updateWaittimes(response)
       // When done, remove the <li> from the list
       $chosenWaittimeItem.remove();
@@ -67,9 +86,8 @@ $(document).ready(function(){
   });
 
 
-
   $(".waitlist").on("click", ".almost-ready", function(event){
-    var waittimeId = $(this).parent().prop("id");
+    var waittimeId = $(this).closest("li").prop("id");
     $.ajax({
       method: "get",
       url: '/waittimes/send_notice',
@@ -77,53 +95,10 @@ $(document).ready(function(){
         id: waittimeId
       }
     }).done(function(response){
-      $("#" + response).find('.almost-ready').css('background-color', 'red');
+      $("#" + response).find('.almost-ready').toggle()
+      $("#" + response).find('.seat-party').toggle()
+      $("#" + response).find('.status .ready').toggle()
     })
   })
-
-  // =============================================
-  // Screen can be unlocked (for Cabin Boys/Girls)
-  // =============================================
-  var $privilegedButtons = $(".table-ready-btn, .seat-party-btn");
-  var $pinInput = $(".pin-input, .pin-btn");
-  var lockScreen = function(){
-    $privilegedButtons.hide();
-    $pinInput.hide();
-    $(".unlock-screen-btn").show();
-    $(".lock-screen-btn").hide();
-    $(".lock-status").html("")
-  };
-  // Default screen to locked
-  // lockScreen();
-
-  // Cabin Boy/Girl can show pin form
-  $(".unlock-screen-btn").on("click", function(event){
-    $(this).hide();
-    $pinInput.show();
-  });
-
-  // Cabin Boy/Girl can enter pin to unlock screen
-  $(".pin-btn").on("click", function(event){
-    // If pin correct, unlock screen
-    if ( $(".pin-input").val() === '1234' ) {
-      $pinInput.hide();
-      $privilegedButtons.show();
-      $(".lock-screen-btn").show();
-      // (Lock screen automatically after 15 seconds)
-      setTimeout(lockScreen, 15000);
-      $(".lock-status").html("<p style='color:seagreen;'>Screen unlocked!</p><p style='color:orange;'>Will lock automatically in 5 seconds.</p>")
-    }
-    // If pin incorrect, give alert
-    else {
-      $(".lock-status").html("<p style='color:red;'>Incorrect pin!</p>")
-    }
-  });
-
-  // Cabin Boy/Girl can re-lock screen when they are done
-  $(".lock-screen-btn").on("click", function(event){
-    lockScreen();
-  });
-
-
 
 });
