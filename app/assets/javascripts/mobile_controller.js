@@ -4,7 +4,7 @@ $(document).ready(function(){
   $(".restaurant-tab-container").on("click", function(event) {
     var restaurant = $(this).find(".restaurant-tab").prop('id');
     var restaurantId = getRestaurantId(restaurant)
-    $("#restaurant-info-" + restaurantId).slideToggle("slow");
+    $("#restaurant-info-" + restaurantId).slideToggle("fast");
   })
 
   function checkAllWaittime() {
