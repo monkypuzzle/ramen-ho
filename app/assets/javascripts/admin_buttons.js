@@ -4,11 +4,13 @@ $(document).ready(function(){
   var $employeeVisible = $('.employee-visible');
   var $pinInput = $(".pin-input, .pin-btn");
   var $popouts = $(".admin-popout, .pin-popout")
+  var $confirm = $(".confirm")
 
   var lockScreen = function(){
     $employeeVisible.hide();
     $customerVisible.show();
     $pinInput.hide();
+    $confirm.hide();
     $(".unlock-screen-btn").show();
     $(".lock-screen-btn").hide();
     $(".lock-status").html("")
@@ -29,6 +31,11 @@ $(document).ready(function(){
     $(".status .ready, .status .seat-party").hide()
   }
 
+  var showConfirm = function(buttonToReplace){
+    buttonToReplace.hide();
+
+  }
+
   $(".unlock-screen-btn").on("click", function(event){
     unlockScreen();
     $(".pin-popout").show();
@@ -44,11 +51,9 @@ $(document).ready(function(){
 
   $(".pin-btn").on("click", function(event){
     if ( $(".pin-input").val() === '1234' ) {
-      $pinInput.hide();
-      $customerVisible.hide();
-      $employeeVisible.show();
-      $(".pin-popout").hide();
-      $(".admin-dashboard").show();
+      $employeeVisible.show(); $(".admin-dashboard").show();
+      $pinInput.hide(); $customerVisible.hide(); $(".pin-popout").hide();
+      $(".pin-input").val("");
       setTimeout(lockScreen, 15000);
       $(".lock-status").html("<p style='color:seagreen;'>Screen unlocked!</p><p style='color:orange;'>Will lock automatically in 5 seconds.</p>")
     }

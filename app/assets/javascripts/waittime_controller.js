@@ -4,7 +4,6 @@ $(document).ready(function(){
   //toggle form on Add Party button
   $("#add-party-button").click(function(event){
     $(".form-container").toggle();
-    $("#add-party-form").css("z-index", "2")
   })
 
   //add to wailist grays out unless all fields are filled
@@ -44,16 +43,16 @@ $(document).ready(function(){
   })
 
   $("#cancel-party-button").on("click", function(event){
-    event.preventDefault()
-    $(".form-container").toggle()
+    $(".form-container").hide();
   })
 
   function listErrors(errors) {
-    html = "<ul>"
+    html = ""
+    $(".errors").show();
     errors.forEach(function(error) {
       html += ("<li>" + error + "</li>")
     })
-    return html += "</ul>"
+    return html
   }
 
   var updateWaittimes = function(est_waittimes){
