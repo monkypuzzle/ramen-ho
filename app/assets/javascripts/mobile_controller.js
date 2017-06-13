@@ -9,7 +9,7 @@ $(document).ready(function(){
 
   function checkAllWaittime() {
     $(".restaurants-wrapper").children().each(function() {
-    var htmlId = $(this).prop('id')
+    var htmlId = $(this).find('.restaurant-tab').prop('id')
     console.log(htmlId);
     getWaittime(getRestaurantId(htmlId));
   })
