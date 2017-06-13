@@ -3,7 +3,7 @@ $(document).ready(function(){
   //hides waitlist form
   //toggle form on Add Party button
   $("#add-party-button").click(function(event){
-    $("#add-party-form").show();
+    $(".form-container").toggle();
     $("#add-party-form").css("z-index", "2")
   })
 
@@ -30,12 +30,16 @@ $(document).ready(function(){
       data: $(this).serialize()
     }).done(function(response){
       $("#add-party-form").trigger("reset");
-      $("#add-party-form").css("z-index", "-1");
+      $(".form-container").toggle();
       $(".waitlist").append(response);
     }).fail(function(response){
       console.log(response)
       $(".errors").html(response)
     })
+  })
+  $("#cancel-party-button").on("click", function(event){
+    event.preventDefault()
+    $(".form-container").toggle()
   })
 
   var updateWaittimes = function(est_waittimes){
