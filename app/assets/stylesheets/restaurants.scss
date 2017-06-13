@@ -32,11 +32,13 @@ $restaurant-layout-grid: (
   @include grid-collapse;
   margin-bottom: 2rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .restaurant-info {
   background-color: white;
-  height: 400px;
+  padding: 20px;
 }
 
 // General Styling
