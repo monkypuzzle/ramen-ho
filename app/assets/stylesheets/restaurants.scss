@@ -57,12 +57,13 @@ $restaurant-layout-grid: (
   color: black;
 }
 
-.navbar {
-  text-align: center;
-}
+.navbar { text-shadow: 2px 2px 2px black; }
 
-footer {
-  text-align: center;
+.navbar, footer {
+  @extend .flex-row;
+  background-color: orange;
+  color: white;
+  height: 120px;
 }
 
 // Restaurant Specific Styling
