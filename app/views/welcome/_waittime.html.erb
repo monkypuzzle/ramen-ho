@@ -3,10 +3,9 @@
   <br>
   <p><%= restaurant.address %></p>
   <p><a href="tel:<%= phone_parser(restaurant.phone) %>"><%= restaurant.phone %></a></p> </br>
-  <%= restaurant.map_link.html_safe %>
-</br>
-  <% @hours = hours_show(restaurant.operating_hours) %>
+  <!-- <div ><%= restaurant.maplink.html_safe %></div> -->
+  <div ><% @hours = hours_show(restaurant.operating_hours) %>
   <% @hours[:hours].each_with_index do |operating, index| %>
-  <li><strong><%= @hours[:days][index] %></strong><%= operating %><li> </br>
+  <li><strong><%= @hours[:days][index] %></strong><%= operating %><li> </div>
    <% end %>
 </div>
