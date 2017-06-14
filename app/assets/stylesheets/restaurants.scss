@@ -24,7 +24,7 @@ $restaurant-layout-grid--tablet-up: (
 
 .restaurants-wrapper {
   @include grid-container;
-  padding: 75px;
+  padding: 20px 75px;
   color: white;
 }
 
@@ -132,15 +132,27 @@ footer {
   background-color: #FFF;
 }
 
+.restaurant-info {
+  padding: 15px;
+}
 .restaurant-map-hours {
-  padding: 20px 0;
-  @extend .flex-row;
-  align-items: flex-start;
+  @extend .flex-column;
+  margin: 0 auto;
+  font-size: .8em;
+  line-height: 1.4em;
+  iframe { max-width: 300px; margin: 15px; }
   >*{
-    margin: 0 20px;
+    margin: 20px;
     text-align: left;
   }
-  p { margin-bottom: 10px; }
+  p { margin-bottom: .3em; }
   strong { font-weight: bolder; }
 }
 
+@media only screen and (min-width: 1110px) {
+  .restaurant-map-hours {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
+}
