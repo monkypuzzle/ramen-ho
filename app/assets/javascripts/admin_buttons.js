@@ -2,13 +2,12 @@ $(document).ready(function(){
 
   var $pinInput = $(".pin-input, .pin-btn");
   var $popouts = $(".admin-popout, .pin-popout")
-  var $confirm = $(".confirm")
 
   var lockScreen = function(){
     $('.employee-visible').hide();
     $('.customer-visible').show();
     $pinInput.hide();
-    $confirm.hide();
+    $(".confirm").hide();
     $(".unlock-screen-btn").show();
     $(".lock-screen-btn").hide();
     $(".lock-status").html("")
@@ -31,7 +30,8 @@ $(document).ready(function(){
 
   var showConfirm = function(buttonToReplace){
     var $confirm = buttonToReplace.next(".confirm");
-    buttonToReplace.hide();  $confirm.show();
+    buttonToReplace.hide();
+    $confirm.show();
   };
 
   $(".unlock-screen-btn").on("click", function(event){
