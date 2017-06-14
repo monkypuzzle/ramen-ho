@@ -7,6 +7,7 @@
 // $minato-img: image-url('opt-ramen-11-20/ramen-izakaya-ouan-2.jpg');
 
 $mobile-font-lg: 7vw;
+$tablet-up-font: 4vw;
 
 // Grid setup
 $restaurant-layout-grid: (
@@ -34,6 +35,9 @@ $restaurant-layout-grid--tablet-up: (
   @include grid-media($restaurant-layout-grid--tablet-up) {
     @include grid-column(3);
     @include grid-push(1);
+    .restaurant-name {
+      font-size: $tablet-up-font;
+    }
   };
   margin-bottom: 10px;
   text-align: center;
