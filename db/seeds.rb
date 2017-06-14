@@ -8,9 +8,9 @@ require 'faker'
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+restaurants = []
 
-# Create 1 restaurant
-restaurant = Restaurant.create(
+restaurants << Restaurant.create(
   name: "Menya Ultra",
   operating_hours: {
     "sunday": {
@@ -47,8 +47,8 @@ restaurant = Restaurant.create(
   maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13409.976953633277!2d-117.147078!3d32.8321633!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2f8e0d276b57b5fb!2sMenya+Ultra!5e0!3m2!1sen!2sus!4v1497466329118' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 
-# Create 1 admin
-admin = Admin.create(email: 'menya_ultra@email.com', password: 'password', restaurant_id: 1)
+# # Create 1 admin
+# admin = Admin.create(email: 'menya_ultra@email.com', password: 'password', restaurant_id: 1)
 
 # Create 10 waittimes (currently waiting)
 # 30.times do |i|
@@ -75,50 +75,49 @@ admin = Admin.create(email: 'menya_ultra@email.com', password: 'password', resta
 # Extremely busy restaurant.
 # 6:00 to 6:15 (1 interval): rate_of_waittime_creation vastly outpaces rate_of_party_seating
 # 6:15 to 9:00 (7 intervals): rates are even
-i = 0
 
 # i is minutes where 0 is 6:00pm and 180 is 9:00pm
 
+# i = 0
+# while i < 180
+#   name = Faker::Name.first_name
+#   party_size = [1,2,3,4].sample
 
-while i < 180
-  name = Faker::Name.first_name
-  party_size = [1,2,3,4].sample
+#   num_minutes_between_waittime_creation_events = 6
+#   num_minutes_between_party_seating_events = 8
+#   num_parties_before = Waittime.where(seated: false, restaurant_id: 1).length || 0
 
-  num_minutes_between_waittime_creation_events = 6
-  num_minutes_between_party_seating_events = 8
-  num_parties_before = Waittime.where(seated: false, restaurant_id: 1).length || 0
+#   # Get minute and hour from i
+#   hour =  ((60*18) + i)/ 60
+#   if i < 60 then minute = i end
+#   if i > 59 && i < 120 then minute = i - 60 end
+#   if i > 119 then minute = i - 120 end
+#   puts "#{hour} hours and #{minute} minutes"
+#   if i < 15
+#     num_minutes_between_waittime_creation_events = 4
+#   end
 
-  # Get minute and hour from i
-  hour =  ((60*18) + i)/ 60
-  if i < 60 then minute = i end
-  if i > 59 && i < 120 then minute = i - 60 end
-  if i > 119 then minute = i - 120 end
-  puts "#{hour} hours and #{minute} minutes"
-  if i < 15
-    num_minutes_between_waittime_creation_events = 4
-  end
+#   # If it's the correct minute, create a waittime
+#   if i % num_minutes_between_waittime_creation_events == 0
+#     w = Waittime.create(seated:false, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: 1, number_of_parties_before: num_parties_before)
+#     w.update(created_at: DateTime.new(2000,1,1,hour,minute,00,"-08:00"))
+#   end
 
-  # If it's the correct minute, create a waittime
-  if i % num_minutes_between_waittime_creation_events == 0
-    w = Waittime.create(seated:false, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: 1, number_of_parties_before: num_parties_before)
-    w.update(created_at: DateTime.new(2000,1,1,hour,minute,00,"-08:00"))
-  end
+#   # If it's the correct minute, seat the first party
+#   if i % num_minutes_between_party_seating_events == 0
+#     party_to_seat = Waittime.where(seated:false, restaurant_id: 1).order(:created_at).first
+#     party_to_seat.update(seated: true, table_ready: true)
+#     party_to_seat.update(updated_at: DateTime.new(2000,1,1,hour,minute,00,"-08:00"))
+#     seated_time = (party_to_seat.updated_at.to_i * 0.0166666666667).to_i - (party_to_seat.created_at.to_i * 0.0166666666667).to_i
+#     puts seated_time
+#     party_to_seat.update(seated_time: seated_time)
+#   end
 
-  # If it's the correct minute, seat the first party
-  if i % num_minutes_between_party_seating_events == 0
-    party_to_seat = Waittime.where(seated:false, restaurant_id: 1).order(:created_at).first
-    party_to_seat.update(seated: true, table_ready: true)
-    party_to_seat.update(updated_at: DateTime.new(2000,1,1,hour,minute,00,"-08:00"))
-    seated_time = (party_to_seat.updated_at.to_i * 0.0166666666667).to_i - (party_to_seat.created_at.to_i * 0.0166666666667).to_i
-    puts seated_time
-    party_to_seat.update(seated_time: seated_time)
-  end
-
-  if i > 178
-    Waittime.where(seated_time: nil).update(seated_time: 0)
-  end
-  i += 1
-end
+#   if i > 178
+#     Waittime.where(seated_time: nil).update(seated_time: 0)
+#   end
+#   i += 1
+# end
 
 # Moderately busy restaurant.
 # 6:00 to 6:30 (2 intervals): no waittimes
@@ -126,58 +125,59 @@ end
 # 7:30 to 8:30 (4 intervals): rates are even
 # 8:30 to 9:00 (2 intervals):
 
-j = 0
+# j = 0
 
-while j < 180
-  name = Faker::Name.first_name
-  party_size = [1,2,3,4].sample
+# while j < 180
+#   name = Faker::Name.first_name
+#   party_size = [1,2,3,4].sample
 
-  num_minutes_between_waittime_creation_events = 8
-  num_minutes_between_party_seating_events = 8
-  num_parties_before = Waittime.where(seated: false, restaurant_id: 2).length || 0
+#   num_minutes_between_waittime_creation_events = 8
+#   num_minutes_between_party_seating_events = 8
+#   num_parties_before = Waittime.where(seated: false, restaurant_id: 2).length || 0
 
-  # Get minute and hour from i
-  hour =  ((60*18) + j)/ 60
-  if j < 60 then minute = j end
-  if j > 59 && j < 120 then minute = j - 60 end
-  if j > 119 then minute = j - 120 end
-  puts "#{hour} hours and #{minute} minutes"
+#   # Get minute and hour from i
+#   hour =  ((60*18) + j)/ 60
+#   if j < 60 then minute = j end
+#   if j > 59 && j < 120 then minute = j - 60 end
+#   if j > 119 then minute = j - 120 end
+#   puts "#{hour} hours and #{minute} minutes"
 
-  # Adjust rates of waittime_creation and party_seating depending on time (at busier periods, waittime_creation will outpace party_seating)
-  if j < 30
-    num_minutes_between_waittime_creation_events = 60
-    num_minutes_between_party_seating_events = 60
-  elsif j > 29 && j < 90
-    num_minutes_between_waittime_creation_events = 6
-  elsif j > 89 && j < 150
-    num_minutes_between_waittime_creation_events = 8
-  elsif j > 149 && j < 180
-    num_minutes_between_waittime_creation_events = 30
-  end
+#   # Adjust rates of waittime_creation and party_seating depending on time (at busier periods, waittime_creation will outpace party_seating)
+#   if j < 30
+#     num_minutes_between_waittime_creation_events = 60
+#     num_minutes_between_party_seating_events = 60
+#   elsif j > 29 && j < 90
+#     num_minutes_between_waittime_creation_events = 6
+#   elsif j > 89 && j < 150
+#     num_minutes_between_waittime_creation_events = 8
+#   elsif j > 149 && j < 180
+#     num_minutes_between_waittime_creation_events = 30
+#   end
 
-  # If it's the correct minute, create a waittime
-  if j % num_minutes_between_waittime_creation_events == 0
-    w = Waittime.create(seated:false, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: 2, number_of_parties_before: num_parties_before)
-    w.update(created_at: DateTime.new(2000,1,1,hour,minute,00,"-08:00"))
-  end
+#   # If it's the correct minute, create a waittime
+#   if j % num_minutes_between_waittime_creation_events == 0
+#     w = Waittime.create(seated:false, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: 2, number_of_parties_before: num_parties_before)
+#     w.update(created_at: DateTime.new(2000,1,1,hour,minute,00,"-08:00"))
+#   end
 
-  # If it's the correct minute, seat the first party
-  if j % num_minutes_between_party_seating_events == 0
-    party_to_seat = Waittime.where(seated: false, restaurant_id: 2).order(:created_at).first
-    if party_to_seat
-      party_to_seat.update(seated: true, table_ready: true)
-      party_to_seat.update(updated_at: DateTime.new(2000,1,1,hour,minute,00,"-08:00"))
-      seated_time = (party_to_seat.updated_at.to_i * 0.0166666666667).to_i - (party_to_seat.created_at.to_i * 0.0166666666667).to_i
-      puts seated_time
-      party_to_seat.update(seated_time: seated_time)
-    end
-  end
+#   # If it's the correct minute, seat the first party
+#   if j % num_minutes_between_party_seating_events == 0
+#     party_to_seat = Waittime.where(seated: false, restaurant_id: 2).order(:created_at).first
+#     if party_to_seat
+#       party_to_seat.update(seated: true, table_ready: true)
+#       party_to_seat.update(updated_at: DateTime.new(2000,1,1,hour,minute,00,"-08:00"))
+#       seated_time = (party_to_seat.updated_at.to_i * 0.0166666666667).to_i - (party_to_seat.created_at.to_i * 0.0166666666667).to_i
+#       puts seated_time
+#       party_to_seat.update(seated_time: seated_time)
+#     end
+#   end
 
-  if j > 178
-    Waittime.where(seated_time: nil).update(seated_time: 0)
-  end
-  j += 1
-end
+#   if j > 178
+#     Waittime.where(seated_time: nil).update(seated_time: 0)
+#   end
+#   j += 1
+# end
+
 # 10.times do |i|
 #   name = Faker::Name.first_name
 #   party_size = [1,2,3,4].sample
@@ -196,7 +196,7 @@ end
 # end
 
 # Continue creating restaurants
-restaurant2 = Restaurant.create(
+restaurants << Restaurant.create(
   name: "Nozaru Ramen Bar",
   operating_hours: {
     "sunday": {
@@ -232,10 +232,6 @@ restaurant2 = Restaurant.create(
   phone: "(619)564-7183",
   maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13420.380314140792!2d-117.1212672!3d32.7632116!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8ac157080267c7e6!2sNozaru+Ramen+Bar!5e0!3m2!1sen!2sus!4v1497466435378' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
-
-admin2 = Admin.create(email: 'nozaru_ramen_bar@email.com', password: 'password', restaurant_id: 2)
-
-restaurants = []
 
 restaurants << Restaurant.create(
   name: "Minato 3",                     ###############################also sushi#################################
@@ -900,8 +896,11 @@ restaurants << Restaurant.create(
 #   phone: "(619)683-3230"
 # )
 
+k = 1
 Restaurant.all.each do |restaurant|
+  k += 1
   restaurant.update(number_of_seats: 60)
+  restaurant.update(image_path: "/#{k}.jpg")
 end
 
 
@@ -948,7 +947,7 @@ restaurants.each do |restaurant|
     end
 
     if i > 178
-      Waittime.where(seated_time: nil).update(seated_time: 0)
+
     end
     i += 1
   end

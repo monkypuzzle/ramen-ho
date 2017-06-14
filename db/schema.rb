@@ -49,13 +49,13 @@ ActiveRecord::Schema.define(version: 20170614184536) do
     t.string   "customer",                                 null: false
     t.string   "phone",                                    null: false
     t.integer  "party_size",                               null: false
-    t.boolean  "seated",                   default: false, null: false
+    t.boolean  "seated",                   default: false
     t.integer  "restaurant_id",                            null: false
     t.integer  "number_of_parties_before",                 null: false
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
-    t.integer  "seated_time",              default: 0
     t.boolean  "table_ready",              default: false
+    t.integer  "seated_time",              default: 0
   end
 
 end
