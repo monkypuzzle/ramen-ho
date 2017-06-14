@@ -3,11 +3,8 @@
 // ========================================
 
 // a. Variables
-$menya-img: image-url('opt-ramen-1-10/menya-ultra-2.jpg');
-$nozaru-img: image-url('opt-ramen-1-10/ramen-yamadaya-3.jpg');
-$minato-img: image-url('opt-ramen-1-10/minato-3-2.jpg');
-$rakiraki-img: image-url('opt-ramen-1-10/rakiraki-ramen-3.jpg');
-$tajima-img: image-url('opt-ramen-1-10/tajima-ramen-hillcrest.jpg');
+$nozaru-img: image-url('opt-ramen-11-20/donburi-kitchen-2.jpg');
+$minato-img: image-url('opt-ramen-11-20/ramen-izakaya-ouan-2.jpg');
 
 $mobile-font-lg: 7vw;
 
@@ -124,9 +121,6 @@ footer {
 // Restaurant Specific Styling
 // ========================================
 
-#restaurant-1 {
-    background-image: $menya-img;
-}
 
 #restaurant-2 {
     background-image: $nozaru-img;
@@ -135,14 +129,4 @@ footer {
 #restaurant-3 {
     background-image: $minato-img;
 }
-
-#restaurant-4 {
-    background-image: $rakiraki-img;
-}
-
-#restaurant-5 {
-    background-image: $tajima-img;
-}
-
-
 
