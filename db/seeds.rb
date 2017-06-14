@@ -411,41 +411,45 @@ restaurants << Restaurant.create(
   address: "4706 Clairemont Mesa Blvd San Diego CA 92117",
   phone: "(858)483-3431"
   )
-restaurants << Restaurant.create(
-  name: "Wokou Ramen & Yakitori",
-  operating_hours: {
-    "sunday": {
-      lunch: ["11:00","0"],
-      dinner: ["0", "21:00"]
-    },
-    "monday": {
-      lunch: ["0","0"],
-      dinner: ["0", "0"]
-    },
-    "tuesday": {
-      lunch: ["0","0"],
-      dinner: ["16:00", "21:00"]
-    },
-    "wednesday": {
-      lunch: ["0","0"],
-      dinner: ["16:00", "21:00"]
-    },
-    "thursday": {
-      lunch: ["0","0"],
-      dinner: ["16:00", "21:00"]
-    },
-    "friday": {
-      lunch: ["0","0"],
-      dinner: ["16:00", "24:00"]
-    },
-    "saturday": {
-      lunch: ["11:00","0"],
-      dinner: ["0", "24:00"]
-    }
-  },
-  address: "5965 Village Way Ste e108 San Diego CA 92130",
-  phone: "(858)779-2620"
-  )
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# Below restaurant is breaking the app!!
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# restaurants << Restaurant.create(
+#   name: "Wokou Ramen & Yakitori",
+#   operating_hours: {
+#     "sunday": {
+#       lunch: ["11:00","0"],
+#       dinner: ["0", "21:00"]
+#     },
+#     "monday": {
+#       lunch: ["0","0"],
+#       dinner: ["0", "0"]
+#     },
+#     "tuesday": {
+#       lunch: ["0","0"],
+#       dinner: ["16:00", "21:00"]
+#     },
+#     "wednesday": {
+#       lunch: ["0","0"],
+#       dinner: ["16:00", "21:00"]
+#     },
+#     "thursday": {
+#       lunch: ["0","0"],
+#       dinner: ["16:00", "21:00"]
+#     },
+#     "friday": {
+#       lunch: ["0","0"],
+#       dinner: ["16:00", "24:00"]
+#     },
+#     "saturday": {
+#       lunch: ["11:00","0"],
+#       dinner: ["0", "24:00"]
+#     }
+#   },
+#   address: "5965 Village Way Ste e108 San Diego CA 92130",
+#   phone: "(858)779-2620"
+#   )
 restaurants << Restaurant.create(
   name: "Tajima Ramen Hillcrest",
   operating_hours: {
@@ -586,41 +590,46 @@ restaurants << Restaurant.create(
   address: "4898 Convoy St San Diego CA 92111",
   phone: "(858)268-2888"
   )
-restaurants << Restaurant.create(
-  name: "Izakaya Masa",
-  operating_hours: {
-    "sunday": {
-      lunch: ["0","0"],
-      dinner: ["18:00", "01:00"]
-    },
-    "monday": {
-      lunch: ["0","0"],
-      dinner: ["18:00", "01:00"]
-    },
-    "tuesday": {
-      lunch: ["0","0"],
-      dinner: ["18:00", "01:00"]
-    },
-    "wednesday": {
-      lunch: ["0","0"],
-      dinner: ["18:00", "01:00"]
-    },
-    "thursday": {
-      lunch: ["0","0"],
-      dinner: ["18:00", "01:00"]
-    },
-    "friday": {
-      lunch: ["0","0"],
-      dinner: ["18:00", "01:00"]
-    },
-    "saturday": {
-      lunch: ["0","0"],
-      dinner: ["18:00", "01:00"]
-    }
-  },
-  address: "928 Fort Stockton Dr San Diego CA 92103",
-  phone: "(619)542-1354"
-  )
+
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# Below restaurant is breaking the app!!
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# restaurants << Restaurant.create(
+#   name: "Izakaya Masa",
+#   operating_hours: {
+#     "sunday": {
+#       lunch: ["0","0"],
+#       dinner: ["18:00", "01:00"]
+#     },
+#     "monday": {
+#       lunch: ["0","0"],
+#       dinner: ["18:00", "01:00"]
+#     },
+#     "tuesday": {
+#       lunch: ["0","0"],
+#       dinner: ["18:00", "01:00"]
+#     },
+#     "wednesday": {
+#       lunch: ["0","0"],
+#       dinner: ["18:00", "01:00"]
+#     },
+#     "thursday": {
+#       lunch: ["0","0"],
+#       dinner: ["18:00", "01:00"]
+#     },
+#     "friday": {
+#       lunch: ["0","0"],
+#       dinner: ["18:00", "01:00"]
+#     },
+#     "saturday": {
+#       lunch: ["0","0"],
+#       dinner: ["18:00", "01:00"]
+#     }
+#   },
+#   address: "928 Fort Stockton Dr San Diego CA 92103",
+#   phone: "(619)542-1354"
+#   )
 restaurants << Restaurant.create(
   name: "BeShock Ramen & Sake Bar",
   operating_hours: {
@@ -656,41 +665,45 @@ restaurants << Restaurant.create(
   address: "1288 Market St San Diego CA 92101",
   phone: "(619)501-9612"
   )
-restaurants << Restaurant.create(
-  name: "Rakitori Japanese Pub & Grill",
-  operating_hours: {
-    "sunday": {
-      lunch: ["12:00","0"],
-      dinner: ["0", "23:00"]
-    },
-    "monday": {
-      lunch: ["0","0"],
-      dinner: ["16:00", "23:00"]
-    },
-    "tuesday": {
-      lunch: ["0","0"],
-      dinner: ["16:00", "23:00"]
-    },
-    "wednesday": {
-      lunch: ["0","0"],
-      dinner: ["16:00", "23:00"]
-    },
-    "thursday": {
-      lunch: ["0","0"],
-      dinner: ["16:00", "23:00"]
-    },
-    "friday": {
-      lunch: ["12:00","0"],
-      dinner: ["0", "24:00"]
-    },
-    "saturday": {
-      lunch: ["12:00","0"],
-      dinner: ["0", "24:00"]
-    }
-  },
-  address: "530 University Ave San Diego CA 92103",
-  phone: "(619)501-4091"
-  )
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# Below restaurant is breaking the app!!
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# restaurants << Restaurant.create(
+#   name: "Rakitori Japanese Pub & Grill",
+#   operating_hours: {
+#     "sunday": {
+#       lunch: ["12:00","0"],
+#       dinner: ["0", "23:00"]
+#     },
+#     "monday": {
+#       lunch: ["0","0"],
+#       dinner: ["16:00", "23:00"]
+#     },
+#     "tuesday": {
+#       lunch: ["0","0"],
+#       dinner: ["16:00", "23:00"]
+#     },
+#     "wednesday": {
+#       lunch: ["0","0"],
+#       dinner: ["16:00", "23:00"]
+#     },
+#     "thursday": {
+#       lunch: ["0","0"],
+#       dinner: ["16:00", "23:00"]
+#     },
+#     "friday": {
+#       lunch: ["12:00","0"],
+#       dinner: ["0", "24:00"]
+#     },
+#     "saturday": {
+#       lunch: ["12:00","0"],
+#       dinner: ["0", "24:00"]
+#     }
+#   },
+#   address: "530 University Ave San Diego CA 92103",
+#   phone: "(619)501-4091"
+#   )
 restaurants << Restaurant.create(
   name: "Tajima Ramen East Village",
   operating_hours: {
@@ -831,41 +844,45 @@ restaurants << Restaurant.create(
   address: "6030 Santo Rd San Diego CA 92124",
   phone: "(858)737-4224"
   )
-restaurants << Restaurant.create(
-  name: "Ramen Izakaya Ouan",
-  operating_hours: {
-    "sunday": {
-      lunch: ["0","0"],
-      dinner: ["17:30", "21:30"]
-    },
-    "monday": {
-      lunch: ["0","0"],
-      dinner: ["18:00", "01:00"]
-    },
-    "tuesday": {
-      lunch: ["0","0"],
-      dinner: ["18:00", "01:00"]
-    },
-    "wednesday": {
-      lunch: ["0","0"],
-      dinner: ["18:00", "01:00"]
-    },
-    "thursday": {
-      lunch: ["0","0"],
-      dinner: ["18:00", "01:00"]
-    },
-    "friday": {
-      lunch: ["0","0"],
-      dinner: ["17:30", "01:00"]
-    },
-    "saturday": {
-      lunch: ["0","0"],
-      dinner: ["17:30", "01:00"]
-    }
-  },
-  address: "3882 4th Ave San Diego CA 92103",
-  phone: "(619)683-3230"
-)
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# Below restaurant is breaking the app!!
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# restaurants << Restaurant.create(
+#   name: "Ramen Izakaya Ouan",
+#   operating_hours: {
+#     "sunday": {
+#       lunch: ["0","0"],
+#       dinner: ["17:30", "21:30"]
+#     },
+#     "monday": {
+#       lunch: ["0","0"],
+#       dinner: ["18:00", "01:00"]
+#     },
+#     "tuesday": {
+#       lunch: ["0","0"],
+#       dinner: ["18:00", "01:00"]
+#     },
+#     "wednesday": {
+#       lunch: ["0","0"],
+#       dinner: ["18:00", "01:00"]
+#     },
+#     "thursday": {
+#       lunch: ["0","0"],
+#       dinner: ["18:00", "01:00"]
+#     },
+#     "friday": {
+#       lunch: ["0","0"],
+#       dinner: ["17:30", "01:00"]
+#     },
+#     "saturday": {
+#       lunch: ["0","0"],
+#       dinner: ["17:30", "01:00"]
+#     }
+#   },
+#   address: "3882 4th Ave San Diego CA 92103",
+#   phone: "(619)683-3230"
+# )
 
 Restaurant.all.each do |restaurant|
   restaurant.update(number_of_seats: 60)
