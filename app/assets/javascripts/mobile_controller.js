@@ -23,7 +23,7 @@ $(document).ready(function(){
       data: { id: restaurantId }
     }).done(function(response){
       console.log(response)
-      $("#restaurant-" + restaurantId).find(".waittime-display").html("<p class='waittime-num'>" + response + "</p><p class='waittime-text'>minute</p><p class='waittime-text'>wait time!</p>")
+      $("#restaurant-" + restaurantId).find(".waittime-display").html(response)
     })
   }
 
