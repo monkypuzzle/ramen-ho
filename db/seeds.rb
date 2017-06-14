@@ -43,7 +43,8 @@ restaurants << Restaurant.create(
     }
   },
   address: "8199 Clairemont Mesa Blvd Ste M San Diego CA 92111",
-  phone: "(858)571-2010"
+  phone: "(858)571-2010",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13409.976953633277!2d-117.147078!3d32.8321633!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2f8e0d276b57b5fb!2sMenya+Ultra!5e0!3m2!1sen!2sus!4v1497466329118' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 
 # # Create 1 admin
@@ -228,7 +229,8 @@ restaurants << Restaurant.create(
     }
   },
   address: "3375 Adams Ave. San Diego CA 92116",
-  phone: "(619)564-7183"
+  phone: "(619)564-7183",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13420.380314140792!2d-117.1212672!3d32.7632116!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8ac157080267c7e6!2sNozaru+Ramen+Bar!5e0!3m2!1sen!2sus!4v1497466435378' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 
 restaurants << Restaurant.create(
@@ -264,7 +266,8 @@ restaurants << Restaurant.create(
     }
   },
   address: "5420 El Cajon Blvd San Diego CA 92115",
-  phone: "(619)452-2857"
+  phone: "(619)452-2857",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13421.144970746629!2d-117.0786757!3d32.7581385!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4c568fe5b592efa0!2sMinato+3+Ramen+%26+Sushi!5e0!3m2!1sen!2sus!4v1497466513273' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 restaurants << Restaurant.create(
   name: "Rakiraki Ramen & Tsukemen",
@@ -299,7 +302,8 @@ restaurants << Restaurant.create(
     }
   },
   address: "4646 Convoy St San Diego CA 92111",
-  phone: "(858)573-2400"
+  phone: "(858)573-2400",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13411.106663917599!2d-117.1554755!3d32.824682!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1023e5e70149c37c!2sRakiraki+Ramen+%26+Tsukemen!5e0!3m2!1sen!2sus!4v1497466658005' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 restaurants << Restaurant.create(
   name: "Tajima Ramen House",
@@ -335,7 +339,8 @@ restaurants << Restaurant.create(
     }
   },
   address: "4681 Convoy St Ste I San Diego CA 92111",
-  phone: "(858)576-7244"
+  phone: "(858)576-7244",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13410.976872039111!2d-117.1543696!3d32.8255416!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8d16a887f2702d3f!2sTajima+Japanese+Restaurant!5e0!3m2!1sen!2sus!4v1497466756101' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 restaurants << Restaurant.create(
   name: "Nishiki Ramen",
@@ -370,7 +375,8 @@ restaurants << Restaurant.create(
     }
   },
   address: "8055 Armour St Ste 201A San Diego CA 92111",
-  phone: "(858)987-0222"
+  phone: "(858)987-0222",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13411.861272317554!2d-117.1501556!3d32.8196839!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf026a1068378b728!2sNishiki+Ramen!5e0!3m2!1sen!2sus!4v1497466978275' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 restaurants << Restaurant.create(
   name: "Ramen Yamadaya(Clairemont)",
@@ -405,7 +411,8 @@ restaurants << Restaurant.create(
     }
   },
   address: "4706 Clairemont Mesa Blvd San Diego CA 92117",
-  phone: "(858)483-3431"
+  phone: "(858)483-3431",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13409.473853733507!2d-117.1892196!3d32.8354945!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xbdb6ae038379628c!2sRamen+Yamadaya!5e0!3m2!1sen!2sus!4v1497467019276' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -479,7 +486,8 @@ restaurants << Restaurant.create(
     }
   },
   address: "3739 6th Ave Ste B San Diego CA 92103",
-  phone: "(619)269-5050"
+  phone: "(619)269-5050",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13422.98258902111!2d-117.1592571!3d32.745944!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x34cc2f1d3eae5594!2sTajima+Ramen+Bar+Hillcrest!5e0!3m2!1sen!2sus!4v1497467076490' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 restaurants << Restaurant.create(                              ##########################also pub############################
   name: "Underbelly",
@@ -514,7 +522,8 @@ restaurants << Restaurant.create(                              #################
     }
   },
   address: "750 W Fir St Ste 101 San Diego CA 92101",
-  phone: "(619)269-4626"
+  phone: "(619)269-4626",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13426.237964453836!2d-117.1693186!3d32.7243313!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xe21b3dd670f24e93!2sUnderbelly!5e0!3m2!1sen!2sus!4v1497467117028' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 restaurants << Restaurant.create(
   name: "Hokkaido Ramen Santouka",
@@ -549,7 +558,8 @@ restaurants << Restaurant.create(
     }
   },
   address: "4240 Kearny Mesa Rd Mitsuwa Market Pl San Diego CA 92111",
-  phone: "(858)974-1101"
+  phone: "(858)974-1101",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13411.9879035453!2d-117.1502145!3d32.8188451!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x674d0d25be32cf81!2sSantouka+Ramen+(Mitsuwa+Market)!5e0!3m2!1sen!2sus!4v1497467163077' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 restaurants << Restaurant.create(
   name: "Yakitori Yakyudori & Ramen",
@@ -584,7 +594,8 @@ restaurants << Restaurant.create(
     }
   },
   address: "4898 Convoy St San Diego CA 92111",
-  phone: "(858)268-2888"
+  phone: "(858)268-2888",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13410.222053426247!2d-117.1537929!3d32.8305403!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd24bfc7d71d4012b!2sYakyudori+(ramen+and+yakitori)!5e0!3m2!1sen!2sus!4v1497467226126' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 
 
@@ -659,7 +670,8 @@ restaurants << Restaurant.create(
     }
   },
   address: "1288 Market St San Diego CA 92101",
-  phone: "(619)501-9612"
+  phone: "(619)501-9612",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13428.13719400144!2d-117.1530632!3d32.7117163!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2b1a4a8e92097eb2!2sBeShock+Ramen+%26+Sake+Bar!5e0!3m2!1sen!2sus!4v1497467269874' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -733,7 +745,8 @@ restaurants << Restaurant.create(
     }
   },
   address: "901 E St San Diego CA 92101",
-  phone: "(619)431-5820"
+  phone: "(619)431-5820",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13427.71676986495!2d-117.1563564!3d32.7145092!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x51835f6593ab15d1!2sTajima+Ramen+East+Village!5e0!3m2!1sen!2sus!4v1497467330988' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 restaurants << Restaurant.create(
   name: "Tokyo Ramen",
@@ -768,7 +781,8 @@ restaurants << Restaurant.create(
     }
   },
   address: "501 University Ave San Diego CA 92103",
-  phone: "(619)738-8538"
+  phone: "(619)738-8538",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13422.660452659176!2d-117.1602215!3d32.748082!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7835847511726b7a!2sTokyo+Ramen!5e0!3m2!1sen!2sus!4v1497467383360' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 restaurants << Restaurant.create(
   name: "Ramen Yamadaya(Broadway)",
@@ -803,7 +817,8 @@ restaurants << Restaurant.create(
     }
   },
   address: "531 Broadway San Diego CA 92101",
-  phone: "(619)241-2251"
+  phone: "(619)241-2251",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13427.562615888439!2d-117.1594738!3d32.7155332!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xe53a543543907f61!2sRamen+Yamadaya!5e0!3m2!1sen!2sus!4v1497467420387' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 restaurants << Restaurant.create(
   name: "Donburi Kitchen",
@@ -838,7 +853,8 @@ restaurants << Restaurant.create(
     }
   },
   address: "6030 Santo Rd San Diego CA 92124",
-  phone: "(858)737-4224"
+  phone: "(858)737-4224",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13408.72127896363!2d-117.09798!3d32.840477!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xeee57b321f8ed02!2sDonburi+Kitchen!5e0!3m2!1sen!2sus!4v1497467469440' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -884,7 +900,6 @@ k = 1
 Restaurant.all.each do |restaurant|
   k += 1
   restaurant.update(number_of_seats: 60)
-  restaurant.update(image_path: "/#{k}.jpg")
 end
 
 
