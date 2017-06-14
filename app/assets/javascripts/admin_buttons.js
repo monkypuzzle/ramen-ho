@@ -1,27 +1,32 @@
 $(document).ready(function(){
 
-  var $pinInput = $(".pin-input, .pin-btn");
-  var $popouts = $(".admin-popout, .pin-popout")
-
   var lockScreen = function(){
     $('.employee-visible').hide();
     $('.customer-visible').show();
-    $pinInput.hide();
+    $(".pin-input, .pin-btn").hide();
+    $(".pin-popout, .admin-popout").hide();
     $(".confirm").hide();
     $(".unlock-screen-btn").show();
     $(".lock-screen-btn").hide();
-    $(".lock-status").html("")
+    $(".lock-status").html("").hide();
     $(".admin-dashboard").hide();
+    console.log("lockScreen fired!")
+  };
+
+  var unlockTimeout
+  var setTimedLockout = function(){
+    console.log('setTimedLockout starting!')
+    unlockTimeout = setTimeout(lockScreen, 15000)
   };
 
   var unlockScreen = function(){
     $(".unlock-screen-btn").hide();
-    $pinInput.show();
+    $(".pin-input, .pin-btn").show();
     $(".lock-screen-btn").show();
   }
 
   var hidePopouts = function(){
-    $popouts.hide();
+    $(".admin-popout, .pin-popout").hide();
   }
 
   var setTablesNotReady = function(){
@@ -35,12 +40,17 @@ $(document).ready(function(){
   };
 
   $(".unlock-screen-btn").on("click", function(event){
+    console.log("Unlock click!")
     unlockScreen();
     $(".pin-popout").show();
+    clearTimeout(unlockTimeout)
   });
   $(".lock-screen-btn").on("click", function(event){
+    console.log("Lock click!")
     lockScreen();
+    $(".pin-input").val("");
     $(".pin-popout").hide();
+    clearTimeout(unlockTimeout);
   });
 
   lockScreen();
@@ -49,14 +59,15 @@ $(document).ready(function(){
 
   $(".pin-btn").on("click", function(event){
     if ( $(".pin-input").val() === '1234' ) {
-      $('.employee-visible').show(); $(".admin-dashboard").show();
-      $pinInput.hide(); $('.customer-visible').hide(); $(".pin-popout").hide();
+      $('.employee-visible').css("display","table-cell");
+      $(".admin-dashboard").show();
+      $(".pin-input, .pin-btn").hide(); $('.customer-visible').hide(); $(".pin-popout").hide();
       $(".pin-input").val("");
-      setTimeout(lockScreen, 15000);
-      $(".lock-status").html("<p style='color:seagreen;'>Screen unlocked!</p><p style='color:orange;'>Will lock automatically in 5 seconds.</p>")
+      setTimedLockout();
     }
     else {
-      $(".lock-status").html("<p style='color:red;'>Incorrect pin!</p>")
+      $(".lock-status").html("Incorrect pin!")
+      $(".lock-status").show();
     }
   });
 
