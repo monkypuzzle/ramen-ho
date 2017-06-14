@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :restaurants, only: [:update] do
     get 'waittime', on: :member
+    get 'currentwaittime', on: :member
   end
 
   resources :waittimes, only: [:create, :update] do

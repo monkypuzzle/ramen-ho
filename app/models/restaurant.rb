@@ -38,6 +38,9 @@ class Restaurant < ActiveRecord::Base
     Waitcalc.base_alg(self.number_of_seats)[:alg_time]
   end
 
+  def base_avg_time
+    Waitcalc.base_alg(self.number_of_seats)[:avg_time]
+  end
   def is_open?
     current_mil_time =Time.now.strftime('%H:%M')
     # current_mil_time =Time.new(2017,6,13,2,25,0, "-08:00").strftime('%H:%M')
@@ -89,6 +92,10 @@ class Restaurant < ActiveRecord::Base
     else
       "w0t"
     end
+  end
+
+  def current_estimated_wait
+    base_avg_time + most_recent_waittime.estimated_waittime
   end
 
 end

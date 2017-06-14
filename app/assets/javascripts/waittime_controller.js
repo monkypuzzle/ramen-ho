@@ -109,4 +109,18 @@ $(document).ready(function(){
     })
   })
 
+  function pollCurrentWaittime() {
+    var restaurantUrl = "/restaurants/" + $('#restaurant-name-header').data('id') + "/currentwaittime"
+    $.ajax({
+      method: "get",
+      url: restaurantUrl
+    }).done(function(response){
+      console.log(response)
+      var time = response.time
+      $('.current-estimated-wait').text(time)
+    })
+  }
+  setInterval(pollCurrentWaittime, 6000)
+
+
 });

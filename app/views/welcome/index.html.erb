@@ -4,7 +4,7 @@
   <%= render partial: 'unlock' %>
 
   <div class="waitlist-header">
-    <h1><%= @restaurant.name %> Waitlist</h1>
+    <h1 id="restaurant-name-header" data-id="<%= @restaurant.id %>"><%= @restaurant.name %> Waitlist</h1>
   </div>
 
   <ul class="waitlist">
@@ -20,6 +20,11 @@
 
   <div class="add-party">
     <button id="add-party-button">Add Your Party</button>
+    <div class="current-waittime-box">
+    Current Wait:
+      <span class="current-estimated-wait"> <%= @restaurant.current_estimated_wait %> </span>
+
+    </div>
   </div>
 
   <div class="form-container">
