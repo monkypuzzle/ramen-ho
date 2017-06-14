@@ -1,5 +1,11 @@
 module RestaurantsHelper
 
+  def phone_parser(number)
+    initial = number.gsub(/^\W/, "")
+    initial = initial.gsub(/[()]/, "-")
+    initial
+  end
+
   def standard_time(string)
     p string
     time = string.gsub(/[:]/, "")
