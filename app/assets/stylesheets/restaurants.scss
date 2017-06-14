@@ -61,9 +61,14 @@ $restaurant-layout-grid: (
 
 .navbar, footer {
   @extend .flex-row;
+  width: 100%;
   background-color: orange;
   color: white;
   height: 120px;
+}
+
+.mobile-content-wrapper {
+  background-color: #FFF;
 }
 
 // Restaurant Specific Styling
