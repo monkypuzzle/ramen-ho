@@ -176,6 +176,7 @@ restaurants << Restaurant.create(
 #   end
 #   j += 1
 # end
+
 # 10.times do |i|
 #   name = Faker::Name.first_name
 #   party_size = [1,2,3,4].sample
@@ -930,7 +931,7 @@ restaurants.each do |restaurant|
     end
 
     if i > 178
-      Waittime.where(seated_time: nil).update(seated_time: 0)
+
     end
     i += 1
   end

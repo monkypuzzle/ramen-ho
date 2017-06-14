@@ -59,7 +59,7 @@ $(document).ready(function(){
   var updateWaittimes = function(est_waittimes){
     Object.keys(est_waittimes).forEach(function(property){
       id = "#waittime-" + property
-      $(id).find(".customer-visible .waittime").html("").html(est_waittimes[property])
+      $(id).find(".customer-visible .waittime").html("").html(est_waittimes[property] + " minutes")
     })
   }
 
@@ -104,6 +104,7 @@ $(document).ready(function(){
         id: waittimeId
       }
     }).done(function(response){
+      $("#" + response).find('.status .waittime').toggle()
       $("#" + response).find('.status .ready').toggle()
     })
   })
