@@ -3,10 +3,12 @@
   <span class="waittime-party-size"><%= waittime.party_size %></span>
   <div class="status">
     <div class="customer-visible">
+      <p style="display:inline; margin: 0; padding: 0;"></p>
       <span class="waittime"><%= waittime.estimated_waittime %> minutes</span>
       <span class="ready">Table ready!</span>
     </div>
     <div class="employee-visible">
+      <p style="display:inline; margin: 0; padding: 0;"></p>
       <button class="almost-ready">Alert this Party</button>
       <button class='almost-ready-confirm' type="submit">Are you Sure?</button>
       <form class='seat-party' action='/waittimes/<%= waittime.id %>'>
