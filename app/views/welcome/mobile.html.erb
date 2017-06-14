@@ -6,14 +6,20 @@
       <% @restaurants.each do |restaurant| %>
       <div class="restaurant-tab-container">
         <div id='restaurant-<%=restaurant.id %>' class='restaurant-tab'>
-          <p class="restaurant-name"><%= restaurant.name %></p>
-          <p class="waittime-display">
-            <% if restaurant.is_open? %>
-              Wait Time - <%= restaurant.most_recent_waittime.try(:estimated_waittime) || restaurant.base_alg_time %> minutes
-            <% else %>
-              Open at: <%= restaurant.will_be_open %>
-            <% end %>
-          </p>
+          <div class="restaurant-name-container">
+            <h1 class="restaurant-name"><%= restaurant.name %></h1>
+          </div>
+          <div class="waittime-display-container">
+            <div class="waittime-display">
+              <% if restaurant.is_open? %>
+                <p class="waittime-num"><%= restaurant.most_recent_waittime.try(:estimated_waittime) || restaurant.base_alg_time %></p>
+                <p class="waittime-text">minute</p>
+                <p class="waittime-text">wait time!</p>
+              <% else %>
+                Opens at <%= restaurant.will_be_open %>
+              <% end %>
+            </div>
+          </div>
         </div>
         <div id="restaurant-info-<%= restaurant.id %>" class="restaurant-info">
           <p><%= render partial: "waittime", locals: {restaurant: restaurant} %></p>
@@ -22,7 +28,7 @@
       <% end %>
   </div>
   <footer>
+    <a href="/">Business Login</a>
     <p>&copy; Ramen, Ho!</p>
-    <p><a href="/"> Business Login</a></p>
   </footer>
 </div>
