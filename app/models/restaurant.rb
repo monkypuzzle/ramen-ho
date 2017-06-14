@@ -96,6 +96,6 @@ class Restaurant < ActiveRecord::Base
   end
 
   def self.order_by_waittimes
-    Restaurant.all.sort_by(&:current_waittime)
+    Restaurant.all.select{|r|r.is_open?}.sort_by(&:current_waittime) + Restaurant.all.select{|r| !r.is_open? }
   end
 end

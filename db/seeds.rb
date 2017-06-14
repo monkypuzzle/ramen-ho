@@ -810,6 +810,8 @@ end
 k = 0
 restaurants.each do |restaurant|
 
+  if restaurant.is_open?
+
   Admin.create(email: restaurant.name.gsub(" ","_").gsub(")","").gsub("(","_").concat("@email.com").downcase, password: 'password', restaurant_id: restaurant.id)
   i = 0
   puts restaurant
@@ -914,6 +916,8 @@ restaurants.each do |restaurant|
     end
 
     i += 1
+  end
+
   end
 
   k += 1
