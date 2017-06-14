@@ -3,8 +3,8 @@
 // ========================================
 
 // a. Variables
-$nozaru-img: image-url('opt-ramen-11-20/donburi-kitchen-2.jpg');
-$minato-img: image-url('opt-ramen-11-20/ramen-izakaya-ouan-2.jpg');
+// $nozaru-img: image-url('opt-ramen-11-20/donburi-kitchen-2.jpg');
+// $minato-img: image-url('opt-ramen-11-20/ramen-izakaya-ouan-2.jpg');
 
 $mobile-font-lg: 7vw;
 
@@ -44,8 +44,7 @@ $restaurant-layout-grid: (
   @extend .flex-row;
   font-size: 25px;
   height: 150px;
-  background-position: center;
-  box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4);
+
 }
 
 .restaurant-name {
@@ -122,11 +121,11 @@ footer {
 // ========================================
 
 
-#restaurant-2 {
-    background-image: $nozaru-img;
-}
+// #restaurant-2 {
+//     background-image: $nozaru-img;
+// }
 
-#restaurant-3 {
-    background-image: $minato-img;
-}
+// #restaurant-3 {
+//     background-image: $minato-img;
+// }
 
