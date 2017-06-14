@@ -807,18 +807,23 @@ Restaurant.all.each do |restaurant|
   restaurant.update(number_of_seats: 60)
 end
 
+k = 0
 restaurants.each do |restaurant|
 
   Admin.create(email: restaurant.name.gsub(" ","_").gsub(")","").gsub("(","_").concat("@email.com").downcase, password: 'password', restaurant_id: restaurant.id)
   i = 0
   puts restaurant
   puts restaurant.id
+
   while i < 180
     name = Faker::Name.first_name
     party_size = [1,2,3,4].sample
 
     num_minutes_between_waittime_creation_events = 6
     num_minutes_between_party_seating_events = 8
+    if i < 15
+      num_minutes_between_waittime_creation_events = 4
+    end
     num_parties_before = Waittime.where(seated: false, restaurant_id: restaurant.id).length || 0
 
     # Get minute and hour from i
@@ -828,8 +833,62 @@ restaurants.each do |restaurant|
     if i > 119 then minute = i - 120 end
     puts "#{hour} hours and #{minute} minutes"
 
-    if i < 15
-      num_minutes_between_waittime_creation_events = 4
+    # 13 = Tajima Ramen East Village
+    # 14 = Tokyo Ramen
+    # 15 = Ramen Yamadaya(Broadway)
+    # 16 = Donburi Kitchen
+
+    if k == 1 || k == 5 || k == 9
+    # 1 = Menya Ultra
+    # 5 = Tajima Ramen House
+    # 9 = Underbelly
+      if i > 59 && i < 120
+        # num_minutes_between_waittime_creation_events = 5
+        num_minutes_between_party_seating_events = 7
+      end
+    end
+
+    if k == 2 || k == 6 || k == 10
+    # 2 = Nozaru Ramen Bar
+    # 6 = Nishiki Ramen
+    # 10 = Hokkaido Ramen Santouka
+      if i > 30 && i < 60
+        num_minutes_between_waittime_creation_events = 4
+      end
+      if i > 59 && i < 120
+        num_minutes_between_waittime_creation_events = 7
+        num_minutes_between_party_seating_events = 7
+      end
+      if i > 160
+        num_minutes_between_waittime_creation_events = 9
+        num_minutes_between_party_seating_events = 8
+      end
+    end
+
+    if k == 3 || k == 7 || k == 11
+    # 3 = Minato 3
+    # 7 = Ramen Yamadaya(Clairemont)
+    # 11 = Yakitori Yakyudori & Ramen
+      if i > 59 && i < 120
+        num_minutes_between_waittime_creation_events = 9
+        num_minutes_between_party_seating_events = [7,8].sample
+      end
+      if i > 120
+        num_minutes_between_waittime_creation_events = 9
+      end
+    end
+
+    if k == 4 || k == 8 || k == 12
+    # 4 = Rakiraki Ramen & Tsukemen
+    # 8 = Tajima Ramen Hillcrest
+    # 12 = BeShock Ramen & Sake Bar
+      if i < 60
+        num_minutes_between_waittime_creation_events = 7
+      end
+      if i > 119
+        num_minutes_between_waittime_creation_events = 8
+        num_minutes_between_party_seating_events = [8,9].sample
+      end
     end
 
     # If it's the correct minute, create a waittime
@@ -852,4 +911,6 @@ restaurants.each do |restaurant|
 
     i += 1
   end
+
+  k += 1
 end
