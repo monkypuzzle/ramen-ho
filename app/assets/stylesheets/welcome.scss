@@ -191,13 +191,14 @@ button, input[type='submit'] { @extend .buttonize }
 }
 
 .waittime-item > .status {
-  @extend .flex-row;
   .customer-visible {
+    padding-left: 30px;
     .ready {
       color: red;
       font-weight: bolder;
     }
   }
+  .employee-visible { height: 69px; padding-left: 30px; }
 }
 
 .waittime-customer { width: 60%; text-align: left; padding-left: 20px; }
