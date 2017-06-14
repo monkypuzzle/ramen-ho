@@ -43,7 +43,8 @@ restaurant = Restaurant.create(
     }
   },
   address: "8199 Clairemont Mesa Blvd Ste M San Diego CA 92111",
-  phone: "(858)571-2010"
+  phone: "(858)571-2010",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13409.976953633277!2d-117.147078!3d32.8321633!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2f8e0d276b57b5fb!2sMenya+Ultra!5e0!3m2!1sen!2sus!4v1497466329118' width='400' height='300' frameborder="0" style='border:0' allowfullscreen></iframe>"
   )
 
 # Create 1 admin
@@ -226,7 +227,8 @@ restaurant2 = Restaurant.create(
     }
   },
   address: "3375 Adams Ave. San Diego CA 92116",
-  phone: "(619)564-7183"
+  phone: "(619)564-7183",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13420.380314140792!2d-117.1212672!3d32.7632116!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8ac157080267c7e6!2sNozaru+Ramen+Bar!5e0!3m2!1sen!2sus!4v1497466435378' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 
 admin2 = Admin.create(email: 'nozaru_ramen_bar@email.com', password: 'password', restaurant_id: 2)
@@ -265,7 +267,8 @@ Restaurant.create(
     }
   },
   address: "5420 El Cajon Blvd San Diego CA 92115",
-  phone: "(619)452-2857"
+  phone: "(619)452-2857",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13421.144970746629!2d-117.0786757!3d32.7581385!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4c568fe5b592efa0!2sMinato+3+Ramen+%26+Sushi!5e0!3m2!1sen!2sus!4v1497466513273' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 Restaurant.create(
   name: "Rakiraki Ramen & Tsukemen",
@@ -300,7 +303,8 @@ Restaurant.create(
     }
   },
   address: "4646 Convoy St San Diego CA 92111",
-  phone: "(858)573-2400"
+  phone: "(858)573-2400",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13411.106663917599!2d-117.1554755!3d32.824682!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1023e5e70149c37c!2sRakiraki+Ramen+%26+Tsukemen!5e0!3m2!1sen!2sus!4v1497466658005' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 Restaurant.create(
   name: "Tajima Ramen House",
@@ -336,7 +340,8 @@ Restaurant.create(
     }
   },
   address: "4681 Convoy St Ste I San Diego CA 92111",
-  phone: "(858)576-7244"
+  phone: "(858)576-7244",
+  maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13410.976872039111!2d-117.1543696!3d32.8255416!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8d16a887f2702d3f!2sTajima+Japanese+Restaurant!5e0!3m2!1sen!2sus!4v1497466756101' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 # Restaurant.create(
 #   name: "Nishiki Ramen",
