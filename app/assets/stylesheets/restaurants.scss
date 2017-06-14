@@ -3,8 +3,6 @@
 // ========================================
 
 // a. Variables
-// $nozaru-img: image-url('opt-ramen-11-20/donburi-kitchen-2.jpg');
-// $minato-img: image-url('opt-ramen-11-20/ramen-izakaya-ouan-2.jpg');
 
 $mobile-font-lg: 7vw;
 $tablet-up-font: 4vw;
@@ -26,7 +24,7 @@ $restaurant-layout-grid--tablet-up: (
 
 .restaurants-wrapper {
   @include grid-container;
-  padding: 75px;
+  padding: 20px 75px;
   color: white;
 }
 
@@ -48,7 +46,6 @@ $restaurant-layout-grid--tablet-up: (
 
 .restaurant-info {
   border: solid 2px black;
-  padding: 20px;
 }
 
 // General Styling
@@ -130,16 +127,32 @@ footer {
   .waittime-num { font-size: 4vw; }
 }
 
+.restaurant-tile {
+  @extend .fit-to-parent;
+  background-color: #FFF;
+}
 
-// Restaurant Specific Styling
-// ========================================
+.restaurant-info {
+  padding: 15px;
+}
+.restaurant-map-hours {
+  @extend .flex-column;
+  margin: 0 auto;
+  font-size: .8em;
+  line-height: 1.4em;
+  iframe { max-width: 300px; margin: 15px; }
+  >*{
+    margin: 20px;
+    text-align: left;
+  }
+  p { margin-bottom: .3em; }
+  strong { font-weight: bolder; }
+}
 
-
-// #restaurant-2 {
-//     background-image: $nozaru-img;
-// }
-
-// #restaurant-3 {
-//     background-image: $minato-img;
-// }
-
+@media only screen and (min-width: 1110px) {
+  .restaurant-map-hours {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
+}
