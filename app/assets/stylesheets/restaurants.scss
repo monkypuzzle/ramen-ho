@@ -38,10 +38,11 @@ $restaurant-layout-grid--tablet-up: (
     @include grid-column(3);
     @include grid-push(1);
   };
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   text-align: center;
   display: flex;
   flex-direction: column;
+  box-shadow: 5px 6px 3px 0px rgba(0,0,0,.5);
 }
 
 .restaurant-info {
