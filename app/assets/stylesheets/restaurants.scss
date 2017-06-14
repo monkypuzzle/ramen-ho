@@ -28,8 +28,7 @@ $restaurant-layout-grid: (
   font-size: 25px;
   height: 150px;
   background-position: center;
-  background-color: rgba(88, 95, 107, 0.6);
-  //filter: opacity(50%);
+  box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4);
 }
 
 .restaurant-tab-container {
