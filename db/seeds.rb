@@ -114,7 +114,6 @@ while i < 180
   end
 
   if i > 178
-    Waittime.where(seated_time: nil).update(seated_time: 0)
   end
   i += 1
 end
@@ -173,7 +172,6 @@ while j < 180
   end
 
   if j > 178
-    Waittime.where(seated_time: nil).update(seated_time: 0)
   end
   j += 1
 end
@@ -932,7 +930,7 @@ restaurants.each do |restaurant|
     end
 
     if i > 178
-      Waittime.where(seated_time: nil).update(seated_time: 0)
+
     end
     i += 1
   end
