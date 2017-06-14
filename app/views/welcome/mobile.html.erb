@@ -4,7 +4,7 @@
   </div>
   <div class="restaurants-wrapper">
       <% @restaurants.each do |restaurant| %>
-      <div class="restaurant-tab-container">
+      <div class="restaurant-tab-container" style="background-image: url('<%= image_url("#{restaurant.id}.jpg") %>'); background-position: center; box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4);">
         <div id='restaurant-<%=restaurant.id %>' class='restaurant-tab'>
           <div class="restaurant-name-container">
             <h1 class="restaurant-name"><%= restaurant.name %></h1>
