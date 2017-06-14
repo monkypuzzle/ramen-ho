@@ -17,6 +17,6 @@ class WelcomeController < ApplicationController
   end
 
   def mobile
-    @restaurants = Restaurant.all
+    @restaurants = Restaurant.order_by_waittimes
   end
 end
