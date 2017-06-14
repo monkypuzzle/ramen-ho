@@ -35,6 +35,11 @@
     border-left: solid 2px grey; border-top: solid 2px grey;
   }
 }
+.lock-status {
+  color: white; background-color: tomato;
+  font-weight: bolder;
+  padding: 5px 0; margin: 10px 0;
+}
 
 // Popouts
 .pin-popout, .admin-popout {

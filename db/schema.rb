@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170613013538) do
+ActiveRecord::Schema.define(version: 20170614184536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,19 +42,20 @@ ActiveRecord::Schema.define(version: 20170613013538) do
     t.string   "phone",                 null: false
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.string   "maplink"
   end
 
   create_table "waittimes", force: :cascade do |t|
     t.string   "customer",                                 null: false
     t.string   "phone",                                    null: false
     t.integer  "party_size",                               null: false
-    t.boolean  "seated",                   default: false, null: false
+    t.boolean  "seated",                   default: false
     t.integer  "restaurant_id",                            null: false
     t.integer  "number_of_parties_before",                 null: false
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
-    t.integer  "seated_time",              default: 0
     t.boolean  "table_ready",              default: false
+    t.integer  "seated_time",              default: 0
   end
 
 end

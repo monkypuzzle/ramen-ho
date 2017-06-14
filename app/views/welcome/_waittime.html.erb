@@ -2,10 +2,14 @@
   <h3> <% restaurant.name %> </h3>
   <br>
   <p><%= restaurant.address %></p>
-  <p><a href="tel:<%= phone_parser(restaurant.phone) %>"><%= restaurant.phone %></a></p>
-  </br></br>
-  <% @hours = hours_show(restaurant.operating_hours) %>
-  <% @hours[:hours].each_with_index do |operating, index| %>
-  <li><strong><%= @hours[:days][index] %></strong><%= operating %><li> </br>
-   <% end %>
-</div></br>
+  <p><a href="tel:<%= phone_parser(restaurant.phone) %>"><%= restaurant.phone %></a></p> </br>
+  <div class="restaurant-map-hours">
+    <%= restaurant.maplink.html_safe %>
+    <div>
+      <% @hours = hours_show(restaurant.operating_hours) %>
+      <% @hours[:hours].each_with_index do |operating, index| %>
+        <p><strong><%= @hours[:days][index] %></strong><%= operating %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

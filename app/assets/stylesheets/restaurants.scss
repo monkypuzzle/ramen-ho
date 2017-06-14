@@ -3,11 +3,8 @@
 // ========================================
 
 // a. Variables
-$menya-img: image-url('opt-ramen-1-10/menya-ultra-2.jpg');
-$nozaru-img: image-url('opt-ramen-1-10/ramen-yamadaya-3.jpg');
-$minato-img: image-url('opt-ramen-1-10/minato-3-2.jpg');
-$rakiraki-img: image-url('opt-ramen-1-10/rakiraki-ramen-3.jpg');
-$tajima-img: image-url('opt-ramen-1-10/tajima-ramen-hillcrest.jpg');
+// $nozaru-img: image-url('opt-ramen-11-20/donburi-kitchen-2.jpg');
+// $minato-img: image-url('opt-ramen-11-20/ramen-izakaya-ouan-2.jpg');
 
 $mobile-font-lg: 7vw;
 
@@ -37,7 +34,6 @@ $restaurant-layout-grid: (
 
 .restaurant-info {
   border: solid 2px black;
-  padding: 20px;
 }
 
 // General Styling
@@ -47,8 +43,7 @@ $restaurant-layout-grid: (
   @extend .flex-row;
   font-size: 25px;
   height: 150px;
-  background-position: center;
-  box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4);
+
 }
 
 .restaurant-name {
@@ -120,29 +115,33 @@ footer {
   .waittime-num { font-size: 4vw; }
 }
 
+.restaurant-tile {
+  @extend .fit-to-parent;
+  background-color: #FFF;
+}
+
+.restaurant-map-hours {
+  padding: 20px 0;
+  @extend .flex-row;
+  align-items: flex-start;
+  >*{
+    margin: 0 20px;
+    text-align: left;
+  }
+  p { margin-bottom: 10px; }
+  strong { font-weight: bolder; }
+}
+
 
 // Restaurant Specific Styling
 // ========================================
 
-#restaurant-1 {
-    background-image: $menya-img;
-}
 
-#restaurant-2 {
-    background-image: $nozaru-img;
-}
+// #restaurant-2 {
+//     background-image: $nozaru-img;
+// }
 
-#restaurant-3 {
-    background-image: $minato-img;
-}
-
-#restaurant-4 {
-    background-image: $rakiraki-img;
-}
-
-#restaurant-5 {
-    background-image: $tajima-img;
-}
-
-
+// #restaurant-3 {
+//     background-image: $minato-img;
+// }
 
