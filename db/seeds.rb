@@ -900,7 +900,6 @@ k = 1
 Restaurant.all.each do |restaurant|
   k += 1
   restaurant.update(number_of_seats: 60)
-  restaurant.update(image_path: "/#{k}.jpg")
 end
 
 
