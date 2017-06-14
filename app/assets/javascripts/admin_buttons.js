@@ -1,14 +1,12 @@
 $(document).ready(function(){
 
-  var $customerVisible = $('.customer-visible')
-  var $employeeVisible = $('.employee-visible');
   var $pinInput = $(".pin-input, .pin-btn");
   var $popouts = $(".admin-popout, .pin-popout")
   var $confirm = $(".confirm")
 
   var lockScreen = function(){
-    $employeeVisible.hide();
-    $customerVisible.show();
+    $('.employee-visible').hide();
+    $('.customer-visible').show();
     $pinInput.hide();
     $confirm.hide();
     $(".unlock-screen-btn").show();
