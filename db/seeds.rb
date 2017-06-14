@@ -889,8 +889,9 @@ Restaurant.all.each do |restaurant|
 end
 
 
-
 restaurants.each do |restaurant|
+
+  Admin.create(email: restaurant.name.gsub(" ","_").gsub(")","").gsub("(","_").concat("@email.com").downcase, password: 'password', restaurant_id: restaurant.id)
   i = 0
   puts restaurant
   puts restaurant.id
