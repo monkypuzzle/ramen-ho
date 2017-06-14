@@ -1,7 +1,7 @@
 <div class = "restaurant-tile">
   <h3> <% restaurant.name %> </h3>
   <% if restaurant.is_open? %> OPEN <% else %>  Open at: <%= restaurant.will_be_open %>  <% end %> </br></br>
-  <%= restaurant.address %> || <a href="<%= restaurant.phone %>"><%= restaurant.phone %></a> </br></br>
+  <%= restaurant.address %> || <a href="tel:<%= phone_parser(restaurant.phone) %>"><%= restaurant.phone %></a> </br></br>
   <% @hours = hours_show(restaurant.operating_hours) %>
   <% @hours[:hours].each_with_index do |operating, index| %>
   <li><strong><%= @hours[:days][index] %></strong><%= operating %><li> </br>
