@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   get '/admins/dashboard', to: 'admins#dashboard'
-
+  get '/waitlist', to: 'welcome#index'
   get '/mobile', to: 'welcome#mobile'
 
   resources :restaurants, only: [:update] do
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  root 'welcome#mobile'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
