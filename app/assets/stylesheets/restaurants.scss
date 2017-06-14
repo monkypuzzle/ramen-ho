@@ -5,6 +5,7 @@
 // a. Variables
 
 $mobile-font-lg: 7vw;
+$tablet-up-font: 4vw;
 
 // Grid setup
 $restaurant-layout-grid: (
@@ -12,22 +13,35 @@ $restaurant-layout-grid: (
   gutter: 20px,
 );
 
+$restaurant-layout-grid--tablet-up: (
+  columns: 5,
+  gutter: 20px,
+  media: "(min-width: 768px)",
+);
+
 // Structural Classes
 // ========================================
 
 .restaurants-wrapper {
   @include grid-container;
-  padding: 125px;
+  padding: 75px;
   color: white;
 }
 
 .restaurant-tab-container {
   @include grid-column(1, $restaurant-layout-grid);
-  @include grid-collapse;
-  margin-bottom: 2rem;
+  @include grid-media($restaurant-layout-grid--tablet-up) {
+    @include grid-column(3);
+    @include grid-push(1);
+    .restaurant-name {
+      font-size: $tablet-up-font;
+    }
+  };
+  margin-bottom: 10px;
   text-align: center;
   display: flex;
   flex-direction: column;
+  box-shadow: 5px 6px 3px 0px rgba(0,0,0,.5);
 }
 
 .restaurant-info {

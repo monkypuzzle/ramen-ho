@@ -91,4 +91,10 @@ class Restaurant < ActiveRecord::Base
     end
   end
 
+  def self.order_by_waittimes
+    Restaurant.all.sort_by do |restaurant|
+      restaurant.most_recent_waittime.try(:estimated_waittime) || restaurant.base_alg_time
+    end
+  end
+
 end
