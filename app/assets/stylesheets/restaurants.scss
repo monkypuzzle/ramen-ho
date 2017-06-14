@@ -27,9 +27,8 @@ $restaurant-layout-grid--tablet-up: (
 // ========================================
 
 .restaurants-wrapper {
-  @include grid-visual;
   @include grid-container;
-  padding: 125px;
+  padding: 75px;
   color: white;
 }
 
@@ -39,7 +38,7 @@ $restaurant-layout-grid--tablet-up: (
     @include grid-column(3);
     @include grid-push(1);
   };
-  margin-bottom: 2rem;
+  margin-bottom: 5px;
   text-align: center;
   display: flex;
   flex-direction: column;
