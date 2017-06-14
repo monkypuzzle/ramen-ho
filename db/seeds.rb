@@ -846,6 +846,10 @@ restaurants.each do |restaurant|
         # num_minutes_between_waittime_creation_events = 5
         num_minutes_between_party_seating_events = 7
       end
+      if i > 150
+        num_minutes_between_waittime_creation_events = 7
+        num_minutes_between_party_seating_events = 7
+      end
     end
 
     if k == 2 || k == 6 || k == 10
