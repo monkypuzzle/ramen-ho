@@ -17,10 +17,17 @@ $restaurant-layout-grid: (
   gutter: 20px,
 );
 
+$restaurant-layout-grid--tablet-up: (
+  columns: 5,
+  gutter: 20px,
+  media: "(min-width: 768px)",
+);
+
 // Structural Classes
 // ========================================
 
 .restaurants-wrapper {
+  @include grid-visual;
   @include grid-container;
   padding: 125px;
   color: white;
@@ -28,7 +35,10 @@ $restaurant-layout-grid: (
 
 .restaurant-tab-container {
   @include grid-column(1, $restaurant-layout-grid);
-  @include grid-collapse;
+  @include grid-media($restaurant-layout-grid--tablet-up) {
+    @include grid-column(3);
+    @include grid-push(1);
+  };
   margin-bottom: 2rem;
   text-align: center;
   display: flex;
