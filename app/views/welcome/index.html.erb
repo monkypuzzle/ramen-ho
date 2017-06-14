@@ -1,49 +1,7 @@
 <div class="content-wrapper">
 
-  <div class="admin-dashboard">
-    <button href="/admins/dashboard"><i class="fa fa-cog" aria-hidden="true"></i></button>
-    <div class="admin-popout">
-      <% if admin_signed_in? %>
-        <span class="restaurant">Logged in as <%= @restaurant.name %></span>
-        <%= link_to('Logout', destroy_admin_session_path, method: :delete) %>
-      <% else %>
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="field">
-            <%= f.label :email %><br />
-            <%= f.email_field :email, autofocus: true %>
-          </div>
-
-          <div class="field">
-            <%= f.label :password %><br />
-            <%= f.password_field :password, autocomplete: "off" %>
-          </div>
-
-          <% if devise_mapping.rememberable? -%>
-            <div class="field">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
-            </div>
-          <% end -%>
-
-          <div class="actions">
-            <%= f.submit "Log in" %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="unlock">
-    <button class="unlock-screen-btn"><i class="fa fa-lock" aria-hidden="true"></i></button>
-    <button class="lock-screen-btn"><i class="fa fa-unlock" aria-hidden="true"></i></button>
-    <div class="pin-popout flex-column">
-      <input class="pin-input" type="text">
-      <div class="flex-row">
-        <button class="pin-btn">Submit Pin</button>
-        <div class="lock-status"></div>
-      </div>
-    </div>
-  </div>
+  <%= render partial: 'admin_dashboard' %>
+  <%= render partial: 'unlock' %>
 
   <div class="waitlist-header">
     <h1><%= @restaurant.name %> Waitlist</h1>
