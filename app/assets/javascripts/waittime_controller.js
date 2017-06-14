@@ -104,6 +104,7 @@ $(document).ready(function(){
         id: waittimeId
       }
     }).done(function(response){
+      $("#" + response).find('.status .waittime').toggle()
       $("#" + response).find('.status .ready').toggle()
     })
   })

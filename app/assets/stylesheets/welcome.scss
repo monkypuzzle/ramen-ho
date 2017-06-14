@@ -12,14 +12,17 @@ a { color: black; text-decoration: none; }
 // ========================================
 
 // a. Variables
+//-----------------------------------------
 $primary-font: 'Work Sans', 'Helvetica', sans-serif;
 $pewter-blue: #91AEC1;
 $gainsboro: #D7DDDD;
 $lightgray: #C5D2D6;
 
 // b. Mixins
+//-----------------------------------------
 
 // c. Extensions
+//-----------------------------------------
 .flex-column {
   align-items: center;
   display: flex;
@@ -41,22 +44,22 @@ $lightgray: #C5D2D6;
 }
 
 
-
-// III. General Tags
 // ========================================
+// III. GENERAL TAGS
+// ========================================
+
 body { font-family: 'Work Sans'; letter-spacing: -.05em; }
 body, p, li, span, button, input { font-size: 1.2em; }
 h1 { font-size: 5em; font-weight: bolder; letter-spacing: -.05em; }
 div { box-sizing: border-box; }
 button, input[type='submit'] { @extend .buttonize }
 
-// IV. Styling Classes
+// ========================================
+// V. STRUCTURAL CLASSSES
 // ========================================
 
-
-// V. Structural Classes
-// ========================================
-// Application-wide
+// a. Application-wide
+//-----------------------------------------
 .page-wrapper {
   background-color: gainsboro;
   min-height: 100vh; width: 100%;
@@ -67,7 +70,8 @@ button, input[type='submit'] { @extend .buttonize }
   padding: 2%;
 }
 
-// Welcome (Waitlist) Page
+// b. Welcome (Waitlist) Page
+//-----------------------------------------
 .waitlist-header {
   @extend .flex-row;
   justify-content: space-between;
@@ -137,7 +141,8 @@ button, input[type='submit'] { @extend .buttonize }
     justify-content: space-between;
   }
   * {
-    // @extend .flex-row;
+    vertical-align: middle;
+    height: 50px;
     text-align: center;
     display: table-cell;
     padding: .2em;
@@ -188,7 +193,10 @@ button, input[type='submit'] { @extend .buttonize }
 .waittime-item > .status {
   @extend .flex-row;
   .customer-visible {
-    .ready { color: red; }
+    .ready {
+      color: red;
+      font-weight: bolder;
+    }
   }
 }
 
@@ -197,7 +205,6 @@ button, input[type='submit'] { @extend .buttonize }
 .waittime-bookend { width: 20%; }
 
 
-// Default welcome page buttons to hidden (needed to solve presumed turbolinks issue)
 .table-ready-btn, .employee-visible, .pin-input, .pin-btn, .lock-screen-btn, .lock-status, .form-container, .errors, .almost-ready-confirm, .seat-party-btn, .seat-party-confirm, .customer-visible .ready {
   display: none;
 }
