@@ -30,6 +30,10 @@ class Restaurant < ActiveRecord::Base
     result
   end
 
+  def current_waittime
+    @current_waittime ||= most_recent_waittime.try(:estimated_waittime) || base_alg_time
+  end
+
   def most_recent_waittime
     waittimes.order(created_at: :desc).find_by(seated: false)
   end
@@ -92,9 +96,6 @@ class Restaurant < ActiveRecord::Base
   end
 
   def self.order_by_waittimes
-    Restaurant.all.sort_by do |restaurant|
-      restaurant.most_recent_waittime.try(:estimated_waittime) || restaurant.base_alg_time
-    end
+    Restaurant.all.sort_by(&:current_waittime)
   end
-
 end

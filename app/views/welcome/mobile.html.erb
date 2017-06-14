@@ -13,7 +13,7 @@
           <div class="waittime-display-container">
             <div class="waittime-display">
               <% if restaurant.is_open? %>
-                <p class="waittime-num"><%= restaurant.most_recent_waittime.try(:estimated_waittime) || restaurant.base_alg_time %></p>
+                <p class="waittime-num"><%= restaurant.current_waittime %></p>
                 <p class="waittime-text">minute</p>
                 <p class="waittime-text">wait time!</p>
               <% else %>
