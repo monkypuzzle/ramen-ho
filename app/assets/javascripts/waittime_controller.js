@@ -35,8 +35,8 @@ $(document).ready(function(){
         $(".errors").html(listErrors(response))
       }
       else {
+      $(".errors").hide();
       $(".form-container").toggle();
-      console.log(response);
       $(".waitlist").append(response);
       $(".errors").html("");
       }
@@ -108,5 +108,19 @@ $(document).ready(function(){
       $("#" + response).find('.status .ready').toggle()
     })
   })
+
+  function pollCurrentWaittime() {
+    var restaurantUrl = "/restaurants/" + $('#restaurant-name-header').data('id') + "/currentwaittime"
+    $.ajax({
+      method: "get",
+      url: restaurantUrl
+    }).done(function(response){
+      console.log(response)
+      var time = response.time
+      $('.current-estimated-wait').text(time + " min")
+    })
+  }
+  setInterval(pollCurrentWaittime, 60000)
+
 
 });

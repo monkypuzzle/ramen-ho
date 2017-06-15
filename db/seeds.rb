@@ -1,13 +1,5 @@
 require 'faker'
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 restaurants = []
 
 restaurants << Restaurant.create(
@@ -47,86 +39,7 @@ restaurants << Restaurant.create(
   maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13409.976953633277!2d-117.147078!3d32.8321633!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2f8e0d276b57b5fb!2sMenya+Ultra!5e0!3m2!1sen!2sus!4v1497466329118' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
 
-# # Create 1 admin
-# admin = Admin.create(email: 'menya_ultra@email.com', password: 'password', restaurant_id: 1)
-
-# Create 10 waittimes (currently waiting)
-# 30.times do |i|
-#   name = Faker::Name.first_name
-#   party_size = [1,2,3,4].sample
-#   rand_restaurant = [1,2,3].sample
-#   Waittime.create(seated:false, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: rand_restaurant, number_of_parties_before: i)
-#   # sleep 2
-# end
-
-# # Create 10 waittimes (already seated)
-# 30.times do |i|
-#   name = Faker::Name.first_name
-#   party_size = [1,2,3,4].sample
-#   rand_restaurant = [1,2,3][i%3]
-#   seated_waits = [5, 10, 15, 20, 25, 30, 35, 40 , 45, 45][i%10]
-#   Waittime.create(seated:true, seated_time: seated_waits, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: rand_restaurant, number_of_parties_before: i%3)
-#   # sleep 2
-# end
-
-
-# From 6-9p, work through 15 minute intervals
-
-# Extremely busy restaurant.
-# 6:00 to 6:15 (1 interval): rate_of_waittime_creation vastly outpaces rate_of_party_seating
-# 6:15 to 9:00 (7 intervals): rates are even
-
-# i is minutes where 0 is 6:00pm and 180 is 9:00pm
-
-# i = 0
-# while i < 180
-#   name = Faker::Name.first_name
-#   party_size = [1,2,3,4].sample
-
-#   num_minutes_between_waittime_creation_events = 6
-#   num_minutes_between_party_seating_events = 8
-#   num_parties_before = Waittime.where(seated: false, restaurant_id: 1).length || 0
-
-#   # Get minute and hour from i
-#   hour =  ((60*18) + i)/ 60
-#   if i < 60 then minute = i end
-#   if i > 59 && i < 120 then minute = i - 60 end
-#   if i > 119 then minute = i - 120 end
-#   puts "#{hour} hours and #{minute} minutes"
-#   if i < 15
-#     num_minutes_between_waittime_creation_events = 4
-#   end
-
-#   # If it's the correct minute, create a waittime
-#   if i % num_minutes_between_waittime_creation_events == 0
-#     w = Waittime.create(seated:false, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: 1, number_of_parties_before: num_parties_before)
-#     w.update(created_at: DateTime.new(2000,1,1,hour,minute,00,"-08:00"))
-#   end
-
-#   # If it's the correct minute, seat the first party
-#   if i % num_minutes_between_party_seating_events == 0
-#     party_to_seat = Waittime.where(seated:false, restaurant_id: 1).order(:created_at).first
-#     party_to_seat.update(seated: true, table_ready: true)
-#     party_to_seat.update(updated_at: DateTime.new(2000,1,1,hour,minute,00,"-08:00"))
-#     seated_time = (party_to_seat.updated_at.to_i * 0.0166666666667).to_i - (party_to_seat.created_at.to_i * 0.0166666666667).to_i
-#     puts seated_time
-#     party_to_seat.update(seated_time: seated_time)
-#   end
-
-#   if i > 178
-#     Waittime.where(seated_time: nil).update(seated_time: 0)
-#   end
-#   i += 1
-# end
-
-# Moderately busy restaurant.
-# 6:00 to 6:30 (2 intervals): no waittimes
-# 6:30 to 7:30 (4 intervals): rate_of_waittime_creation slightly outpaces rate_of_party_seating
-# 7:30 to 8:30 (4 intervals): rates are even
-# 8:30 to 9:00 (2 intervals):
-
 # j = 0
-
 # while j < 180
 #   name = Faker::Name.first_name
 #   party_size = [1,2,3,4].sample
@@ -178,24 +91,6 @@ restaurants << Restaurant.create(
 #   j += 1
 # end
 
-# 10.times do |i|
-#   name = Faker::Name.first_name
-#   party_size = [1,2,3,4].sample
-#   rand_restaurant = 2
-#   seated_waits = [5, 10, 15, 20, 25, 30, 35, 40 , 45, 45][i%10]
-#   Waittime.create(seated:true, seated_time: seated_waits, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: rand_restaurant, number_of_parties_before: i)
-#   sleep 2
-# end
-# 10.times do |i|
-#   name = Faker::Name.first_name
-#   party_size = [1,2,3,4].sample
-#   rand_restaurant = 3
-#   seated_waits = [5, 10, 15, 20, 25, 30, 35, 40 , 45, 45][i%10]
-#   Waittime.create(seated:true, seated_time: seated_waits, party_size: party_size, customer: name, phone: '1112223333', restaurant_id: rand_restaurant, number_of_parties_before: i)
-#   sleep 2
-# end
-
-# Continue creating restaurants
 restaurants << Restaurant.create(
   name: "Nozaru Ramen Bar",
   operating_hours: {
@@ -269,6 +164,7 @@ restaurants << Restaurant.create(
   phone: "(619)452-2857",
   maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13421.144970746629!2d-117.0786757!3d32.7581385!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4c568fe5b592efa0!2sMinato+3+Ramen+%26+Sushi!5e0!3m2!1sen!2sus!4v1497466513273' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
+
 restaurants << Restaurant.create(
   name: "Rakiraki Ramen & Tsukemen",
   operating_hours: {
@@ -305,6 +201,7 @@ restaurants << Restaurant.create(
   phone: "(858)573-2400",
   maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13411.106663917599!2d-117.1554755!3d32.824682!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1023e5e70149c37c!2sRakiraki+Ramen+%26+Tsukemen!5e0!3m2!1sen!2sus!4v1497466658005' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
+
 restaurants << Restaurant.create(
   name: "Tajima Ramen House",
   operating_hours: {
@@ -342,6 +239,7 @@ restaurants << Restaurant.create(
   phone: "(858)576-7244",
   maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13410.976872039111!2d-117.1543696!3d32.8255416!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8d16a887f2702d3f!2sTajima+Japanese+Restaurant!5e0!3m2!1sen!2sus!4v1497466756101' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
+
 restaurants << Restaurant.create(
   name: "Nishiki Ramen",
   operating_hours: {
@@ -378,6 +276,7 @@ restaurants << Restaurant.create(
   phone: "(858)987-0222",
   maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13411.861272317554!2d-117.1501556!3d32.8196839!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf026a1068378b728!2sNishiki+Ramen!5e0!3m2!1sen!2sus!4v1497466978275' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
+
 restaurants << Restaurant.create(
   name: "Ramen Yamadaya(Clairemont)",
   operating_hours: {
@@ -453,6 +352,7 @@ restaurants << Restaurant.create(
 #   address: "5965 Village Way Ste e108 San Diego CA 92130",
 #   phone: "(858)779-2620"
 #   )
+
 restaurants << Restaurant.create(
   name: "Tajima Ramen Hillcrest",
   operating_hours: {
@@ -489,6 +389,7 @@ restaurants << Restaurant.create(
   phone: "(619)269-5050",
   maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13422.98258902111!2d-117.1592571!3d32.745944!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x34cc2f1d3eae5594!2sTajima+Ramen+Bar+Hillcrest!5e0!3m2!1sen!2sus!4v1497467076490' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
+
 restaurants << Restaurant.create(                              ##########################also pub############################
   name: "Underbelly",
   operating_hours: {
@@ -525,6 +426,7 @@ restaurants << Restaurant.create(                              #################
   phone: "(619)269-4626",
   maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13426.237964453836!2d-117.1693186!3d32.7243313!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xe21b3dd670f24e93!2sUnderbelly!5e0!3m2!1sen!2sus!4v1497467117028' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
+
 restaurants << Restaurant.create(
   name: "Hokkaido Ramen Santouka",
   operating_hours: {
@@ -561,6 +463,7 @@ restaurants << Restaurant.create(
   phone: "(858)974-1101",
   maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13411.9879035453!2d-117.1502145!3d32.8188451!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x674d0d25be32cf81!2sSantouka+Ramen+(Mitsuwa+Market)!5e0!3m2!1sen!2sus!4v1497467163077' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
+
 restaurants << Restaurant.create(
   name: "Yakitori Yakyudori & Ramen",
   operating_hours: {
@@ -597,7 +500,6 @@ restaurants << Restaurant.create(
   phone: "(858)268-2888",
   maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13410.222053426247!2d-117.1537929!3d32.8305403!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd24bfc7d71d4012b!2sYakyudori+(ramen+and+yakitori)!5e0!3m2!1sen!2sus!4v1497467226126' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
-
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # Below restaurant is breaking the app!!
@@ -637,6 +539,7 @@ restaurants << Restaurant.create(
 #   address: "928 Fort Stockton Dr San Diego CA 92103",
 #   phone: "(619)542-1354"
 #   )
+
 restaurants << Restaurant.create(
   name: "BeShock Ramen & Sake Bar",
   operating_hours: {
@@ -712,6 +615,7 @@ restaurants << Restaurant.create(
 #   address: "530 University Ave San Diego CA 92103",
 #   phone: "(619)501-4091"
 #   )
+
 restaurants << Restaurant.create(
   name: "Tajima Ramen East Village",
   operating_hours: {
@@ -748,6 +652,7 @@ restaurants << Restaurant.create(
   phone: "(619)431-5820",
   maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13427.71676986495!2d-117.1563564!3d32.7145092!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x51835f6593ab15d1!2sTajima+Ramen+East+Village!5e0!3m2!1sen!2sus!4v1497467330988' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
+
 restaurants << Restaurant.create(
   name: "Tokyo Ramen",
   operating_hours: {
@@ -784,6 +689,7 @@ restaurants << Restaurant.create(
   phone: "(619)738-8538",
   maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13422.660452659176!2d-117.1602215!3d32.748082!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7835847511726b7a!2sTokyo+Ramen!5e0!3m2!1sen!2sus!4v1497467383360' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
+
 restaurants << Restaurant.create(
   name: "Ramen Yamadaya(Broadway)",
   operating_hours: {
@@ -820,6 +726,7 @@ restaurants << Restaurant.create(
   phone: "(619)241-2251",
   maplink: "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13427.562615888439!2d-117.1594738!3d32.7155332!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xe53a543543907f61!2sRamen+Yamadaya!5e0!3m2!1sen!2sus!4v1497467420387' width='400' height='300' frameborder='0' style='border:0' allowfullscreen></iframe>"
   )
+
 restaurants << Restaurant.create(
   name: "Donburi Kitchen",
   operating_hours: {
@@ -896,25 +803,29 @@ restaurants << Restaurant.create(
 #   phone: "(619)683-3230"
 # )
 
-k = 1
 Restaurant.all.each do |restaurant|
-  k += 1
   restaurant.update(number_of_seats: 60)
 end
 
-
+k = 0
 restaurants.each do |restaurant|
+
+  if restaurant.is_open?
 
   Admin.create(email: restaurant.name.gsub(" ","_").gsub(")","").gsub("(","_").concat("@email.com").downcase, password: 'password', restaurant_id: restaurant.id)
   i = 0
   puts restaurant
   puts restaurant.id
+
   while i < 180
     name = Faker::Name.first_name
     party_size = [1,2,3,4].sample
 
     num_minutes_between_waittime_creation_events = 6
     num_minutes_between_party_seating_events = 8
+    if i < 15
+      num_minutes_between_waittime_creation_events = 4
+    end
     num_parties_before = Waittime.where(seated: false, restaurant_id: restaurant.id).length || 0
 
     # Get minute and hour from i
@@ -923,8 +834,67 @@ restaurants.each do |restaurant|
     if i > 59 && i < 120 then minute = i - 60 end
     if i > 119 then minute = i - 120 end
     puts "#{hour} hours and #{minute} minutes"
-    if i < 15
-      num_minutes_between_waittime_creation_events = 4
+
+    # 13 = Tajima Ramen East Village
+    # 14 = Tokyo Ramen
+    # 15 = Ramen Yamadaya(Broadway)
+    # 16 = Donburi Kitchen
+
+    if k == 1 || k == 5 || k == 9
+    # 1 = Menya Ultra
+    # 5 = Tajima Ramen House
+    # 9 = Underbelly
+      if i > 59 && i < 120
+        # num_minutes_between_waittime_creation_events = 5
+        num_minutes_between_party_seating_events = 7
+      end
+      if i > 150
+        num_minutes_between_waittime_creation_events = 7
+        num_minutes_between_party_seating_events = 7
+      end
+    end
+
+    if k == 2 || k == 6 || k == 10
+    # 2 = Nozaru Ramen Bar
+    # 6 = Nishiki Ramen
+    # 10 = Hokkaido Ramen Santouka
+      if i > 30 && i < 60
+        num_minutes_between_waittime_creation_events = 4
+      end
+      if i > 59 && i < 120
+        num_minutes_between_waittime_creation_events = 7
+        num_minutes_between_party_seating_events = 7
+      end
+      if i > 160
+        num_minutes_between_waittime_creation_events = 9
+        num_minutes_between_party_seating_events = 8
+      end
+    end
+
+    if k == 3 || k == 7 || k == 11
+    # 3 = Minato 3
+    # 7 = Ramen Yamadaya(Clairemont)
+    # 11 = Yakitori Yakyudori & Ramen
+      if i > 59 && i < 120
+        num_minutes_between_waittime_creation_events = 9
+        num_minutes_between_party_seating_events = [7,8].sample
+      end
+      if i > 120
+        num_minutes_between_waittime_creation_events = 9
+      end
+    end
+
+    if k == 4 || k == 8 || k == 12
+    # 4 = Rakiraki Ramen & Tsukemen
+    # 8 = Tajima Ramen Hillcrest
+    # 12 = BeShock Ramen & Sake Bar
+      if i < 60
+        num_minutes_between_waittime_creation_events = 7
+      end
+      if i > 119
+        num_minutes_between_waittime_creation_events = 8
+        num_minutes_between_party_seating_events = [8,9].sample
+      end
     end
 
     # If it's the correct minute, create a waittime
@@ -945,10 +915,10 @@ restaurants.each do |restaurant|
       party_to_seat.update(seated_time: seated_time)
     end
 
-    if i > 178
-
-    end
     i += 1
   end
 
+  end
+
+  k += 1
 end
