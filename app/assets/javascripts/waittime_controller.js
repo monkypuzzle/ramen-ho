@@ -78,6 +78,9 @@ $(document).ready(function(){
     })
     .done(function(response){
       updateWaittimes(response)
+      var keyOfMostRecentWaittime = Object.keys(response).reduce(function(a,b){return Math.max(a,b)});
+      var currentWaitTime = (response[(keyOfMostRecentWaittime)]) + 6
+      $(".current-estimated-wait").html(currentWaitTime + " min")
       $chosenWaittimeItem.remove();
     });
   });
