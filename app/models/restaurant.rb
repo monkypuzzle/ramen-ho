@@ -42,6 +42,9 @@ class Restaurant < ActiveRecord::Base
     Waitcalc.base_alg(self.number_of_seats)[:alg_time]
   end
 
+  def base_avg_time
+    Waitcalc.base_alg(self.number_of_seats)[:avg_time]/2
+  end
   def is_open?
     current_mil_time =Time.now.strftime('%H:%M')
     # current_mil_time =Time.new(2017,6,13,2,25,0, "-08:00").strftime('%H:%M')
@@ -95,7 +98,12 @@ class Restaurant < ActiveRecord::Base
     end
   end
 
+  def current_estimated_wait
+    base_avg_time + most_recent_waittime.estimated_waittime
+  end
+
   def self.order_by_waittimes
     Restaurant.all.select{|r|r.is_open?}.sort_by(&:current_waittime) + Restaurant.all.select{|r| !r.is_open? }
   end
+
 end

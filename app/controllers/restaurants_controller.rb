@@ -11,4 +11,10 @@ class RestaurantsController < ApplicationController
       render html: "Opens at #{restaurant.will_be_open}"
     end
   end
+
+  def currentwaittime
+    restaurant = Restaurant.find(params[:id])
+    time = restaurant.current_estimated_wait
+    render json: {time: time}.to_json
+  end
 end
