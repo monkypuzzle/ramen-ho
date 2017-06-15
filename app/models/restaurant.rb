@@ -102,7 +102,7 @@ class Restaurant < ActiveRecord::Base
   end
 
   def current_estimated_wait
-    base_avg_time + most_recent_waittime.estimated_waittime
+    5 + most_recent_waittime.estimated_waittime
   end
 
   def self.order_by_waittimes
