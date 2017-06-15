@@ -120,7 +120,7 @@ $(document).ready(function(){
       $('.current-estimated-wait').text(time + " min")
     })
   }
-  setInterval(pollCurrentWaittime, 6000)
+  setInterval(pollCurrentWaittime, 60000)
 
 
 });
