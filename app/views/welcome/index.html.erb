@@ -11,7 +11,7 @@
     <li class="waittime-headers">
       <span class="waittime-customer"> Customer</span>
       <span class="waittime-party-size">Party Size</span>
-      <div class="waittime-bookend">Estimated Wait Time</div>
+      <div class="waittime-bookend">Wait Time</div>
     </li>
     <% @waittimes.each do |waittime| %>
       <%= render partial: 'waittimes/create_w_db', layout: false, locals: { waittime: waittime } %>
