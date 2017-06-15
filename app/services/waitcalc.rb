@@ -7,13 +7,14 @@ require 'date'
 
 module Waitcalc
 
-@t = DateTime.now()
+# now = DateTime.now()
+now = Time.new(2017,6,16,11,00,0).utc
+@t = now.in_time_zone("Pacific Time (US & Canada)")
 @avg_seats = 55
-# @t = DateTime.new(2017,6,11,10,00,0, "-08:00")
-@rush_hour_lunch_start = DateTime.new(@t.year,@t.month,@t.day,12,00,0, "-08:00")
-@rush_hour_lunch_end = DateTime.new(@t.year,@t.month,@t.day,14,30,0, "-08:00")
-@rush_hour_dinner_start = DateTime.new(@t.year,@t.month,@t.day,18,00,0, "-08:00")
-@rush_hour_dinner_end = DateTime.new(@t.year,@t.month,@t.day,21,00,0, "-08:00")
+@rush_hour_lunch_start = DateTime.new(@t.year,@t.month,@t.day,12,00,0, "-07:00")
+@rush_hour_lunch_end = DateTime.new(@t.year,@t.month,@t.day,14,30,0, "-07:00")
+@rush_hour_dinner_start = DateTime.new(@t.year,@t.month,@t.day,18,00,0, "-07:00")
+@rush_hour_dinner_end = DateTime.new(@t.year,@t.month,@t.day,21,00,0, "-07:00")
 
 # puts @t.strftime('%A')
 # @collection = Waittime.where("EXTRACT(dow FROM (created_at)) = ?", DateTime.now.wday).map{|date| date.created_at.hour == @t.hour }
@@ -28,7 +29,7 @@ def self.actual_waitime(row)
 end
 
 def self.find_waittime(number_of_parties_before)
-  t = DateTime.now
+  t = @t
   similar_waittimes = Waittime.where(seated: true).where("EXTRACT(dow FROM (created_at)) = ?", DateTime.now.wday.to_s).select{|waittime| waittime.created_at.localtime.wday == t.wday && waittime.number_of_parties_before == number_of_parties_before }
   if similar_waittimes.empty?
     estimate = number_of_parties_before * base_alg(@avg_seats)[:avg_time]
