@@ -1,68 +1,34 @@
-
 .unlock, .admin-dashboard {
+  @extend .icon-size;
   position: fixed;
   button {
-    background-color: dimgray;
-    color: white;
-    min-height: 50px; min-width: 50px;
-  }
-  * { position: relative; }
-}
-.unlock {
-  top: 10px; right: 10px;
-  height: 50px; width: 50px;
-  .unlock-screen-btn {
+    @include button(dimgray);
     @extend .fit-to-parent;
-    box-shadow: inset 0px -3px lighten(dimgray, 20%);
-  }
-  .pin-popout {
-    padding: 10px;
-    right: 75px; top: 10px;
-    box-shadow: 4px 4px lighten(dimgray, 30%);
-  }
-  .pin-input {
-    margin-bottom: 10px;
-    width: 75%;
-  }
-  .pin-btn {
-    background-color: orange;
-    border: solid 2px darken(orange, 20%);
-    box-shadow: inset 0 1px 0 lighten(orange, 20%);
-  }
-  }
-.admin-dashboard {
-  bottom: 10px; right: 10px;
-  box-shadow: inset 0px -3px lighten(dimgray, 20%);
-  button {
-    border-left: solid 2px grey;
-    border-top: solid 2px grey;
+    background-color: dimgray;
   }
 }
+.unlock { top: 10px; right: 10px;
+  .pin-input, .pin-btn { width: 150px; } }
+.admin-dashboard { bottom: 10px; right: 10px; }
 .lock-status {
-  color: white; background-color: tomato;
-  font-weight: bolder;
-  padding: 5px 0; margin: 10px 0;
+  @extend .error;
+  padding: 10px; margin: 10px 0;
 }
 
 // Popouts
 .pin-popout, .admin-popout {
+  @extend .emphasize;
+  @include shadow(3px);
   background-color: dimgray;
-  position: fixed;
+  position: inherit;
+  top: inherit; bottom: inherit;
   z-index: 2;
-  * { padding: 10px; }
+  padding: 10px;
+  right: 75px;
+  * { margin: 5px 10px; }
+  button, a { @include button(orange); font-size: 24px; }
 }
 .admin-popout {
-  right: 75px;
-  bottom: 10px;
-  padding: 40px;
-  box-shadow: 4px 4px lighten(dimgray, 30%);
-  .restaurant { @extend .emphasize; font-size: 1.3em; }
-  a {
-    @extend .emphasize;
-    background-color: orange;
-    font-size: 1.5em;
-    padding: 10px;
-    border: solid 2px darken(orange, 20%);
-    box-shadow: inset 0 1px 0 lighten(orange, 20%);
-  }
+  @extend .flex-column;
+  a { padding: 10px; color: white; }
 }

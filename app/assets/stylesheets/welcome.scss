@@ -17,10 +17,21 @@ div { box-sizing: border-box; }
 $primary-font: 'Work Sans', 'Helvetica', sans-serif;
 $moonstone-blue: #7BA8C6;
 $gainsboro: #D7DDDD;
+$font-md: 28px;
+$font-lg: 40px;
 // Other colors: orange, dimgray, tomato, gainsboro, whitesmoke
 
 // b. Mixins
 //-----------------------------------------
+@mixin button($color) {
+  background-color: $color;
+  border: solid 2px darken($color, 30%);
+  box-shadow: inset 0px 1px 0 lighten($color, 20%);
+}
+@mixin shadow($px) {
+  box-shadow: $px $px $px*2 #474645;
+}
+
 
 // c. Extensions
 //-----------------------------------------
@@ -35,17 +46,28 @@ $gainsboro: #D7DDDD;
   display: flex;
   justify-content: center;
 }
-.fit-to-parent { height: 100%; width: 100%; }
-.center { left: 50%; top: 50%; transform: translateX(-50%) translateY(-50%); }
+.fit-to-parent {
+  height: 100%;
+  width: 100%;
+}
+.center {
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
 .emphasize {
   color: white;
   font-weight: bolder;
   text-shadow: .05em .05em black;
 }
-@mixin button($color) {
-  background-color: $color;
-  border: solid 2px darken($color, 30%);
-  box-shadow: inset 0px 1px 0 lighten($color, 20%);
+.icon-size {
+  height: 50px;
+  width: 50px;
+}
+.error {
+  color: white;
+  background-color: tomato;
+  font-weight: bolder;
 }
 
 // ========================================
@@ -81,69 +103,65 @@ button, input[type='submit'] { @extend .emphasize }
 }
 
 .form-container {
+  @extend .flex-column;
+  @extend .center;
+  @include shadow(5px);
+  position: fixed;
+  font-size: 22px;
+  height: 66%; width: 66%;
+  border: solid 2px black;
+  background-color: $moonstone-blue;
+  form {
     @extend .flex-column;
-    @extend .center;
-    position: fixed;
-    font-size: 22px;
-    height: 66%; width: 66%;
-    border: solid 2px black;
-    background-color: $moonstone-blue;
-    box-shadow: 10px 10px 20px dimgrey;
-    form { @extend .flex-column; @extend .fit-to-parent; position: absolute; top: 0;
-      div { @extend .flex-row }
-      .errors {
-        background-color: orangered;
-        width: 75%;
-        padding: 10px 0 10px 40px;
-        color: white;
-        display: none;
-        li {
-          list-style-type: disc;
-          margin: 10px 0;
-          font-size: 1.2em; font-weight: bolder;
-        }
-    }
+    @extend .fit-to-parent;
+    position: absolute; top: 0;
+    div { @extend .flex-row }
+    .errors {
+      @extend .error;
+      width: 75%;
+      padding: 10px 0 10px 40px;
+      display: none;
+      li {
+        list-style-type: disc;
+        margin: 10px 0;
+        font-weight: bolder;
+      }
   }
-    #name, #party_size, #phone_number, #add-to-waitlist {
-      box-sizing: border-box;
-      height: 100px; width: 300px;
-      margin: 40px 20px; padding: .2em .5em;
-      font-size: 30px;
-    }
-    #add-to-waitlist { background-color: orange; }
-    #cancel-party-button {
-      background-color: dimgray;
-      position: relative;
-      left: calc(100% - 60px); top: 10px;
-      height: 50px; width: 50px;
-      z-index: 3;
-    }
+}
+  #name, #party_size, #phone_number, #add-to-waitlist {
+    box-sizing: border-box;
+    height: 100px; width: 250px;
+    margin: 40px 20px; padding: .2em .5em;
+    font-size: $font-md;
+  }
+  #add-to-waitlist { background-color: orange; }
+  #cancel-party-button {
+    @include button(dimgray);
+    @extend .icon-size;
+    position: relative;
+    left: calc(100% - 60px); top: 10px;
+    z-index: 3;
+  }
 }
 
 .add-party {
   @extend .flex-row;
   width: 60%;
   margin: 30px auto 0 auto;
-  >*{
-    margin: 0 20px 0 0;
-  }
   #add-party-button {
     @include button(orange);
-    letter-spacing: 0em;
-    line-height: 1em;
-    font-size: 2.2em;
-    height: 150px;
-    width: 250px;
+    font-size: $font-lg;
+    height: 150px; width: 250px;
+    margin-right: 20px;
     }
   #current-wait-text {
     @extend .flex-column;
     text-align: center;
-    font-size: 2em; font-weight: bolder;
+    font-size: $font-lg; font-weight: bolder;
   }
 }
 
 .waitlist {
-  form { padding: 0px; }
   display: table;
   width: 100%;
   .waittime-item {
@@ -154,40 +172,29 @@ button, input[type='submit'] { @extend .emphasize }
     vertical-align: middle;
     text-align: center;
     display: table-cell;
-    font-size: 1.1em;
   }
   li { height: 3em; }
   li:nth-child(even) { background-color: #E5E5E5; }
   li:nth-child(odd) { background-color: whitesmoke; }
   li.waittime-headers {
+    display: table-row;
     @extend .emphasize;
     background-color: orange;
-    font-size: 1.5em;
+    font-size: $font-md;
     letter-spacing: .05em;
   }
   .almost-ready, .seat-party-btn, .seat-party-confirm, .almost-ready-confirm {
-    color: white;
-    font-size: 28px;
+    font-size: $font-md;
     width: 200px;
     height: 2em;
     }
-  .almost-ready {
-    @include button($moonstone-blue);
-  }
-  .seat-party-btn {
-    @include button(seagreen);
-  }
-  .almost-ready-confirm, .seat-party-confirm {
-    @include button(tomato);
-  }
+  .almost-ready { @include button($moonstone-blue); }
+  .seat-party-btn { @include button(seagreen); }
+  .almost-ready-confirm, .seat-party-confirm { @include button(tomato); }
 }
 
 .waittime-headers {
-  display: table-row;
-  font-weight: bolder;
-  padding: 10px;
   * {
-    font-size: 1.2em;
     vertical-align: middle;
     padding: 5px 0;
   }
@@ -196,14 +203,8 @@ button, input[type='submit'] { @extend .emphasize }
 .waittime-item > .status {
   .customer-visible {
     @extend .flex-row;
-    .ready {
-      color: red;
-      font-weight: bolder;
-    }
-  }
-  .employee-visible {
-    @extend .flex-row;
-  }
+    .ready { color: red; font-weight: bolder; } }
+  .employee-visible { @extend .flex-row; }
 }
 
 .waittime-customer { width: 60%; text-align: left; padding-left: 20px; }
