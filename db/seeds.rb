@@ -278,7 +278,7 @@ restaurants << Restaurant.create(
   )
 
 restaurants << Restaurant.create(
-  name: "Ramen Yamadaya(Clairemont)",
+  name: "Ramen Yamadaya (Clairemont)",
   operating_hours: {
     "sunday": {
       lunch: ["11:30","0"],
@@ -691,7 +691,7 @@ restaurants << Restaurant.create(
   )
 
 restaurants << Restaurant.create(
-  name: "Ramen Yamadaya(Broadway)",
+  name: "Ramen Yamadaya (Broadway)",
   operating_hours: {
     "sunday": {
       lunch: ["11:30","0"],

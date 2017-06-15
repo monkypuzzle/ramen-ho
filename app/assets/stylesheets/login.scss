@@ -13,10 +13,12 @@
     margin: 10px 0;
   }
   form {
+    input { margin: 5px 0; }
     @extend .flex-column;
     align-items: flex-start;
     .actions { align-self: center;
       input { @include button(orange);
+        margin-top: 10px;
         width: 100px;
         } } }
     a {
@@ -24,5 +26,6 @@
       @include button($pewter-blue);
       font-size: 1.2em;
       padding: 6px 10px;
+      margin-top: 5px;
     }
 }
