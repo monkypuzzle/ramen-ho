@@ -67,13 +67,13 @@ module RestaurantsHelper
     until i == hash[:day_list].length
       if hash[:lunch][i][0] == "0" && hash[:dinner][i][0] == "0"
         display_day << day_format(hash[:day_list][i].capitalize)
-        display << ":  - CLOSED - "
+        display << "  - CLOSED - "
       elsif hash[:lunch][i][1] == "0" && hash[:dinner][i][0] == "0"
         display_day << day_format(hash[:day_list][i].capitalize)
-        display << ":  " + standard_time(hash[:lunch][i][0]) + " -  " + standard_time(hash[:dinner][i][1])
+        display << "  " + standard_time(hash[:lunch][i][0]) + " -  " + standard_time(hash[:dinner][i][1])
       else
         display_day << day_format(hash[:day_list][i].capitalize)
-        display << ": " + standard_time(hash[:lunch][i][0]) + " - " + standard_time(hash[:lunch][i][1]) + " || " +  standard_time(hash[:dinner][i][0]) + " - " + standard_time(hash[:dinner][i][1])
+        display << " " + standard_time(hash[:lunch][i][0]) + " - " + standard_time(hash[:lunch][i][1]) + " || " +  standard_time(hash[:dinner][i][0]) + " - " + standard_time(hash[:dinner][i][1])
       end
       i += 1
     end
