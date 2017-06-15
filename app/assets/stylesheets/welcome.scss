@@ -14,7 +14,7 @@ a { color: black; text-decoration: none; }
 // a. Variables
 //-----------------------------------------
 $primary-font: 'Work Sans', 'Helvetica', sans-serif;
-$pewter-blue: #91AEC1;
+$pewter-blue: #7BA8C6;
 $gainsboro: #D7DDDD;
 $lightgray: #C5D2D6;
 
@@ -37,12 +37,16 @@ $lightgray: #C5D2D6;
 .fit-to-parent { height: 100%; width: 100%; }
 .center { left: 50%; top: 50%; transform: translateX(-50%) translateY(-50%); }
 .buttonize {
-  border-radius: .5em;
   color: white;
   font-weight: bolder;
   text-shadow: .05em .05em black;
 }
 
+@mixin button($color) {
+  background-color: $color;
+  border: solid 2px darken($color, 30%);
+  box-shadow: inset 0px 1px 0 lighten($color, 20%);
+}
 
 // ========================================
 // III. GENERAL TAGS
@@ -119,35 +123,31 @@ button, input[type='submit'] { @extend .buttonize }
 
 .add-party {
   @extend .flex-row;
-  border: solid 2px black;
   width: 60%;
   margin: 30px auto 0 auto;
   >*{
     margin: 0 20px 0 0;
   }
   #add-party-button {
-    background-color: orange;
-    border-right: solid 2px black;
-    border-radius: 0px;
+    @include button(orange);
     letter-spacing: 0em;
     line-height: 1em;
-    font-size: 2.5em;
+    font-size: 2.2em;
     height: 150px;
-    width: 300px;
+    width: 250px;
     }
   #current-wait-text {
     @extend .flex-column;
     text-align: center;
     font-size: 2em; font-weight: bolder;
-    // .current-estimated-wait { font-weight: 4em; }
   }
 }
 
 .waitlist {
+  form { padding: 0px; }
   display: table;
   width: 100%;
   .waittime-item {
-    border: solid 1px darkgrey;
     display: table-row;
     justify-content: space-between;
   }
@@ -157,12 +157,13 @@ button, input[type='submit'] { @extend .buttonize }
     text-align: center;
     display: table-cell;
     padding: .2em;
+    font-size: 1.1em;
   }
   li { height: 3em; }
-  li:nth-child(even) { background-color: $gainsboro; }
-  li:nth-child(odd) { background-color: $lightgray; }
+  li:nth-child(even) { background-color: #E5E5E5; }
+  li:nth-child(odd) { background-color: whitesmoke; }
   li.waittime-headers {
-    background-color: $pewter-blue;
+    background-color: orange;
     font-size: 1.5em;
     letter-spacing: .05em;
     color: white;
@@ -170,33 +171,28 @@ button, input[type='submit'] { @extend .buttonize }
   }
   .almost-ready, .seat-party-btn, .seat-party-confirm, .almost-ready-confirm {
     color: white;
-    font-size: 110%;
+    font-size: 28px;
+    width: 200px;
     height: 2em;
     }
   .almost-ready {
-    background-color: cadetblue;
-    box-shadow: inset 0px -3px darken(cadetblue, 40%);
+    @include button($pewter-blue);
   }
   .seat-party-btn {
-    background-color: seagreen;
-    box-shadow: inset 0px -3px darken(seagreen, 40%);
+    @include button(seagreen);
   }
   .almost-ready-confirm, .seat-party-confirm {
-    background-color: tomato;
-    box-shadow: inset 0px -3px darken(tomato, 40%);
+    @include button(tomato);
   }
 }
 
 .waittime-headers {
   display: table-row;
-  font-size: 1.3em;
   font-weight: bolder;
-  font-style: italic;
-  border-bottom: solid 2px black;
   padding: 10px;
   * {
+    font-size: 1.2em;
     vertical-align: middle;
-    border-bottom: solid 2px black;
     padding: 5px 0;
   }
 }

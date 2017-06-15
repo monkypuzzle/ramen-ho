@@ -24,8 +24,9 @@ $restaurant-layout-grid--tablet-up: (
 
 .restaurants-wrapper {
   @include grid-container;
-  padding: 20px 75px;
+  box-sizing: border-box;
   color: white;
+  padding: 20px 0;
 }
 
 .restaurant-tab-container {
@@ -37,15 +38,17 @@ $restaurant-layout-grid--tablet-up: (
       font-size: $tablet-up-font;
     }
   };
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   text-align: center;
   display: flex;
   flex-direction: column;
-  box-shadow: 5px 6px 3px 0px rgba(0,0,0,.5);
+  box-shadow: 5px 6px 3px 0px rgba(0,0,0,.3);
 }
 
 .restaurant-info {
   border: solid 2px black;
+  color: black;
+
 }
 
 // General Styling
@@ -55,7 +58,6 @@ $restaurant-layout-grid--tablet-up: (
   @extend .flex-row;
   font-size: 25px;
   height: 150px;
-
 }
 
 .restaurant-name {
@@ -63,17 +65,14 @@ $restaurant-layout-grid--tablet-up: (
   text-shadow: 2px 2px 2px black;
 }
 
-.restaurant-info {
-  color: black;
-}
-
 .navbar {
-  // font-style: italic;
+  font-size: .7em;
+  padding: 10px 0;
   text-shadow: 2px 2px 2px black;
 }
 
 .navbar, footer {
-  @extend .flex-row;
+  @extend .flex-column;
   width: 100%;
   background-color: orange;
   color: white;
@@ -81,16 +80,13 @@ $restaurant-layout-grid--tablet-up: (
 }
 
 footer {
-  justify-content: space-around;
-  color: white;
   font-weight: bolder;
   text-shadow: 1px 1px 1px black;
   a {
-    @extend .buttonize;
-    padding: 20px;
-    color: white;
-    background-color: dimgrey;
-    box-shadow: 0px 3px darken(dimgrey, 20%);
+    @include button($pewter-blue);
+    padding: 10px;
+    margin-bottom: 10px;
+    color: #fff;
   }
 }
 
@@ -106,7 +102,6 @@ footer {
 
 .waittime-display-container {
   @extend .flex-column;
-  // background-color: $pewter-blue;
   background: linear-gradient(to top right, #FFB835, #FFB326);
   height: 100%;
   width: 30%;
@@ -133,8 +128,8 @@ footer {
 }
 
 .restaurant-info {
-  padding: 15px;
 }
+
 .restaurant-map-hours {
   @extend .flex-column;
   margin: 0 auto;

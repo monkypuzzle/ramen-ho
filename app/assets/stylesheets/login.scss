@@ -1,5 +1,5 @@
 .sessions.new .page-wrapper {
-  background-color: orange;
+  // background-color: orange;
 }
 
 .new_admin-container {
@@ -8,7 +8,6 @@
   background-color: #fff;
   padding: 20px 40px;
   box-shadow: 2px 2px grey;
-  >* { margin: 10px 0; }
   h2 {
     font-size: 2em;
     margin: 10px 0;
@@ -16,17 +15,14 @@
   form {
     @extend .flex-column;
     align-items: flex-start;
-    >* { margin: 5px 0; }
     .actions { align-self: center;
-      input {
-        font-size: 1.2em;
-        background-color: seagreen; }
-    } }
+      input { @include button(orange);
+        width: 100px;
+        } } }
     a {
       @extend .buttonize;
-      background-color: cadetblue;
-      border: 2px lightgrey solid;
+      @include button($pewter-blue);
       font-size: 1.2em;
-      padding: 5px;
+      padding: 6px 10px;
     }
 }
