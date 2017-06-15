@@ -79,7 +79,7 @@ $(document).ready(function(){
     .done(function(response){
       updateWaittimes(response)
       var keyOfMostRecentWaittime = Object.keys(response).reduce(function(a,b){return Math.max(a,b)});
-      currentWaitTime = (response[(maxKey)]) + 6
+      var currentWaitTime = (response[(keyOfMostRecentWaittime)]) + 6
       $(".current-estimated-wait").html(currentWaitTime + " min")
       $chosenWaittimeItem.remove();
     });
