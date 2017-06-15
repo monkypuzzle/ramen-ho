@@ -35,8 +35,8 @@ $(document).ready(function(){
         $(".errors").html(listErrors(response))
       }
       else {
+      $(".errors").hide();
       $(".form-container").toggle();
-      console.log(response);
       $(".waitlist").append(response);
       $(".errors").html("");
       }
