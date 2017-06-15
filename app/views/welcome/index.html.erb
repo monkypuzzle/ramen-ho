@@ -20,10 +20,8 @@
 
   <div class="add-party">
     <button id="add-party-button">Add Your Party</button>
-    <div class="current-waittime-box">
-    Current Wait:
-      <span class="current-estimated-wait"> <%= @restaurant.current_estimated_wait %> </span>
-
+    <div id="current-wait-text">Current Wait:
+      <span class="current-estimated-wait"> <%= @restaurant.current_estimated_wait %> min</span>
     </div>
   </div>
 

@@ -119,23 +119,28 @@ button, input[type='submit'] { @extend .buttonize }
 
 .add-party {
   @extend .flex-row;
+  border: solid 2px black;
+  width: 60%;
+  margin: 30px auto 0 auto;
+  >*{
+    margin: 0 20px 0 0;
+  }
   #add-party-button {
     background-color: orange;
-    box-shadow: inset 0px -10px darken(orange, 20%);
-    border-radius: 20px;
+    border-right: solid 2px black;
+    border-radius: 0px;
     letter-spacing: 0em;
     line-height: 1em;
-    margin: 50px 0 0 0;
     font-size: 2.5em;
     height: 150px;
     width: 300px;
-    // position: fixed;
     }
-  // .current-waittime-box {
-  //   background-color: orange;
-  //   height: 150px;
-  //   width: 300px;
-  // }
+  #current-wait-text {
+    @extend .flex-column;
+    text-align: center;
+    font-size: 2em; font-weight: bolder;
+    // .current-estimated-wait { font-weight: 4em; }
+  }
 }
 
 .waitlist {

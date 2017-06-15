@@ -117,7 +117,7 @@ $(document).ready(function(){
     }).done(function(response){
       console.log(response)
       var time = response.time
-      $('.current-estimated-wait').text(time)
+      $('.current-estimated-wait').text(time + " min")
     })
   }
   setInterval(pollCurrentWaittime, 6000)

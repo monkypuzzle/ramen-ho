@@ -39,7 +39,7 @@ class Restaurant < ActiveRecord::Base
   end
 
   def base_avg_time
-    Waitcalc.base_alg(self.number_of_seats)[:avg_time]
+    Waitcalc.base_alg(self.number_of_seats)[:avg_time]/2
   end
   def is_open?
     current_mil_time =Time.now.strftime('%H:%M')
