@@ -278,7 +278,7 @@ restaurants << Restaurant.create(
   )
 
 restaurants << Restaurant.create(
-  name: "Ramen Yamadaya(Clairemont)",
+  name: "Ramen Yamadaya (Clairemont)",
   operating_hours: {
     "sunday": {
       lunch: ["11:30","0"],
@@ -691,7 +691,7 @@ restaurants << Restaurant.create(
   )
 
 restaurants << Restaurant.create(
-  name: "Ramen Yamadaya(Broadway)",
+  name: "Ramen Yamadaya (Broadway)",
   operating_hours: {
     "sunday": {
       lunch: ["11:30","0"],
@@ -810,9 +810,9 @@ end
 k = 0
 restaurants.each do |restaurant|
 
+  Admin.create(email: restaurant.name.gsub(" ","_").gsub(")","").gsub("(","_").concat("@email.com").downcase, password: 'password', restaurant_id: restaurant.id)
   if restaurant.is_open?
 
-  Admin.create(email: restaurant.name.gsub(" ","_").gsub(")","").gsub("(","_").concat("@email.com").downcase, password: 'password', restaurant_id: restaurant.id)
   i = 0
   puts restaurant
   puts restaurant.id

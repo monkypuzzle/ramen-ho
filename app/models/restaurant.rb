@@ -46,11 +46,12 @@ class Restaurant < ActiveRecord::Base
     Waitcalc.base_alg(self.number_of_seats)[:avg_time]/2
   end
   def is_open?
-    now = Time.now.utc
+    # now = Time.now.utc
+    # current_mil_time =Time.now.strftime('%H:%M')
+    now = Time.new(2017,6,16,11,00,0).utc
     current_mil_time = now.in_time_zone("Pacific Time (US & Canada)").strftime('%H:%M')
-    # current_mil_time =Time.new(2017,6,13,2,25,0, "-08:00").strftime('%H:%M')
+    # current_day = Time.now.strftime("%A").downcase
     current_day = now.in_time_zone("Pacific Time (US & Canada)").strftime("%A").downcase
-    # current_day = Time.new(2017,6,13,2,25,0, "-08:00").strftime("%A").downcase
     if current_mil_time < self.operating_hours[current_day]["lunch"][0]
       false
     elsif current_mil_time.between?(self.operating_hours[current_day]["lunch"][1],self.operating_hours[current_day]["dinner"][0])
@@ -63,11 +64,11 @@ class Restaurant < ActiveRecord::Base
   end
 
   def will_be_open
-    now = Time.now.utc
+    # current_mil_time =Time.now.strftime('%H:%M')
+    now = Time.new(2017,6,16,11,00,0).utc
     current_mil_time = now.in_time_zone("Pacific Time (US & Canada)").strftime('%H:%M')
-    # current_mil_time =Time.new(2017,6,13,2,25,0, "-08:00").strftime('%H:%M')
+    # current_day = Time.now.strftime("%A").downcase
     current_day = now.in_time_zone("Pacific Time (US & Canada)").strftime("%A").downcase
-    # current_day = Time.new(2017,6,13,2,25,0, "-08:00").strftime("%A").downcase
     if self.is_open? == false
       if current_mil_time < self.operating_hours[current_day]["lunch"][0]
         standard_time(self.operating_hours[current_day]["lunch"][0]) + " later today"
