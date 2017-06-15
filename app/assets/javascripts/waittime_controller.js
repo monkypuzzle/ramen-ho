@@ -39,6 +39,7 @@ $(document).ready(function(){
       $(".form-container").toggle();
       $(".waitlist").append(response);
       $(".errors").html("");
+      $(".employee-visible").hide();
       }
     })
   })

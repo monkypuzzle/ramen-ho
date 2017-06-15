@@ -59,7 +59,7 @@ $(document).ready(function(){
 
   $(".pin-btn").on("click", function(event){
     if ( $(".pin-input").val() === '1234' ) {
-      $('.employee-visible').css("display","table-cell");
+      $('.employee-visible').show();
       $(".admin-dashboard").show();
       $(".pin-input, .pin-btn").hide(); $('.customer-visible').hide(); $(".pin-popout").hide();
       $(".pin-input").val("");
