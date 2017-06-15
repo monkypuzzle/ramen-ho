@@ -22,8 +22,8 @@
         width: 100px;
         } } }
     a {
-      @extend .buttonize;
-      @include button($pewter-blue);
+      @extend .emphasize;
+      @include button($moonstone-blue);
       font-size: 1.2em;
       padding: 6px 10px;
       margin-top: 5px;

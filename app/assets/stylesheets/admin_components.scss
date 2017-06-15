@@ -56,9 +56,9 @@
   bottom: 10px;
   padding: 40px;
   box-shadow: 4px 4px lighten(dimgray, 30%);
-  .restaurant { @extend .buttonize; font-size: 1.3em; }
+  .restaurant { @extend .emphasize; font-size: 1.3em; }
   a {
-    @extend .buttonize;
+    @extend .emphasize;
     background-color: orange;
     font-size: 1.5em;
     padding: 10px;

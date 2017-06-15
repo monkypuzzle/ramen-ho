@@ -80,10 +80,9 @@ $restaurant-layout-grid--tablet-up: (
 }
 
 footer {
-  font-weight: bolder;
-  text-shadow: 1px 1px 1px black;
+  @extend .emphasize;
   a {
-    @include button($pewter-blue);
+    @include button($moonstone-blue);
     padding: 10px;
     margin-bottom: 10px;
     color: #fff;
@@ -108,8 +107,7 @@ footer {
 }
 
 .waittime-num {
-  text-shadow: 2px 2px 2px black;
-  font-weight: bolder;
+  @extend .emphasize;
   font-style: italic;
   font-size: $mobile-font-lg;
 }

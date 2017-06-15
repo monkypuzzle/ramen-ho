@@ -16,7 +16,7 @@ $(document).ready(function(){
   var unlockTimeout
   var setTimedLockout = function(){
     console.log('setTimedLockout starting!')
-    unlockTimeout = setTimeout(lockScreen, 15000)
+    unlockTimeout = setTimeout(lockScreen, 30000)
   };
 
   var unlockScreen = function(){
@@ -59,7 +59,7 @@ $(document).ready(function(){
 
   $(".pin-btn").on("click", function(event){
     if ( $(".pin-input").val() === '1234' ) {
-      $('.employee-visible').css("display","table-cell");
+      $('.employee-visible').show();
       $(".admin-dashboard").show();
       $(".pin-input, .pin-btn").hide(); $('.customer-visible').hide(); $(".pin-popout").hide();
       $(".pin-input").val("");
