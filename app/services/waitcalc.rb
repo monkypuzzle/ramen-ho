@@ -8,7 +8,7 @@ require 'date'
 module Waitcalc
 
 # now = DateTime.now()
-now = Time.new(2017,6,16,11,00,0)
+now = Time.new(2017,6,16,11,00,0,"-07:00")
 now = now.utc
 @t = now.in_time_zone("Pacific Time (US & Canada)")
 @avg_seats = 55
