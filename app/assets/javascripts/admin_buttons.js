@@ -16,7 +16,7 @@ $(document).ready(function(){
   var unlockTimeout
   var setTimedLockout = function(){
     console.log('setTimedLockout starting!')
-    unlockTimeout = setTimeout(lockScreen, 30000)
+    unlockTimeout = setTimeout(lockScreen, 15000)
   };
 
   var unlockScreen = function(){
