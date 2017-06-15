@@ -8,13 +8,13 @@ require 'date'
 module Waitcalc
 
 # now = DateTime.now()
-now = Time.new(2017,6,16,11,00,0,"-07:00")
+now = Time.new(2017,6,16,17,00,0,"-07:00")
 now = now.utc
 @t = now.in_time_zone("Pacific Time (US & Canada)")
 @avg_seats = 55
 @rush_hour_lunch_start = DateTime.new(@t.year,@t.month,@t.day,12,00,0, "-07:00")
 @rush_hour_lunch_end = DateTime.new(@t.year,@t.month,@t.day,14,30,0, "-07:00")
-@rush_hour_dinner_start = DateTime.new(@t.year,@t.month,@t.day,18,00,0, "-07:00")
+@rush_hour_dinner_start = DateTime.new(@t.year,@t.month,@t.day,17,00,0, "-07:00")
 @rush_hour_dinner_end = DateTime.new(@t.year,@t.month,@t.day,21,00,0, "-07:00")
 
 # puts @t.strftime('%A')

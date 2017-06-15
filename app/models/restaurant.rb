@@ -48,7 +48,7 @@ class Restaurant < ActiveRecord::Base
   def is_open?
     # now = Time.now.utc
     # current_mil_time =Time.now.strftime('%H:%M')
-    now = Time.new(2017,6,16,11,00,0,"-07:00")
+    now = Time.new(2017,6,16,17,00,0,"-07:00")
     now = now.utc
     current_mil_time = now.in_time_zone("Pacific Time (US & Canada)").strftime('%H:%M')
     # current_day = Time.now.strftime("%A").downcase
@@ -66,7 +66,7 @@ class Restaurant < ActiveRecord::Base
 
   def will_be_open
     # current_mil_time =Time.now.strftime('%H:%M')
-    now = Time.new(2017,6,16,11,00,0,"-07:00")
+    now = Time.new(2017,6,16,17,00,0,"-07:00")
     now = now.utc
     current_mil_time = now.in_time_zone("Pacific Time (US & Canada)").strftime('%H:%M')
     # current_day = Time.now.strftime("%A").downcase
