@@ -8,7 +8,8 @@ require 'date'
 module Waitcalc
 
 # now = DateTime.now()
-now = Time.new(2017,6,16,11,00,0).utc
+now = Time.new(2017,6,16,11,00,0)
+now = now.utc
 @t = now.in_time_zone("Pacific Time (US & Canada)")
 @avg_seats = 55
 @rush_hour_lunch_start = DateTime.new(@t.year,@t.month,@t.day,12,00,0, "-07:00")
