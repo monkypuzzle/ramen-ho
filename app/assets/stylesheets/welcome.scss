@@ -1,6 +1,6 @@
 // I. Troubleshooting
 // ========================================
-// div { border: dashed 1px red; }
+ul, li, button, span, { border: dashed 1px red; }
 
 // II. General Tags
 // ========================================
@@ -55,13 +55,19 @@ div { box-sizing: border-box; }
 }
 
 .waitlist {
+  display: table;
   width: 100%;
   .waittime-item {
-    @extend .flex-row;
-    border: solid 1px darkgrey;
-    justify-content: space-between;
+    background-color: beige;
+    display: table-row;
+    // border: solid 1px darkgrey;
+    // justify-content: space-between;
     min-height: 2em;
-    div { @extend .flex-row; }
+    width: 100%;
+    span, button, form {
+      // @extend .flex-row;
+      display: table-cell;
+    }
   }
   .table-ready-btn, .seat-party-btn {
     color: white;

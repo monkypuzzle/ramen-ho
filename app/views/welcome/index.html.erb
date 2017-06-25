@@ -27,6 +27,34 @@
   <% @waittimes.each do |waittime| %>
     <%= render partial: 'waittimes/create_w_db', layout: false, locals: { waittime: waittime } %>
   <% end %>
+
+  <li class="waittime-item" id='waittime-1'>
+    <span>Bob</span> -
+    <span>20 minutes</span> -
+    <button value='1112223333' class='almost-ready'>Table Almost Ready!</button>
+    <form class='waittime-seat-form' action='/waittimes/1'>
+      <button type='submit'>Seat this Party</button>
+    </form>
+  </li>
+
+  <li class="waittime-item" id='waittime-1'>
+    <span>Bob</span> -
+    <span>20 minutes</span> -
+    <button value='1112223333' class='almost-ready'>Table Almost Ready!</button>
+    <form class='waittime-seat-form' action='/waittimes/1'>
+      <button type='submit'>Seat this Party</button>
+    </form>
+  </li>
+
+    <li class="waittime-item" id='waittime-1'>
+    <span>Bob</span> -
+    <span>20 minutes</span> -
+    <button value='1112223333' class='almost-ready'>Table Almost Ready!</button>
+    <form class='waittime-seat-form' action='/waittimes/1'>
+      <button type='submit'>Seat this Party</button>
+    </form>
+  </li>
+
 </ul>
 
 </div>
