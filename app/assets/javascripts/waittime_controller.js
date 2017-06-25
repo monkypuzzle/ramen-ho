@@ -3,108 +3,128 @@ $(document).ready(function(){
   //hides waitlist form
   //toggle form on Add Party button
   $("#add-party-button").click(function(event){
-    $("#add-party-form").toggle();
+    $(".form-container").toggle();
   })
+
+  //add to wailist grays out unless all fields are filled
+  $('#name, #party_size, #phone_number').bind('keyup', function() {
+    if(allFilled()) $('#add-to-waitlist').removeAttr('disabled');
+  })
+
+  //checks that all fields are filled in
+  function allFilled() {
+    if (!($('#name').val() === '') && !($('#party_size').val() === '') && !($('#phone_number').val() === '')) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 
   $("body").on("submit", "form#add-party-form", function(event) {
     event.preventDefault();
-    var customer = new Customer(
-      $("#name").val(),
-      $("#phone_number").val(),
-      $("#party_size").val()
-      );
+
     $.ajax({
       method: "post",
       url: $(this).attr("action"),
-      data: {
-        customer: customer
-      }
+      data: $(this).serialize()
     }).done(function(response){
       console.log(response)
+      $("#add-party-form").trigger("reset");
+      if (Array.isArray(response)) {
+        $(".errors").html(listErrors(response))
+      }
+      else {
+      $(".errors").hide();
+      $(".form-container").toggle();
       $(".waitlist").append(response);
+      $(".errors").html("");
+      $(".employee-visible").hide();
+      }
     })
   })
 
+  $("#cancel-party-button").on("click", function(event){
+    $(".form-container").hide();
+  })
 
-  $(".waitlist").on("submit", ".waittime-seat-form", function(event){
-    event.preventDefault()
-    var $form = $(this);
+  function listErrors(errors) {
+    html = ""
+    $(".errors").show();
+    errors.forEach(function(error) {
+      html += ("<li>" + error + "</li>")
+    })
+    return html
+  }
+
+  var updateWaittimes = function(est_waittimes){
+    Object.keys(est_waittimes).forEach(function(property){
+      id = "#waittime-" + property
+      $(id).find(".customer-visible .waittime").html("").html(est_waittimes[property] + " minutes")
+    })
+  }
+
+  $(".waitlist").on("submit", ".seat-party", function(event){
+    event.preventDefault();
+    $(this).toggle();
     var $chosenWaittimeItem = $(this).closest(".waittime-item");
     var waittimeId = $chosenWaittimeItem.attr("id").replace("waittime-","");
-    console.log(waittimeId)
     var data = {'waittime': {'id': waittimeId}};
-    // UPDATE Waittime object in the database (set seated to true)
     $.ajax({
       method: "PATCH",
-      url: $form.attr("action"),
+      url: $(this).attr("action"),
       dataType: "json",
       data: data
     })
     .done(function(response){
-      // When done, remove the <li> from the list
+      updateWaittimes(response)
+      var keyOfMostRecentWaittime = Object.keys(response).reduce(function(a,b){return Math.max(a,b)});
+      var currentWaitTime = (response[(keyOfMostRecentWaittime)]) + 6
+      $(".current-estimated-wait").html(currentWaitTime + " min")
       $chosenWaittimeItem.remove();
     });
   });
 
 
   $(".waitlist").on("click", ".almost-ready", function(event){
-    var phoneNumber = $(this).val();
+    $(this).toggle();
+    $(this).next(".almost-ready-confirm").slideDown(150);
+  })
+
+  $(".waitlist").on("click", ".seat-party-btn", function(event){
+    $(this).toggle();
+    $(this).siblings(".seat-party").show()
+    $(this).siblings(".seat-party").find('.seat-party-confirm').slideDown(150);
+  })
+
+  $(".waitlist").on("click", ".almost-ready-confirm", function(event){
+    $(this).toggle();
+    $(this).siblings(".seat-party-btn").show();
+    var waittimeId = $(this).closest("li").prop("id");
     $.ajax({
       method: "get",
       url: '/waittimes/send_notice',
       data: {
-        phone_number: phoneNumber
+        id: waittimeId
       }
     }).done(function(response){
-      console.log(response)
-      //figure out what to do after sms is sent
-      alert('sent!')
+      $("#" + response).find('.status .waittime').toggle()
+      $("#" + response).find('.status .ready').toggle()
     })
   })
 
-  // =============================================
-  // Screen can be unlocked (for Cabin Boys/Girls)
-  // =============================================
-  var $privilegedButtons = $(".table-ready-btn, .seat-party-btn");
-  var $pinInput = $(".pin-input, .pin-btn");
-  var lockScreen = function(){
-    $privilegedButtons.hide();
-    $pinInput.hide();
-    $(".unlock-screen-btn").show();
-    $(".lock-screen-btn").hide();
-    $(".lock-status").html("")
-  };
-  // Default screen to locked
-  // lockScreen();
-
-  // Cabin Boy/Girl can show pin form
-  $(".unlock-screen-btn").on("click", function(event){
-    $(this).hide();
-    $pinInput.show();
-  });
-  
-  // Cabin Boy/Girl can enter pin to unlock screen
-  $(".pin-btn").on("click", function(event){
-    // If pin correct, unlock screen
-    if ( $(".pin-input").val() === '1234' ) {
-      $pinInput.hide();
-      $privilegedButtons.show();
-      $(".lock-screen-btn").show();
-      // (Lock screen automatically after 15 seconds)
-      setTimeout(lockScreen, 15000);
-      $(".lock-status").html("<p style='color:seagreen;'>Screen unlocked!</p><p style='color:orange;'>Will lock automatically in 5 seconds.</p>")
-    }
-    // If pin incorrect, give alert
-    else {
-      $(".lock-status").html("<p style='color:red;'>Incorrect pin!</p>")
-    }
-  });
-
-  // Cabin Boy/Girl can re-lock screen when they are done
-  $(".lock-screen-btn").on("click", function(event){
-    lockScreen();
-  });
-
+  function pollCurrentWaittime() {
+    var restaurantUrl = "/restaurants/" + $('#restaurant-name-header').data('id') + "/currentwaittime"
+    $.ajax({
+      method: "get",
+      url: restaurantUrl
+    }).done(function(response){
+      console.log(response)
+      var time = response.time
+      $('.current-estimated-wait').text(time + " min")
+    })
+  }
+  setInterval(pollCurrentWaittime, 60000)
 
 
 });

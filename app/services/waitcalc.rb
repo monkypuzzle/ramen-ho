@@ -7,25 +7,39 @@ require 'date'
 
 module Waitcalc
 
-@t = DateTime.now()
-# @t = DateTime.new(2017,6,9,10,00,0, "-08:00")
-@rush_hour_lunch_start = DateTime.new(@t.year,@t.month,@t.day,12,00,0, "-08:00")
-@rush_hour_lunch_end = DateTime.new(@t.year,@t.month,@t.day,14,30,0, "-08:00")
-@rush_hour_dinner_start = DateTime.new(@t.year,@t.month,@t.day,18,00,0, "-08:00")
-@rush_hour_dinner_end = DateTime.new(@t.year,@t.month,@t.day,21,00,0, "-08:00")
+# now = DateTime.now()
+now = DateTime.new(2017,6,16,17,01,0, "-07:00")
+current = now.utc
+@t = current.in_time_zone("Pacific Time (US & Canada)")
+@avg_seats = 55
+@rush_hour_lunch_start = DateTime.new(@t.year,@t.month,@t.day,12,00,0, "-07:00")
+@rush_hour_lunch_end = DateTime.new(@t.year,@t.month,@t.day,14,30,0, "-07:00")
+@rush_hour_dinner_start = DateTime.new(@t.year,@t.month,@t.day,18,00,0, "-07:00")
+@rush_hour_dinner_end = DateTime.new(@t.year,@t.month,@t.day,21,00,0, "-07:00")
 
 # puts @t.strftime('%A')
 # @collection = Waittime.where("EXTRACT(dow FROM (created_at)) = ?", DateTime.now.wday).map{|date| date.created_at.hour == @t.hour }
 # @collection = Waittime.where("EXTRACT(dow FROM (created_at)) = ?", DateTime.now.wday).map{|date| date.created_at.hour == @t.hour && date.party_size == customer.party_size }
 # @unseated = Waittime.where(seated: false)
 
-def self.estimated_waitime(row)
+def self.actual_waitime(row)
 # Should maybe be called actual_waittime? - Paul
-  est_time = (row[:updated_at] - row[:created_at]) * 1440
+  est_time = (row.updated_at - row.created_at) * 1440
   est_time.to_i
 
 end
 
+def self.find_waittime(number_of_parties_before)
+  t = @t
+  similar_waittimes = Waittime.where(seated: true).where("EXTRACT(dow FROM (created_at)) = ?", DateTime.now.wday.to_s).select{|waittime| waittime.created_at.localtime.wday == t.wday && waittime.number_of_parties_before == number_of_parties_before }
+  if similar_waittimes.empty?
+    estimate = number_of_parties_before * base_alg(@avg_seats)[:avg_time]
+    estimate = estimate/3
+  else
+    puts collection_avg(similar_waittimes)
+    return collection_avg(similar_waittimes)
+  end
+end
 
 
 def self.rush_hour?
@@ -56,20 +70,19 @@ def self.base_alg(seats)
 
 end
 
-# def self.collection_avg(collection)
-#   total_times = collection.map{|party| estimated_waitime(party)}
-#   customer_time = total_times.reduce(:+) / collection.length
-# end
+def self.collection_avg(collection)
+  total_times = collection.map{|party| party.seated_time }
+  customer_time = total_times.reduce(:+) / collection.length
+end
 
 
 
 def self.find_waitime_app(collection=nil, seats)
   alg_data = base_alg(seats)
   if collection
-   total_times = collection.map{|party| estimated_waitime(party)}
+   total_times = collection.map{|party| actual_waitime(party)}
    total_times << alg_data[:alg_time]
-   estimated_time = total_times.reduce(:+) / collection.length + 1
-   p estimated_time
+   actual_time = total_times.reduce(:+) / collection.length + 1
   else
    algorithm_time
    puts algorithm_time
@@ -82,43 +95,40 @@ end
 # Increases for their placement on the list
 # Assume we know # of parties ahead
 
-def self.find_first_waitime(collection, seats, guest, prev_guest_time)
+def self.find_list_waitime(collection, seats, guest, prev_guest_time=nil)
+
   party_size = guest[:party_size]
-  parties_ahead = guest[:parties_ahead]
 
   if prev_guest_time
    alg_data = base_alg(seats)
    full_time = prev_guest_time
+   full_time += alg_data[:avg_time]
   else
-   full_time = base_alg(seats)
+   alg_data = base_alg(seats)
+   full_time = alg_data[:alg_time]
   end
 
   if party_size < 2
     full_time += 2
-  elsif party_size < 3
-    full_time += 5
+  elsif party_size == 2
+    full_time += 4
   else
     i = 0
     until i == party_size
       full_time += 5
       i += 1
-   end
+     end
   end
 
-  parties_ahead.times do
-    full_time += alg_data[:avg_time]/party_size
-  end
-
-  puts "this is"
-  puts full_time
   col_time = find_waitime_app(collection, seats)
-  puts col_time
-  first_guest_time = (col_time + full_time)/2
+  guest_time = (col_time + full_time)/2
+
   end
+
 end
 
 
 
 # puts estimated_waitime(@collection[0])
 
-# puts Waitcalc.find_first_waitime(@collection, @num_seats, @guest, 45)
+# puts Waitcalc.find_first_waitime(@collection,@num_seats, @guest, 13)

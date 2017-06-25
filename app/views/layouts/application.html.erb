@@ -3,21 +3,19 @@
 <head>
   <title>Ramen Ho!</title>
 
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Work+Sans:400,600" rel="stylesheet">
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= controller_name %> <%= action_name %>">
 
-<div class="page-wrapper flex-column">
-
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <div class="page-wrapper flex-column">
 
   <%= yield %>
 
-</div>
+  </div>
 
 </body>
 </html>

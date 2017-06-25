@@ -1,61 +1,46 @@
 <div class="content-wrapper">
+
+  <%= render partial: 'admin_dashboard' %>
+  <%= render partial: 'unlock' %>
+
   <div class="waitlist-header">
-    <h1>Waitlist</h1>
-    <div class="add-party">
-      <form id="add-party-form" method="post" action="/waittimes">
-        <input type="text" name="name" id="name" placeholder="Name"><br>
-        <input type="number" id="party_size" name="party_size" placeholder="Party Size"><br>
-        <input type="tel" id="phone_number" name="phone_number" placeholder="Phone Number"><br>
-        <%#<input type="hidden" name="number_of_parties_before" value="<%= number_of_unseated_parties(current_admin.restaurant) %>
-        <input type="submit" value="Add to Waitlist">
-      </form>
-      <button id="add-party-button">Add Party</button>
-    </div>
-    <div class="admin-dashboard">
-      <a href="/admins/dashboard"><%= current_admin.email %></a>
-    </div>
-    <div class="unlock">
-      <input class="pin-input" type="text">
-      <button class="pin-btn">Submit Pin</button>
-      <button class="unlock-screen-btn">Unlock Screen</button>
-      <button class="lock-screen-btn">Lock Screen</button>
-      <div class="lock-status"></div>
+    <h1 id="restaurant-name-header" data-id="<%= @restaurant.id %>"><%= @restaurant.name %> Waitlist</h1>
+  </div>
+
+  <ul class="waitlist">
+    <li class="waittime-headers">
+      <span class="waittime-customer"> Customer</span>
+      <span class="waittime-party-size">Party Size</span>
+      <div class="waittime-bookend">Wait Time</div>
+    </li>
+    <% @waittimes.each do |waittime| %>
+      <%= render partial: 'waittimes/create_w_db', layout: false, locals: { waittime: waittime } %>
+    <% end %>
+  </ul>
+
+  <div class="add-party">
+    <button id="add-party-button">Add Your Party</button>
+    <div id="current-wait-text">Current Wait:
+      <span class="current-estimated-wait"> <%= @restaurant.current_estimated_wait %> min</span>
     </div>
   </div>
 
-<ul class="waitlist">  
-  <% @waittimes.each do |waittime| %>
-    <%= render partial: 'waittimes/create_w_db', layout: false, locals: { waittime: waittime } %>
-  <% end %>
-
-  <li class="waittime-item" id='waittime-1'>
-    <span>Bob</span> -
-    <span>20 minutes</span> -
-    <button value='1112223333' class='almost-ready'>Table Almost Ready!</button>
-    <form class='waittime-seat-form' action='/waittimes/1'>
-      <button type='submit'>Seat this Party</button>
-    </form>
-  </li>
-
-  <li class="waittime-item" id='waittime-1'>
-    <span>Bob</span> -
-    <span>20 minutes</span> -
-    <button value='1112223333' class='almost-ready'>Table Almost Ready!</button>
-    <form class='waittime-seat-form' action='/waittimes/1'>
-      <button type='submit'>Seat this Party</button>
-    </form>
-  </li>
-
-    <li class="waittime-item" id='waittime-1'>
-    <span>Bob</span> -
-    <span>20 minutes</span> -
-    <button value='1112223333' class='almost-ready'>Table Almost Ready!</button>
-    <form class='waittime-seat-form' action='/waittimes/1'>
-      <button type='submit'>Seat this Party</button>
-    </form>
-  </li>
-
-</ul>
+  <div class="form-container">
+    <button id="cancel-party-button"><i class="fa fa-times" aria-hidden="true"></i></button>
+    <%= form_for :waittime, url: waittimes_path, html: {id: "add-party-form"} do |f| %>
+      <div>
+        <%= f.text_field :customer, id:"name", placeholder:"Name" %>
+        <%= f.number_field :party_size, id:"party_size", placeholder:"Party Size" %>
+      </div>
+      <div>
+        <%= f.telephone_field :phone, id:"phone_number", placeholder:"Phone Number" %>
+        <%= f.submit "Add to Waitlist", id: "add-to-waitlist", disabled: true %>
+      </div>
+      <ul class="errors"></ul>
+    <% end %>
+  </div>
 
 </div>
+
+
 

@@ -1,0 +1,151 @@
+// ========================================
+//  VARIABLES, MIXINS, & EXTENSIONS
+// ========================================
+
+// a. Variables
+
+$mobile-font-lg: 7vw;
+$tablet-up-font: 3.4vw;
+
+// Grid setup
+$restaurant-layout-grid: (
+  columns: 1,
+  gutter: 20px,
+);
+
+$restaurant-layout-grid--tablet-up: (
+  columns: 5,
+  gutter: 20px,
+  media: "(min-width: 768px)",
+);
+
+// Structural Classes
+// ========================================
+
+.restaurants-wrapper {
+  @include grid-container;
+  box-sizing: border-box;
+  color: white;
+  padding: 20px 0;
+}
+
+.restaurant-tab-container {
+  @include grid-column(1, $restaurant-layout-grid);
+  @include grid-media($restaurant-layout-grid--tablet-up) {
+    @include grid-column(3);
+    @include grid-push(1);
+    .restaurant-name {
+      font-size: $tablet-up-font;
+    }
+  };
+  margin-bottom: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 6px 3px 0px rgba(0,0,0,.3);
+}
+
+.restaurant-info {
+  border: solid 2px lightgrey;
+  color: black;
+
+}
+
+// General Styling
+// ========================================
+
+.restaurant-tab {
+  @extend .flex-row;
+  font-size: 25px;
+  height: 150px;
+}
+
+.restaurant-name {
+  font-size: $mobile-font-lg;
+  text-shadow: 2px 2px 2px black;
+}
+
+.navbar {
+  font-size: 20px;
+  padding: 10px 0;
+  text-shadow: 2px 2px 2px black;
+}
+
+.navbar, footer {
+  @extend .flex-column;
+  width: 100%;
+  background-color: orange;
+  color: white;
+  height: 120px;
+}
+
+footer {
+  @extend .emphasize;
+  a {
+    @include button($moonstone-blue);
+    padding: 10px;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+}
+
+.mobile-content-wrapper {
+  background-color: #fff;
+}
+
+.restaurant-name-container {
+  @extend .flex-row;
+  height: 100%;
+  width: 70%;
+}
+
+.waittime-display-container {
+  @extend .flex-column;
+  background: linear-gradient(to top right, #FFB835, #FFB326);
+  height: 100%;
+  width: 30%;
+}
+
+.waittime-num {
+  @extend .emphasize;
+  font-style: italic;
+  font-size: $mobile-font-lg;
+}
+.waittime-text {
+  font-size: 1em;
+}
+
+@media only screen and (min-width: 800px) {
+  .restaurant-name { font-size: 6vw; }
+  .waittime-num { font-size: 4vw; }
+}
+
+.restaurant-tile {
+  @extend .fit-to-parent;
+  background-color: #FFF;
+}
+
+.restaurant-info {
+}
+
+.restaurant-map-hours {
+  @extend .flex-column;
+  margin: 0 auto;
+  font-size: .8em;
+  line-height: 1.4em;
+  iframe { max-width: 300px; margin: 15px; }
+  >*{
+    margin: 20px;
+    text-align: left;
+  }
+  p { margin-bottom: .3em; }
+  strong { font-weight: bolder; }
+}
+
+@media only screen and (min-width: 1110px) {
+  .restaurant-map-hours {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
+}

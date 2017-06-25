@@ -1,0 +1,35 @@
+<div class="mobile-content-wrapper">
+  <nav class='navbar'>
+    <h1>Ramen, Ho!</h1>
+  </nav>
+  <div class="restaurants-wrapper">
+      <% @restaurants.each do |restaurant| %>
+      <div class="restaurant-tab-container">
+        <div id='restaurant-<%=restaurant.id %>' class='restaurant-tab' style="background-image: url('<%= image_url("#{restaurant.id}.jpg") %>'); background-position: center; background-size: cover; background-repeat: no-repeat; box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4);">
+
+          <div class="restaurant-name-container">
+            <h1 class="restaurant-name"><%= restaurant.name %></h1>
+          </div>
+          <div class="waittime-display-container">
+            <div class="waittime-display">
+              <% if restaurant.is_open? %>
+                <p class="waittime-num"><%= restaurant.current_waittime %></p>
+                <p class="waittime-text">minute</p>
+                <p class="waittime-text">wait time!</p>
+              <% else %>
+                Opens at <%= restaurant.will_be_open %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div id="restaurant-info-<%= restaurant.id %>" class="restaurant-info">
+          <p><%= render partial: "waittime", locals: {restaurant: restaurant} %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <footer>
+      <a href="/waitlist">Business Login</a>
+      <p>&copy; Ramen, Ho!</p>
+  </footer>
+</div>
