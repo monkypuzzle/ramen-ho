@@ -4,7 +4,7 @@ Have you ever rolled up to your favorite ramen shop only to discover that there'
 
 Ramen Ho! is two apps - a mobile app that informs the ramen-hungry customer which ramen shops have the shortest wait times, and a tablet app that allows ramen shop proprietors to make sure they're seating their customers efficiently. By broadcasting live waittimes to customers on the hunt, Ramen Ho! can help the ramen-eater spend less time driving around and more time eating those delicious noodles, and allow ramen shops to make sure they've always got customers on the hook!
 
-Currently, the app is just a prototype! The next step would be to find some __partners__ - restaurants interesting in using the waitlist app with their customers. We do not currently have the bandwidth to pursue these interests, and the app is not in development. But if you're interested in the app, do get in touch!
+Currently, the app is just a prototype! The next step would be to find some __partners__ - restaurants interesting in using the waitlist app with their customers. We don't currently have the bandwidth to pursue these ends, and the app is not in development. But if you're interested in the app, do get in touch!
 
 This project was a ___team effort___. It was built with :heart_eyes:, :cry:, & :sweat: by [quyenttran](https://github.com/quyenttran), [lmdasaro](https://github.com/lmdasaro), [mdinh7](https://github.com/mdinh7) and yours truly.
 
